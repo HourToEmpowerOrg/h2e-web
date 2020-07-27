@@ -1,0 +1,7 @@
+.features-tabs-tab-image {
+	display: inline-flex;
+	border-radius: 50%;
+    background: get-color(light, 1);
+    box-shadow: 0 1px 4px rgba(get-color(dark, 1), .08);
+    border: 1px solid get-color(light, 3);
+}

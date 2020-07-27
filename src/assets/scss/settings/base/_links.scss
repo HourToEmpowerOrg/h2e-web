@@ -1,0 +1,66 @@
+// Links
+
+// Color
+$link--color: (
+	link: 								get-color(dark, 2),
+	link-hover: 						get-color(primary, 1),
+	header-link: 						null,
+	header-link-hover: 					null,
+	header-link-mobile: 				get-color(dark, 3),
+	header-link-mobile-hover: 			get-color(light, 3),
+	footer-link: 						get-color(dark, 2),
+	footer-link-hover: 					get-color(primary, 1),
+	footer-block-link: 					null,
+	footer-block-link-hover: 			null,
+	button-link: 						null,
+	button-link-hover: 					null,
+	func-link: 							get-color(primary, 1),
+	func-link-hover: 					null,
+	// ↓ Inverted colors
+	link-inverse: 						get-color(dark, 3),
+	link-hover-inverse: 				get-color(primary, 1),
+	header-link-inverse: 				null,
+	header-link-hover-inverse:			null,
+	footer-link-inverse: 				get-color(dark, 2),
+	footer-link-hover-inverse: 			null,
+	footer-block-link-inverse: 			null,
+	footer-block-link-hover-inverse:	null,
+	button-link-inverse: 				null,
+	button-link-hover-inverse:			null,
+	func-link-inverse: 					null,
+	func-link-hover-inverse:			null		
+);
+
+// Font-weight
+$link--weight: (
+	link: 				null,
+	header-link:		500,
+	footer-link:		null,
+	footer-block-link:	null,
+	button-link:		null
+);
+
+// Text decoration
+$link-main--decoration: 				underline;
+$link-main--decoration-hover: 			none;
+$link-header--decoration: 				none;
+$link-header--decoration-hover:			null;
+$link-footer--decoration: 				none;
+$link-footer--decoration-hover: 		null;
+$link-footer-block--decoration: 		none;
+$link-footer-block--decoration-hover:	null;
+$link-button--decoration: 				null;
+$link-button--decoration-hover: 		null;
+$link-func--decoration: 				null;
+$link-func--decoration-hover: 			null;
+
+// Text transform
+$link-header--transform: 		null;
+$link-footer--transform: 		null;
+$link-footer-block--transform: 	null;
+$link-button--transform: 		null;
+$link-func--transform: 			null;
+
+// Don't change lines below!
+$color:			map-push($color, $link--color);
+$font--weight: 	map-push($font--weight, $link--weight);

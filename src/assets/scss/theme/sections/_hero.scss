@@ -1,0 +1,24 @@
+.hero {
+
+    &.has-bg-color {
+		position: relative;
+		background-color: transparent;
+        z-index: auto;
+        
+		&::before {
+			content: '';
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+            background: get-color(dark, 1);
+            clip-path: polygon(0 0, 5760px 0, 5760px calc(100% - 352px), 0 100%);
+			z-index: -3;
+		}        
+    }
+}
+
+.hero-inner {
+    padding-bottom: 168px;
+}

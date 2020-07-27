@@ -1,0 +1,30 @@
+[class*=illustration-] {
+	position: relative;
+
+	&::after {
+		pointer-events: none;
+	}
+}
+
+[class*=illustration-element-]::after {
+	z-index: -1;
+}
+
+[class*=illustration-section-]::after {
+	z-index: -2;
+}
+
+// News illustration
+.illustration-section-01::after {
+	@include illustration('illustration-section-01.svg', 100%, 104px, bottom, null, 212px);
+}
+
+// Testimonials illustration
+.illustration-section-02::after {
+	@include illustration('illustration-section-02.svg', 100%, 224px, top, null, 293px);
+}
+
+// Behind hero image
+.illustration-element-01::after {
+	@include illustration('illustration-element-01.svg', 200%, 200%);
+}

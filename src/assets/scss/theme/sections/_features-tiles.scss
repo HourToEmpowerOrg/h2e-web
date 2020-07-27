@@ -1,0 +1,12 @@
+.features-tiles-item-image {
+    display: inline-flex;
+	border-radius: 50%;
+    background: get-color(primary, 1);  
+}
+
+.features-tiles-item-content {
+
+    h4 {
+        @include font-family(heading);
+    }
+}

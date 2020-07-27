@@ -1,0 +1,36 @@
+.news {
+    position: relative;
+    
+    &::before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: get-color(light, 2);
+        z-index: -3;
+    }
+}
+
+.news-item-title {
+    font-weight: 700;
+
+    a {
+        color: get-color(dark, 1) !important;
+        text-decoration: none;
+    }
+}
+
+.news-item-more {
+    @include font-weight(header-link);
+
+    a {
+        color: get-color(dark, 1);
+        text-decoration: none;
+
+        &:hover {
+            color: get-color(primary, 1);
+        }
+    }
+}
