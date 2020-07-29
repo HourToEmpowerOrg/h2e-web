@@ -16,6 +16,114 @@ const defaultProps = {
 
 class SignupForm extends React.Component {
 
+
+  studentSignupForm() {
+    return (
+      <div className="tiles-wrap">
+          <div className="tiles-item">
+            <div className="tiles-item-inner">
+              <form>
+                <fieldset>
+                  <div className="mb-12">
+                    <Input
+                      label="Full name"
+                      placeholder="Full name" 
+                      labelHidden
+                      required />
+                  </div>
+                  <div className="mb-12">
+                    <Input
+                      type="email"
+                      label="Email"
+                      placeholder="Email"
+                      labelHidden
+                      required />
+                  </div>
+                  <div className="mb-12">
+                    <Input
+                      type="password"
+                      label="Password"
+                      placeholder="Password"
+                      labelHidden
+                      required />
+                  </div>
+                  <div className="mb-12">
+                    <Input
+                      label="Class"
+                      placeholder="Select Class" 
+                      labelHidden
+                      required />
+                  </div>
+                  <div className="mb-12">
+                    <Input
+                      label="Select Teacher"
+                      placeholder="Select Teacher" 
+                      labelHidden
+                      required />
+                  </div>
+                  <div className="mt-24 mb-32">
+                    <Button color="primary" wide disabled>Sign up</Button>
+                  </div>
+                </fieldset>
+              </form>
+              <div className="signin-bottom has-top-divider">
+                {/* <div className="pt-32 text-xs center-content text-color-low">
+                  Already have an account? <Link to="/login/" className="func-link">Login</Link>
+                </div> */}
+              </div>
+            </div>
+          </div>
+        </div>
+    )
+  }
+
+  tutorSignupForm() {
+    return (
+      <div className="tiles-wrap">
+          <div className="tiles-item">
+            <div className="tiles-item-inner">
+              <form>
+                <fieldset>
+                  <div className="mb-12">
+                    <Input
+                      label="Full name"
+                      placeholder="Full name" 
+                      labelHidden
+                      required />
+                  </div>
+                  <div className="mb-12">
+                    <Input
+                      type="email"
+                      label="Email"
+                      placeholder="Email"
+                      labelHidden
+                      required />
+                  </div>
+                  <div className="mb-12">
+                    <Input
+                      type="password"
+                      label="Password"
+                      placeholder="Password"
+                      labelHidden
+                      required />
+                  </div>
+                  <div className="mt-24 mb-32">
+                    <Button color="primary" wide disabled>Sign up</Button>
+                  </div>
+                </fieldset>
+              </form>
+              <div className="signin-bottom has-top-divider">
+                {/* <div className="pt-32 text-xs center-content text-color-low">
+                  Already have an account? <Link to="/login/" className="func-link">Login</Link>
+                </div> */}
+              </div>
+            </div>
+          </div>
+        </div>
+    )
+  }
+  
+
   render() {
 
     const {
@@ -26,6 +134,7 @@ class SignupForm extends React.Component {
       bottomDivider,
       hasBgColor,
       invertColor,
+      userType,
       ...props
     } = this.props;
 
@@ -44,9 +153,18 @@ class SignupForm extends React.Component {
       bottomDivider && 'has-bottom-divider'
     );
 
-    const sectionHeader = {
-      title: 'Welcome. We exist to make entrepreneurism easier.',
+    const sectionHeaders = {
+      tutor: {
+        title: 'Volunteer a small amount of your time to help students grow.', 
+      },
+      student: {
+        title: 'Welcome! Talk to your teacher to find out if your school is currently using HourToEmpower!', 
+      }
     };
+
+    const currentSchools = [
+      'Overland High School (Aurora, CO)'
+    ]
 
     return (
       <section
@@ -55,48 +173,35 @@ class SignupForm extends React.Component {
       >
         <div className="container">
           <div className={innerClasses}>
-            <SectionHeader tag="h1" data={sectionHeader} className="center-content" />
-            <div className="tiles-wrap">
-              <div className="tiles-item">
-                <div className="tiles-item-inner">
-                  <form>
-                    <fieldset>
-                      <div className="mb-12">
-                        <Input
-                          label="Full name"
-                          placeholder="Full name" 
-                          labelHidden
-                          required />
-                      </div>
-                      <div className="mb-12">
-                        <Input
-                          type="email"
-                          label="Email"
-                          placeholder="Email"
-                          labelHidden
-                          required />
-                      </div>
-                      <div className="mb-12">
-                        <Input
-                          type="password"
-                          label="Password"
-                          placeholder="Password"
-                          labelHidden
-                          required />
-                      </div>
-                      <div className="mt-24 mb-32">
-                        <Button color="primary" wide>Sign up</Button>
-                      </div>
-                    </fieldset>
-                  </form>
-                  <div className="signin-bottom has-top-divider">
-                    <div className="pt-32 text-xs center-content text-color-low">
-                      Already have an account? <Link to="/login/" className="func-link">Login</Link>
-                    </div>
-                  </div>
+            <SectionHeader tag="h3" data={sectionHeaders[userType]} className="center-content" />
+
+            {userType === 'tutor' && (
+              <div>
+                <div className="center-content">
+                  <p>Hour To Empower is still a work in progress, but if you are interested in becoming a Tutor, please send an email to
+                    <Button classNames="button-link">hello@hourtoempower.com (TODO: UPDATE EMAIL HERE)</Button>
+                  </p>
+                  {this.tutorSignupForm()}
                 </div>
               </div>
-            </div>
+            )}
+
+            {userType === 'student' && (
+              <div>
+                <div className="center-content">
+                <span style={{textAlign:'left'}}>Currently supported schools:</span>
+                <ul style={{listStyle:'none'}}>
+                  {currentSchools.map(item => {
+                    return (
+                    <li>{item}</li>
+                    )
+                  })}
+                </ul>
+                {this.studentSignupForm()}
+                </div>
+              </div>
+            )}
+
           </div>
         </div>
       </section>

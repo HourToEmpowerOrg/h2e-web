@@ -45,7 +45,7 @@ class Roadmap extends React.Component {
 
     const sectionHeader = {
       title: 'How it Works',
-      paragraph: 'Vitae aliquet nec ullamcorper sit amet risus nullam eget felis semper quis lectus nulla at volutpat diam ut venenatis tellus in ornare.'
+      paragraph: 'Creating a community where students can get free tutoring sessions from real-life professionals.'
     };
 
     return (

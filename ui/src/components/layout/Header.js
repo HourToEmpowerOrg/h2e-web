@@ -30,7 +30,7 @@ const BrandLogo = () => {
   return (
 
       <div className={brandClasses}>
-        Hour To Empower
+        <Link to="/" style={{ textDecoration: 'none' }}>Hour To Empower</Link>
       </div>
   )
 }
@@ -140,13 +140,13 @@ class Header extends React.Component {
                         className="list-reset header-nav-right"
                       >
                         <li>
-                          <Link to="/parents" onClick={this.closeMenu}>For Parents</Link>
+                          <Link to="/parents">For Parents</Link>
                         </li>
                         <li>
-                          <Link to="/signup/student" className="button button-primary button-wide-mobile button-sm mr-4" onClick={this.closeMenu}>Student Sign up</Link>
+                          <Link to="/signup/student" className="button button-primary button-wide-mobile button-sm mr-4">Student Sign up</Link>
                         </li>
                         <li>
-                          <Button to="/signup/tutor" className="button button-wide-mobile button-sm ml-4" color="secondary" onClick={this.closeMenu}>Tutor Sign up</Button>
+                          <Link to="/signup/tutor" className="button button-secondary button-wide-mobile button-sm ml-4">Tutor Sign up</Link>
                         </li>
                       </ul>}
                   </div>

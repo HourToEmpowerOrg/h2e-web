@@ -12,7 +12,11 @@ import LayoutSignin from './layouts/LayoutSignin';
 import Home from './views/Home';
 import Secondary from './views/Secondary';
 import Login from './views/Login';
+
+//Sign up pages
 import Signup from './views/Signup';
+import SignupTutor from './views/SignupTutor';
+import SignupStudent from './views/SignupStudent';
 
 class App extends React.Component {
 
@@ -37,6 +41,8 @@ class App extends React.Component {
             <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
             <AppRoute exact path="/login" component={Login} layout={LayoutSignin} />
             <AppRoute exact path="/signup" component={Signup} layout={LayoutSignin} />
+            <AppRoute exact path="/signup/student" component={SignupStudent} layout={LayoutSignin} />
+            <AppRoute exact path="/signup/tutor" component={SignupTutor} layout={LayoutSignin} />
           </Switch>
         )} />
     );
