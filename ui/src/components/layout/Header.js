@@ -140,6 +140,9 @@ class Header extends React.Component {
                         className="list-reset header-nav-right"
                       >
                         <li>
+                          <Link to="/about">About</Link>
+                        </li>
+                        <li>
                           <Link to="/parents">For Parents</Link>
                         </li>
                         <li>

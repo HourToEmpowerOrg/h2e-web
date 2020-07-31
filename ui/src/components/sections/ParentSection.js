@@ -15,7 +15,7 @@ const defaultProps = {
   ...SectionProps.defaults
 }
 
-class TempLoginForm extends React.Component {
+class ParentSection extends React.Component {
 
   render() {
 
@@ -55,28 +55,24 @@ class TempLoginForm extends React.Component {
       >
         <div className="container">
           <div className={innerClasses}>
-            <SectionHeader tag="h3" data={sectionHeader} className="center-content" />
             <div>
                 <div className="center-content">
-                  <p>Hour To Empower is still a work in progress.</p>
-
-                <h4>For Students</h4>
-
-                  <p>If you're a <span style={{fontWeight:'bold'}}>student</span>, speak with your teacher to find out if your school is planning on using HourToEmpower</p>
-
-                  <h4>For Tutors</h4>
-                  <p>If you're interested in becoming a <span style={{fontWeight:'bold'}}>tutor</span>, please take a look at our <Link to="/signup/tutor">Tutor Application</Link></p>
-
-
-                  <h4>For Parents</h4>
-                  <p>Help your child get started with HourToEmpower by sending an email to hello@hourtoempower.com (TODO: UPDATE EMAIL HERE)</p>
-
-
-                  <h4>For Everyone</h4>
-
-                  <p>Feel free to reach us any time by sending an email to:</p>
-                  <Button classNames="button-link">hello@hourtoempower.com (TODO: UPDATE EMAIL HERE)</Button>
+                  <h3>Help your child get started with HourToEmpower</h3>                
                 </div>
+                <br/>
+                <p>Hour To Empower is still a work in progress. If you're interested in having your child receive 1 on 1 tutoring sessions, please
+                  send an email to hello@hourtoempower.com (TODO: UPDATE EMAIL HERE)
+                  <br/>
+                  <br/>
+                  In your email, please include:
+                  <br/>
+                  <br/>
+                    <ul>  
+                      <li>Child's current Grade in school</li>
+                      <li>City, State</li>
+                      <li>School Name</li>
+                    </ul>
+                  </p>
               </div>
           </div>
         </div>
@@ -85,7 +81,7 @@ class TempLoginForm extends React.Component {
   }
 }
 
-TempLoginForm.propTypes = propTypes;
-TempLoginForm.defaultProps = defaultProps;
+ParentSection.propTypes = propTypes;
+ParentSection.defaultProps = defaultProps;
 
-export default TempLoginForm;
+export default ParentSection;

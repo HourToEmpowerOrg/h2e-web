@@ -12,12 +12,12 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <HeroSplit hasBgColor invertColor />
-        <Roadmap bottomOuterDivider/>
+        <Roadmap/>
         {/* <FeaturesTiles /> */}
         {/* <FeaturesTabs topDivider bottomOuterDivider /> */}
         {/* <News className="illustration-section-01" /> */}
         {/* <Pricing hasBgColor pricingSlider /> */}
-        <Cta hasBgColor split />
+        <Cta hasBgColor split className="has-bg-color-cut"/>
       </React.Fragment>
     );
   }
