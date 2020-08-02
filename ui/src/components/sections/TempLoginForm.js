@@ -69,13 +69,12 @@ class TempLoginForm extends React.Component {
 
 
                   <h4>For Parents</h4>
-                  <p>Help your child get started with HourToEmpower by sending an email to hello@hourtoempower.com (TODO: UPDATE EMAIL HERE)</p>
+                  <p>Help your child get started with HourToEmpower by sending an email to <a href="mailto:hrtoempower@gmail.com">hrtoempower@gmail.com</a> </p>
 
 
                   <h4>For Everyone</h4>
 
-                  <p>Feel free to reach us any time by sending an email to:</p>
-                  <Button classNames="button-link">hello@hourtoempower.com (TODO: UPDATE EMAIL HERE)</Button>
+                  <p>Feel free to reach us any time by sending an email to: <a href="mailto:hrtoempower@gmail.com">hrtoempower@gmail.com</a> </p>
                 </div>
               </div>
           </div>

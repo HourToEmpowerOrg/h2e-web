@@ -179,7 +179,7 @@ class SignupForm extends React.Component {
               <div>
                 <div className="center-content">
                   <p>Hour To Empower is still a work in progress, but if you are interested in becoming a Tutor, please send an email to
-                    <Button classNames="button-link">hello@hourtoempower.com (TODO: UPDATE EMAIL HERE)</Button>
+                    <a href="mailto:hrtoempower@gmail.com">hrtoempower@gmail.com</a>
                   </p>
                   {this.tutorSignupForm()}
                 </div>

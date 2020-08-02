@@ -60,8 +60,9 @@ class ParentSection extends React.Component {
                   <h3>Help your child get started with HourToEmpower</h3>                
                 </div>
                 <br/>
-                <p>Hour To Empower is still a work in progress. If you're interested in having your child receive 1 on 1 tutoring sessions, please
-                  send an email to hello@hourtoempower.com (TODO: UPDATE EMAIL HERE)
+                <p>
+                  Hour To Empower is still a work in progress. If you're interested in having your child receive 1 on 1 tutoring sessions, please
+                  send an email to <a href="mailto:hrtoempower@gmail.com">hrtoempower@gmail.com</a>
                   <br/>
                   <br/>
                   In your email, please include:
