@@ -70,25 +70,25 @@ class AboutUs extends React.Component {
           <div className="container">
             <p className="mt-12">
               Hour to Empower is a 501c(3) organization that partners with schools to effectively provide free tutoring for under-resourced schools. 
-              By leveraging a network of college-educated, volunteer tutors, students enrolled at participating schools can choose from a series of available times 
-              that best suits their schedules, provide feedback through rating their tutors, and receive vital support that complements what they’re learning 
+              By leveraging a network of college-educated, volunteer tutors, students enrolled at participating schools can choose from a series of available 
+              times that best suits their schedules, provide feedback by rating their tutors, and receive vital support that complements what they are learning 
               in the classroom. 
             </p>
             <br/>
             <p className="mt-24">
-              Covid-19 has brought upon unprecedented times to the economy, classrooms, and households. Education is an essential item that should be provided to <strong>ALL</strong> students
-             regardless of income, race, or creed. The responsibility to enrich students’ learning experiences is one of not only teachers, administrators, 
-             or parents, but also society at large.
+              Covid-19 has brought upon unprecedented times for the economy, classrooms, and households. A quality education is an essential service that 
+              should be provided to ALL students regardless of income, race, or creed. The responsibility to enrich students’ learning experiences is one 
+              of not only teachers, administrators, or parents, but also society at large.
             </p>
             <br/>
             <p className="mt-24">
-              We challenge educational inequities in the pursuit of social justice.
+              We challenge educational inequities in the pursuit of bridging the achievement gap.
             </p>
             <br/>
             <p className="mt-24">
-            Covid-19 is a global pandemic. It has impacted all of us in numerous ways—that we all share. Let’s share more than the devastation, let’s share learning. 
-            This is the hour, for our communities and our next generations, to contribute to something greater than just our own lives. This is the hour to empower.
-
+              Covid-19 is a global pandemic. It has impacted all of us in numerous ways—that we all share. Let’s share more than the devastation, 
+              let’s share learning. This is the hour, for our communities and our next generations, to contribute to something greater than just our own lives.
+              This is the hour to empower.
             </p>
           </div>
         </GenericSection>
