@@ -19,6 +19,7 @@ import Parents from './views/Parents'
 import Signup from './views/Signup';
 import SignupTutor from './views/SignupTutor';
 import SignupStudent from './views/SignupStudent';
+import SignupSchools from './views/SignupSchools';
 
 import NotFound from './views/NotFound'
 
@@ -49,6 +50,7 @@ class App extends React.Component {
             <AppRoute exact path="/about" component={AboutUs} layout={LayoutDefault} />
             <AppRoute exact path="/signup/student" component={SignupStudent} layout={LayoutSignin} />
             <AppRoute exact path="/signup/tutor" component={SignupTutor} layout={LayoutSignin} />
+            <AppRoute exact path="/signup/schools" component={SignupSchools} layout={LayoutSignin} />
             <AppRoute path="*" component={NotFound} layout={LayoutDefault}></AppRoute>
           </Switch>
         )} />

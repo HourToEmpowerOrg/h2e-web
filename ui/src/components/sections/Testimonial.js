@@ -49,7 +49,7 @@ class Testimonial extends React.Component {
     );
 
     const sectionHeader = {
-      title: 'Democratizing access to tutoring resources for underrepresented youth. ',
+      title: 'Democratizing access to tutoring for under-served students',
       paragraph: ''
     };
 
@@ -61,7 +61,7 @@ class Testimonial extends React.Component {
         <div className="container">
           <div className={innerClasses}>
             <SectionHeader data={sectionHeader} tag="h2" className="center-content invert-color" />
-            <div className={tilesClasses} style={{minHeight:'250px'}}>
+            <div className={tilesClasses} style={{minHeight:'200px'}}>
 
               {/* <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap">
                 <div className="tiles-item-inner has-shadow">

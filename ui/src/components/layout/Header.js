@@ -146,6 +146,9 @@ class Header extends React.Component {
                           <Link to="/parents">For Parents</Link>
                         </li>
                         <li>
+                          <Link to="/signup/schools">For Schools</Link>
+                        </li>
+                        <li>
                           <Link to="/signup/student" className="button button-primary button-wide-mobile button-sm mr-4">Student Sign up</Link>
                         </li>
                         <li>

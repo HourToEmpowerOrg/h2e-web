@@ -53,18 +53,18 @@ class Roadmap extends React.Component {
         {...props}
         className={outerClasses}
       >
-        <div className="container">
+        <div className="container" id="how-it-works-section" className="section">
           <div className={innerClasses}>
             <SectionHeader data={sectionHeader} className="center-content" />
             <Timeline>
               <TimelineItem title="School Partnership">
-              We partner with schools to pair virtual pro-bono tutors with students in need.
+                We partner <strong>directly</strong> with schools to pair virtual volunteer tutors with students. Teachers can provide guidance and feedback for sessions
               </TimelineItem>
-              <TimelineItem title="1 on 1 scheduling">
-              Schedule sessions that fit with both the tutor and students’ schedules, regardless of location.
+              <TimelineItem title="1:1 Scheduling">
+                Schedule virtual sessions that fit both the tutor and students’ schedules, regardless of location
               </TimelineItem>
-              <TimelineItem title="Secure Scheduling and meetings">
-              Students receive safe, accessible, and personalized support.
+              <TimelineItem title="Secure Scheduling and Meetings">
+                Students receive safe, accessible, and personalized support
               </TimelineItem>
             </Timeline>
           </div>

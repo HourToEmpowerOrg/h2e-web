@@ -48,10 +48,14 @@ class Team extends React.Component {
       pushLeft && 'push-left'
     );
 
-    const sectionHeader = {
-      title: 'Get to know us',
-      paragraph: 'Meet our Tutors: <Could show list of early tutors here!>'
+    const tutorSectionHeader = {
+      title: '(H)Our Tutors',
+      paragraph: 'Meet our Tutors. All of our tutors are volunteers who we recruit, train, and certify.'
     };
+
+    const teamSectionHeader = {
+      title: '(H)Our Team'
+    }
 
     return (
       <section
@@ -60,18 +64,19 @@ class Team extends React.Component {
       >
         <div className="container">
           <div className={innerClasses}>
-            <SectionHeader data={sectionHeader} className="center-content reveal-from-bottom" />
+            {/* TUTOR SECTION */}
+            <SectionHeader data={tutorSectionHeader} className="center-content reveal-from-bottom" />
             <div className={tilesClasses}>
 
               <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap">
                 <div className="tiles-item-inner">
                   <div className="team-item-header">
                     <div className="team-item-image mb-24">
-                      {/* <Image
-                        src={require('./../../assets/images/team-member-01.jpg')}
+                      <Image
+                        src={require('./../../assets/images/team-member-04.jpg')}
                         alt="Team member 01"
                         width={180}
-                        height={180} /> */}
+                        height={180} />
                     </div>
                   </div>
                   <div className="team-item-content">
@@ -79,7 +84,10 @@ class Team extends React.Component {
                       Tutor Name
                     </h5>
                     <div className="team-item-role text-xs fw-600 mb-8">
-                      Math
+                      Subject
+                    </div>
+                    <div className="team-item-link text-xs fw-600 mb-8">
+                      LinkedIn Profile Link
                     </div>
                     <p className="m-0 text-sm">
                       Brief info / introduction
@@ -91,11 +99,11 @@ class Team extends React.Component {
                 <div className="tiles-item-inner">
                   <div className="team-item-header">
                     <div className="team-item-image mb-24">
-                      {/* <Image
-                        src={require('./../../assets/images/team-member-01.jpg')}
+                      <Image
+                        src={require('./../../assets/images/team-member-02.jpg')}
                         alt="Team member 01"
                         width={180}
-                        height={180} /> */}
+                        height={180} />
                     </div>
                   </div>
                   <div className="team-item-content">
@@ -105,29 +113,8 @@ class Team extends React.Component {
                     <div className="team-item-role text-xs fw-600 mb-8">
                       Math
                     </div>
-                    <p className="m-0 text-sm">
-                      Brief info / introduction
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap">
-                <div className="tiles-item-inner">
-                  <div className="team-item-header">
-                    <div className="team-item-image mb-24">
-                      {/* <Image
-                        src={require('./../../assets/images/team-member-01.jpg')}
-                        alt="Team member 01"
-                        width={180}
-                        height={180} /> */}
-                    </div>
-                  </div>
-                  <div className="team-item-content">
-                    <h5 className="team-item-name mt-0 mb-4">
-                      Tutor Name
-                    </h5>
-                    <div className="team-item-role text-xs fw-600 mb-8">
-                      Math
+                    <div className="team-item-link text-xs fw-600 mb-8">
+                      LinkedIn Profile Link
                     </div>
                     <p className="m-0 text-sm">
                       Brief info / introduction
@@ -135,7 +122,65 @@ class Team extends React.Component {
                   </div>
                 </div>
               </div>
+            </div>
+            {/* TEAM SECTION */}
+            <SectionHeader data={teamSectionHeader} className="center-content reveal-from-bottom" />
+            <div className={tilesClasses}>
 
+            <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap">
+                <div className="tiles-item-inner">
+                  <div className="team-item-header">
+                    <div className="team-item-image mb-24">
+                      {/* <Image
+                        src={require('./../../assets/images/team-member-chacko.jpg')}
+                        alt="Team member 01"
+                        width={180}
+                        height={180} /> */}
+                    </div>
+                  </div>
+                  <div className="team-item-content">
+                    <h5 className="team-item-name mt-0 mb-4">
+                      Rachael Chacko
+                    </h5>
+                    <div className="team-item-role text-xs fw-600 mb-8">
+                      Title
+                    </div>
+                    <div className="team-item-link text-xs fw-600 mb-8">
+                      <a href="https://www.linkedin.com/in/rachael-chacko-ab556a101/">LinkedIn Profile</a>
+                    </div>
+                    <p className="m-0 text-sm">
+                      Princeton 2017
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap">
+                <div className="tiles-item-inner">
+                  <div className="team-item-header">
+                    <div className="team-item-image mb-24">
+                      {/* <Image
+                        src={require('./../../assets/images/team-member-chacko.jpg')}
+                        alt="Team member 01"
+                        width={180}
+                        height={180} /> */}
+                    </div>
+                  </div>
+                  <div className="team-item-content">
+                    <h5 className="team-item-name mt-0 mb-4">
+                      William Bertrand
+                    </h5>
+                    <div className="team-item-role text-xs fw-600 mb-8">
+                      Title
+                    </div>
+                    <div className="team-item-link text-xs fw-600 mb-8">
+                      <a href="https://www.linkedin.com/in/williambertrand/">LinkedIn Profile</a>
+                    </div>
+                    <p className="m-0 text-sm">
+                      Princeton 2017
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

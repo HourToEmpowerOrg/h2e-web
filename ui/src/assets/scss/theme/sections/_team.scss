@@ -3,4 +3,12 @@
 	.team-item-role {
 		color: get-color(primary, 2);
 	}
+
+	.team-item-link {
+		color: get-color(secondary, 2);
+		text-decoration: underline;
+		cursor: pointer;
+	}
 }
+
+

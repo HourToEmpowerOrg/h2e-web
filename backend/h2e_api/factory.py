@@ -87,14 +87,3 @@ def register_blueprints(app):
     app.register_blueprint(front_end_bp)
     app.register_blueprint(main_bp)
     app.register_blueprint(users_bp)
-
-
-def _configure_sqs_clients(app, config_name, client, error_client = None):
-    config = app.config.get(config_name)
-    client.configure(config)
-    if error_client is not None:
-        error_client.configure({
-            **config,
-            'queue_name': config['error_queue_name'],
-            'queue_url': config['error_queue_url'],
-        })

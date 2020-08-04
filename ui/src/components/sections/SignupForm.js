@@ -122,6 +122,44 @@ class SignupForm extends React.Component {
         </div>
     )
   }
+
+  schoolSignupForm() {
+    return (
+      <div className="tiles-wrap">
+          <div className="tiles-item">
+            <div className="tiles-item-inner">
+              <form>
+                <fieldset>
+                  <div className="mb-12">
+                    <Input
+                      label="School Name"
+                      placeholder="School name" 
+                      labelHidden
+                      required />
+                  </div>
+                  <div className="mb-12">
+                    <Input
+                      type="email"
+                      label="Contact Email"
+                      placeholder="Contact Email"
+                      labelHidden
+                      required />
+                  </div>
+                  <div className="mt-24 mb-32">
+                    <Button color="primary" wide disabled>Submit</Button>
+                  </div>
+                </fieldset>
+              </form>
+              <div className="signin-bottom has-top-divider">
+                {/* <div className="pt-32 text-xs center-content text-color-low">
+                  Already have an account? <Link to="/login/" className="func-link">Login</Link>
+                </div> */}
+              </div>
+            </div>
+          </div>
+        </div>
+    )
+  }
   
 
   render() {
@@ -155,9 +193,12 @@ class SignupForm extends React.Component {
 
     const sectionHeaders = {
       tutor: {
-        title: 'Volunteer a small amount of your time to help students grow.', 
+        title: 'Volunteer a small amount of time to fight educational inequity. An hour of your time is an immeasurable amount for a student in need', 
       },
       student: {
+        title: 'Welcome! Talk to your teacher to find out if your school is currently using HourToEmpower!', 
+      },
+      school: {
         title: 'Welcome! Talk to your teacher to find out if your school is currently using HourToEmpower!', 
       }
     };
@@ -178,8 +219,8 @@ class SignupForm extends React.Component {
             {userType === 'tutor' && (
               <div>
                 <div className="center-content">
-                  <p>Hour To Empower is still a work in progress, but if you are interested in becoming a Tutor, please send an email to
-                    <a href="mailto:hrtoempower@gmail.com">hrtoempower@gmail.com</a>
+                  <p>
+                    Hour To Empower is still being set up, but if you are interested in becoming a Tutor, please send an email to <a href="mailto:hrtoempower@gmail.com">hrtoempower@gmail.com</a>
                   </p>
                   {this.tutorSignupForm()}
                 </div>
@@ -198,6 +239,14 @@ class SignupForm extends React.Component {
                   })}
                 </ul>
                 {this.studentSignupForm()}
+                </div>
+              </div>
+            )}
+
+            {userType === 'school' && (
+              <div>
+                <div className="center-content">
+                {this.schoolSignupForm()}
                 </div>
               </div>
             )}

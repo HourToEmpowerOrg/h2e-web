@@ -6,6 +6,7 @@ import Button from '../elements/Button';
 import Image from '../elements/Image';
 import Modal from '../elements/Modal';
 import { Link } from 'react-router-dom';
+import SmoothScroll from '../elements/SmoothScroll';
 
 const propTypes = {
   ...SectionSplitProps.types
@@ -71,7 +72,8 @@ class HeroSplit extends React.Component {
     );
 
     const LoginButton = classNames(
-      'login-button'
+      'login-button',
+      'smooth-scroll'
     )
 
     return (
@@ -85,19 +87,20 @@ class HeroSplit extends React.Component {
               <div className="split-item">
                 <div className="hero-content split-item-content center-content-mobile reveal-from-top">
                   <h1 className="mt-0 mb-16">
-                    Pro-Bono Tutoring
+                    Pro Bono Tutoring
                   </h1>
                   <p className="mt-0 mb-32">
-                  Providing additional support to alleviate the growing education gap across school systems amid the negative implications from the Covid-19 crisis. A virtual pipeline to spend a break giving back to a student in need.</p>
+                    Partnering with schools to provide supplemental learning support. A virtual pipeline to spend a break giving back to students in need.
+                  </p>
                   <ButtonGroup>
                     <Link to="/login?user=student" className="button button-primary mr-4 login-button" tag="a" color="secondary" wideMobile>
                       Student Login
                     </Link>                  
                   </ButtonGroup>
                   <ButtonGroup>
-                  <Button className={LoginButton} tag="a" color="dark" wideMobile>
-                      Learn more
-                    </Button> 
+                    <SmoothScroll to="how-it-works-section" className="button button-light mr-4 login-button">
+                        Learn More
+                      </SmoothScroll>
                   </ButtonGroup>
                 </div>
                 <div className="hero-figure split-item-image split-item-image-fill illustration-element-01 reveal-from-bottom">

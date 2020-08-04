@@ -51,70 +51,52 @@ class AboutUs extends React.Component {
       title: 'Frequently asked questions'
     }    
 
+    const missionSectionData = {
+      title: '(H)Our Mission'
+    }
+
     return (
       <React.Fragment>
-        <Testimonial className="has-bg-color-cut illustration-section-02" />
+
+      <Testimonial className="has-bg-color-cut illustration-section-02" />
+
+        <GenericSection>
+          <div className="center-content">
+
+          <h2>Our Mission</h2>
+
+          </div>
+
+          <div className="container">
+            <p className="mt-12">
+              Hour to Empower is a 501c(3) organization that partners with schools to effectively provide free tutoring for under-resourced schools. 
+              By leveraging a network of college-educated, volunteer tutors, students enrolled at participating schools can choose from a series of available times 
+              that best suits their schedules, provide feedback through rating their tutors, and receive vital support that complements what they’re learning 
+              in the classroom. 
+            </p>
+            <br/>
+            <p className="mt-24">
+              Covid-19 has brought upon unprecedented times to the economy, classrooms, and households. Education is an essential item that should be provided to <strong>ALL</strong> students
+             regardless of income, race, or creed. The responsibility to enrich students’ learning experiences is one of not only teachers, administrators, 
+             or parents, but also society at large.
+            </p>
+            <br/>
+            <p className="mt-24">
+              We challenge educational inequities in the pursuit of social justice.
+            </p>
+            <br/>
+            <p className="mt-24">
+            Covid-19 is a global pandemic. It has impacted all of us in numerous ways—that we all share. Let’s share more than the devastation, let’s share learning. 
+            This is the hour, for our communities and our next generations, to contribute to something greater than just our own lives. This is the hour to empower.
+
+            </p>
+          </div>
+        </GenericSection>
+
+
         {/* <Clients topDivider bottomDivider /> */}
         <Team />
-        {/* <FeaturesSplit invertMobile imageFill topDivider /> */}
-
-        <GenericSection topDivider>
-          <div className="container-xs">
-            <h2 className="mt-0">Some more info here about Hour To Empower.</h2>
-            <p>
-              Lorem ipsum dolor sit amet, <a href="#0">consectetur adipiscing elit</a>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <p>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            {/* <figure>
-              <Image
-                className="image-larger"
-                src={require('./../assets/images/image-placeholder.jpg')}
-                alt="Placeholder"
-                width={712}
-                height={400} />
-              <figcaption className="text-color-low">A super-nice image <span role="img" aria-label="mile">😀</span></figcaption>
-            </figure> */}
-            <h4>Blah blah blah</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <ul>
-              <li>Lorem ipsum dolor sit amet, consectetur.</li>
-              <li>Lorem ipsum dolor sit amet, consectetur.</li>
-              <li>Lorem ipsum dolor sit amet, consectetur.</li>
-            </ul>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-            </p>
-          </div>
-        </GenericSection>   
-
-        
-
-        <GenericSection topDivider>
-          <div className="container-xs">
-            <SectionHeader data={genericSection04Header} className="center-content" />
-            <Accordion>
-              <AccordionItem title="Nisi porta lorem mollis aliquam ut." active>
-                Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.
-              </AccordionItem>
-              <AccordionItem title="Nisi porta lorem mollis aliquam ut.">
-                Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.
-              </AccordionItem>
-              <AccordionItem title="Nisi porta lorem mollis aliquam ut.">
-                Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.
-              </AccordionItem>
-              <AccordionItem title="Nisi porta lorem mollis aliquam ut.">
-                Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.
-              </AccordionItem>
-              <AccordionItem title="Nisi porta lorem mollis aliquam ut.">
-                Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </GenericSection>         
+        {/* <FeaturesSplit invertMobile imageFill topDivider /> */}     
 
         <Cta invertColor split className="has-bg-color-cut" />
       </React.Fragment>
