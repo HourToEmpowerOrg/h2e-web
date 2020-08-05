@@ -1,4 +1,6 @@
-ROM python:3.6.5
+FROM python:3.6.5
+
+MAINTAINER William Bertrand "w.bertrand@hey.com"
 
 RUN apt-get update \
  && apt-get install -y bash \
@@ -15,7 +17,6 @@ WORKDIR /app
 ADD . .
 
 RUN pip install -r requirements.txt
-RUN pip install -r requirements_augment.txt --upgrade --force-reinstall
 RUN pip freeze
 
 ARG ProjectID

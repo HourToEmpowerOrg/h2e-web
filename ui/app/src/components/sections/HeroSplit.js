@@ -93,7 +93,7 @@ class HeroSplit extends React.Component {
                     Partnering with schools to provide supplemental learning support. A virtual pipeline to spend a break giving back to students in need.
                   </p>
                   <ButtonGroup>
-                    <Link to="/login?user=student" className="button button-primary mr-4 login-button" tag="a" color="secondary" wideMobile>
+                    <Link to="/login?user=student" className="button button-primary mr-4 login-button" tag="a" color="secondary">
                       Student Login
                     </Link>                  
                   </ButtonGroup>
