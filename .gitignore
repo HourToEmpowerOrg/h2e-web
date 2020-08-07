@@ -18,6 +18,9 @@ ui/app/build
 .env.test.local
 .env.production.local
 
+# Builds
+*.zip
+
 ui/npm-debug.log*
 ui/yarn-debug.log*
 ui/yarn-error.log*
@@ -27,3 +30,9 @@ backend/venv/
 
 # python
 *.pyc
+*.idea
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

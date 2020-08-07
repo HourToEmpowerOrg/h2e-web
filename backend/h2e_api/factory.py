@@ -51,16 +51,14 @@ def create_app():
     """
 
     app = Flask(__name__, static_folder='/static', static_url_path='/')
+    env_name = env('FLASK_ENV', 'Development')
+    print(f'Configuration: {env_name}')
+    app.config.from_object(config[env_name])
+    app.config.from_pyfile('instance_config.py', silent=True)
 
     initilize_services(app)
     register_blueprints(app)
-
     CORS(app)
-    env_name = env('FLASK_ENV', 'Development')
-    app.config.from_object(config[env_name])
-    #config[env_name].init_app(h2e_api)
-
-    app.config.from_pyfile('instance_config.py', silent=True)
 
     setup_static_file_loader(app)
 
@@ -75,7 +73,6 @@ def initilize_services(app):
     db.init_app(app)
     from h2e_api.main import models
 
-    # TODO: I think this may actually need to go in factory.py
     ma = Marshmallow(app)
     migrate = Migrate(app, db)
     CORS(app, max_age=3600)  # NOTE: max_age is capped at 600 for Chrome
