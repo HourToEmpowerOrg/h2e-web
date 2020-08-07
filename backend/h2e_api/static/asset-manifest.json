@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "./static/css/main.b705daae.chunk.css",
-    "main.js": "./static/js/main.1f8ec047.chunk.js",
-    "main.js.map": "./static/js/main.1f8ec047.chunk.js.map",
+    "main.css": "./static/css/main.da00c257.chunk.css",
+    "main.js": "./static/js/main.b869c361.chunk.js",
+    "main.js.map": "./static/js/main.b869c361.chunk.js.map",
     "runtime~main.js": "./static/js/runtime~main.88de4b48.js",
     "runtime~main.js.map": "./static/js/runtime~main.88de4b48.js.map",
-    "static/js/2.9481877a.chunk.js": "./static/js/2.9481877a.chunk.js",
-    "static/js/2.9481877a.chunk.js.map": "./static/js/2.9481877a.chunk.js.map",
+    "static/js/2.98ceba40.chunk.js": "./static/js/2.98ceba40.chunk.js",
+    "static/js/2.98ceba40.chunk.js.map": "./static/js/2.98ceba40.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.b59f7ce1c344812e6aff6162348fd30c.js": "./precache-manifest.b59f7ce1c344812e6aff6162348fd30c.js",
+    "precache-manifest.b4f6110a44a062f053c1160b98916de8.js": "./precache-manifest.b4f6110a44a062f053c1160b98916de8.js",
     "service-worker.js": "./service-worker.js",
-    "static/css/main.b705daae.chunk.css.map": "./static/css/main.b705daae.chunk.css.map",
+    "static/css/main.da00c257.chunk.css.map": "./static/css/main.da00c257.chunk.css.map",
     "static/media/clients-01.svg": "./static/media/clients-01.1f794aef.svg",
     "static/media/clients-02.svg": "./static/media/clients-02.6893eb64.svg",
     "static/media/clients-03.svg": "./static/media/clients-03.643967d1.svg",
@@ -36,11 +36,8 @@
     "static/media/news-image-01.jpg": "./static/media/news-image-01.664d079f.jpg",
     "static/media/news-image-02.jpg": "./static/media/news-image-02.22463017.jpg",
     "static/media/news-image-03.jpg": "./static/media/news-image-03.82a0a655.jpg",
-    "static/media/team-member-01.jpg": "./static/media/team-member-01.099115eb.jpg",
     "static/media/team-member-02.jpg": "./static/media/team-member-02.4c84472e.jpg",
-    "static/media/team-member-03.jpg": "./static/media/team-member-03.78e5f521.jpg",
     "static/media/team-member-04.jpg": "./static/media/team-member-04.2ddf25d1.jpg",
-    "static/media/team-member-05.jpg": "./static/media/team-member-05.3b297056.jpg",
     "static/media/video-placeholder.jpg": "./static/media/video-placeholder.69ab6e40.jpg"
   }
 }

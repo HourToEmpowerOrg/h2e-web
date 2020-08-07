@@ -5,11 +5,15 @@ ui/app/node_modules
 ui/app/.pnp
 ui/app/.pnp.js
 
+# config/env
+backend/h2e_api/.env
+
 # testing
 ui/app/coverage
 
 # production
 ui/app/build
+backend/h2e_api/static
 
 # misc
 .DS_Store

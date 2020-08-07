@@ -22,7 +22,11 @@ class TestingConfig(Config):
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+    USERNAME = os.environ.get('USERNAME')
+    PASSWORD = os.environ.get('DB_PWD')
+    DB_NAME = os.environ.get('DB_NAME')
+    ENDPOINT = os.environ.get('ENDPOINT')
+    SQLALCHEMY_DATABASE_URI = f"postgresql://{USERNAME}:{PASSWORD}@{ENDPOINT}/{DB_NAME}"
 
 
 class DeploymentConfig(Config):
