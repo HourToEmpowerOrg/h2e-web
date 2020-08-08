@@ -13,10 +13,10 @@ front_end = Api(front_end_bp)
 class Home(Resource):
     def get(self):
         if is_dev():
-            print('redirecting is_dev')
             return redirect(url_for('front_end.home') + current_app.config['URL_PREFIX'] + 'static/index.html')
         else:
-            print('redirecting NOT is_dev')
+            v = url_for('front_end.home', _external=True, _scheme='https') + current_app.config['URL_PREFIX'] + 'static/index.html'
+            print(f'redirect to: {v}')
             return redirect(url_for('front_end.home', _external=True, _scheme='https') + current_app.config['URL_PREFIX'] + 'static/index.html')
 
 
