@@ -7,6 +7,7 @@ ui/app/.pnp.js
 
 # config/env
 backend/h2e_api/.env
+*.env
 
 # testing
 ui/app/coverage
