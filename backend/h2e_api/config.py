@@ -13,7 +13,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql://localhost:5432/hrtoempower'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL')
 
 
 class TestingConfig(Config):
@@ -22,6 +22,10 @@ class TestingConfig(Config):
 
 
 class ProductionConfig(Config):
+    """
+        Configure as env variables
+        IF running locally, add to your .env file
+    """
     USERNAME = os.environ.get('USERNAME')
     PASSWORD = os.environ.get('DB_PWD')
     DB_NAME = os.environ.get('DB_NAME')
