@@ -54,7 +54,9 @@ def create_app():
     env_name = env('FLASK_ENV', 'Development')
     print(f'Configuration: {env_name}')
     app.config.from_object(config[env_name])
-    app.config.from_pyfile('instance_config.py', silent=True)
+    #app.config.from_pyfile('instance_config.py', silent=True)
+
+    print(f"using DB: {env('ENDPOINT')}")
 
     initilize_services(app)
     register_blueprints(app)
