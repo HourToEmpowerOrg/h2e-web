@@ -54,11 +54,6 @@ def create_app():
     print(f'Configuration: {env_name}')
     app.config.from_object(config[env_name])
 
-    if env_name == 'Production':
-        print(f"Prod DB: {env('ENDPOINT')}")
-    else:
-        print(f"Using DB: {os.environ.get('DATABASE_URL')}")
-
     initilize_services(app)
     register_blueprints(app)
     CORS(app)

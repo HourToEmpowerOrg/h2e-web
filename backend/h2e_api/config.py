@@ -16,11 +16,6 @@ class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL')
 
 
-class TestingConfig(Config):
-    TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'data-test.sqlite')
-
-
 class ProductionConfig(Config):
     """
         Configure as env variables
@@ -31,17 +26,11 @@ class ProductionConfig(Config):
     DB_NAME = os.environ.get('DB_NAME')
     ENDPOINT = os.environ.get('ENDPOINT')
     SQLALCHEMY_DATABASE_URI = f"postgresql://{USERNAME}:{PASSWORD}@{ENDPOINT}/{DB_NAME}"
-    DATABASE_URL = SQLALCHEMY_DATABASE_URI
-
-
-class DeploymentConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DEPLOY_DB_URL') or 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+    DATABASE_URL = f"postgresql://{USERNAME}:{PASSWORD}@{ENDPOINT}/{DB_NAME}"
 
 
 config = {
     'Development': DevelopmentConfig,
-    'Testing': TestingConfig,
     'Production': ProductionConfig,
     'Default': DevelopmentConfig,
-    'Deploy': DeploymentConfig
 }
