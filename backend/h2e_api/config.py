@@ -31,6 +31,7 @@ class ProductionConfig(Config):
     DB_NAME = os.environ.get('DB_NAME')
     ENDPOINT = os.environ.get('ENDPOINT')
     SQLALCHEMY_DATABASE_URI = f"postgresql://{USERNAME}:{PASSWORD}@{ENDPOINT}/{DB_NAME}"
+    DATABASE_URL = SQLALCHEMY_DATABASE_URI
 
 
 class DeploymentConfig(Config):

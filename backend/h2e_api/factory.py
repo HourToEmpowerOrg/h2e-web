@@ -11,14 +11,11 @@ from flask_migrate import Migrate
 from flask_marshmallow import Marshmallow
 from h2e_api.config import config
 
-#import sentry_sdk
-#from sentry_sdk.integrations.flask import FlaskIntegration
-
-#from augment_dao.models import db TODO: Timport DB here
 from h2e_api.main.models.BaseModel import db
 from h2e_api.main import main_bp
 from h2e_api.main.endpoints.users.users import users_bp
 from h2e_api.main.endpoints.front_end.endpoints import front_end_bp
+from h2e_api.main.endpoints.applications.endpoints import applications_bp
 from h2e_api.utils import util_send_file, not_authenticated_response
 
 logging.basicConfig(level=logging.INFO)
@@ -27,6 +24,8 @@ logger.setLevel(logging.INFO)
 
 env = Env()
 env.read_env()
+
+api_prefix = '/api/v1'
 
 
 def setup_static_file_loader(app: Flask):
@@ -54,9 +53,11 @@ def create_app():
     env_name = env('FLASK_ENV', 'Development')
     print(f'Configuration: {env_name}')
     app.config.from_object(config[env_name])
-    #app.config.from_pyfile('instance_config.py', silent=True)
 
-    print(f"using DB: {env('ENDPOINT')}")
+    if env_name == 'Production':
+        print(f"Prod DB: {env('ENDPOINT')}")
+    else:
+        print(f"Using DB: {os.environ.get('DATABASE_URL')}")
 
     initilize_services(app)
     register_blueprints(app)
@@ -64,16 +65,14 @@ def create_app():
 
     setup_static_file_loader(app)
 
-    db.init_app(app)
-
     print('Flask Server Initialized')
     return app
 
 
 def initilize_services(app):
     # logger = logging.getLogger(__name__)
-    db.init_app(app)
     from h2e_api.main import models
+    db.init_app(app)
 
     ma = Marshmallow(app)
     migrate = Migrate(app, db)
@@ -85,4 +84,5 @@ def register_blueprints(app):
     """
     app.register_blueprint(front_end_bp)
     app.register_blueprint(main_bp)
-    app.register_blueprint(users_bp)
+    app.register_blueprint(users_bp, url_prefix=api_prefix)
+    app.register_blueprint(applications_bp, url_prefix=api_prefix)

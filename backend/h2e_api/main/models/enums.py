@@ -30,3 +30,10 @@ class UserType(HourToEmpowerEnum):
     TUTOR = auto()
     TEACHER = auto()
     ADMIN = auto()
+
+
+class TutorApplicationStatus(HourToEmpowerEnum):
+    SUBMITTED = auto()
+    PENDING = auto()
+    ACCEPTED = auto()
+    DECLINED = auto()
