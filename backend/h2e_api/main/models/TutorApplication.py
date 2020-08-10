@@ -1,8 +1,8 @@
 from h2e_api.main.models.BaseModel import db
-from h2e_api.main.models.enums import TutorApplicationStatus
 from sqlalchemy.dialects.postgresql import UUID
 import sqlalchemy
 from sqlalchemy import ForeignKey
+from sqlalchemy import func
 
 
 class TutorApplication(db.Model):
@@ -18,6 +18,8 @@ class TutorApplication(db.Model):
     status = db.Column(db.String(6))
 
     user = db.Column(ForeignKey('user.id'), index=True, nullable=True)
+
+    created_at = db.Column(db.DateTime, nullable=False, default=func.now())
 
     def __repr__(self):
         return '<TutorApplication {}>'.format(self.username)

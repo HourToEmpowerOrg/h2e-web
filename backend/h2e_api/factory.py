@@ -16,6 +16,7 @@ from h2e_api.main import main_bp
 from h2e_api.main.endpoints.users.users import users_bp
 from h2e_api.main.endpoints.front_end.endpoints import front_end_bp
 from h2e_api.main.endpoints.applications.endpoints import applications_bp
+from h2e_api.main.endpoints.mailing_list.endpoints import mailing_bp
 from h2e_api.utils import util_send_file, not_authenticated_response
 
 logging.basicConfig(level=logging.INFO)
@@ -79,3 +80,4 @@ def register_blueprints(app):
     app.register_blueprint(main_bp)
     app.register_blueprint(users_bp, url_prefix=api_prefix)
     app.register_blueprint(applications_bp, url_prefix=api_prefix)
+    app.register_blueprint(mailing_bp, url_prefix=api_prefix)

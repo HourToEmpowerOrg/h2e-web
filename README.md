@@ -33,12 +33,18 @@ SENDER_PASS=<emal-app-password>
 Make sure your database is up to date if running locally:
 `flask db migrate; flask db upgrade;`
 
+### Migrations for Production Database
+- TODO: Find a better way to automate this
+Currently, set `FLASK_ENV=Production` in your .env file, and re-run `flask db upgrade` after already generating the migration.
 
 
 
+### Deploying:
 Requirements: EB CLI installed and configured, python 3.7
 
-Deploying:
-- build the ui
+run `sh deploy_eb.sh` to run the deployment script
+
+The steps the script is taking are:
+- cd ui/app and run npm build
 - cd to backend directory
 - run eb deploy

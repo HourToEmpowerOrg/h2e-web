@@ -37,3 +37,8 @@ class TutorApplicationStatus(HourToEmpowerEnum):
     PENDING = auto()
     ACCEPTED = auto()
     DECLINED = auto()
+
+
+class MailingSubscribeStatus(HourToEmpowerEnum):
+    ACTIVE = auto()
+    INACTIVE = auto()

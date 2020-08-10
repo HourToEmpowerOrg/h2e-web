@@ -104,25 +104,12 @@ class HeroSplit extends React.Component {
                   </ButtonGroup>
                 </div>
                 <div className="hero-figure split-item-image split-item-image-fill illustration-element-01 reveal-from-bottom">
-                  <a
-                    data-video="https://player.vimeo.com/video/174002812"
-                    href="#0"
-                    aria-controls="video-modal"
-                    onClick={this.openVideoModal}
-                  >
                     <Image
                       src={require('./../../assets/images/video-placeholder.jpg')}
                       alt="Hero"
                       width={528}
                       height={396} />
-                  </a>
                 </div>
-                <Modal
-                  id="video-modal"
-                  show={this.state.videoModalActive}
-                  handleClose={this.closeVideoModal}
-                  video="https://player.vimeo.com/video/174002812"
-                  videoTag="iframe" />
               </div>
             </div>
           </div>

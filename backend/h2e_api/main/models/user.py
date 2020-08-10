@@ -1,5 +1,6 @@
 from h2e_api.main.models.BaseModel import db
 import sqlalchemy
+from sqlalchemy import func
 from sqlalchemy.dialects.postgresql import UUID
 from h2e_api.main.models.enums import UserType
 
@@ -13,6 +14,8 @@ class User(db.Model):
     display_name = db.Column(db.String(32), nullable=False, default="Student")
 
     user_type = db.Column(db.Enum(UserType, name='user_type'))
+
+    created_at = db.Column(db.DateTime, nullable=False, default=func.now())
 
     def __repr__(self):
         return '<User {}>'.format(self.username)

@@ -15,7 +15,7 @@ class Home(Resource):
         if is_dev():
             return redirect(url_for('front_end.home') + current_app.config['URL_PREFIX'] + 'static/index.html')
         else:
-            return redirect(url_for('front_end.home', _external=True, _scheme='http') + current_app.config['URL_PREFIX'] + 'static/index.html')
+            return redirect(url_for('front_end.home', _external=True, _scheme='https') + current_app.config['URL_PREFIX'] + 'static/index.html')
 
 
 class FavIcon(Resource):
