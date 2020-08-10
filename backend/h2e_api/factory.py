@@ -49,7 +49,7 @@ def create_app():
     """
 
     app = Flask(__name__, static_folder='/static', static_url_path='/')
-    env_name = env('FLASK_ENV', 'Development')
+    env_name = os.environ.get('FLASK_ENV')
     print(f'Configuration: {env_name}')
     app.config.from_object(config[env_name])
 

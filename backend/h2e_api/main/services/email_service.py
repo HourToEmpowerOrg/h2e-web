@@ -12,7 +12,7 @@ def _setup_connection(user, password):
         server.login(user, password)
         return server
     except Exception as e:
-        print(f'ERROR Could notset up connection')
+        print(f'EMAIL ERROR: Could not set up connection')
         print(f'{e}')
         return None
 
@@ -27,7 +27,9 @@ def send_email(subject, message, to_addr):
 
     # Get email sender info
     send_user = os.getenv('SENDER_USERNAME')
-    send_passw = os.getenv('SENDER_PASSWORD')
+    send_passw = os.getenv('SENDER_PASS')
+
+    print(f'USING : {send_user} | {send_passw}')
 
     server = _setup_connection(send_user, send_passw)
     if not server:

@@ -4,6 +4,8 @@ from flask_restful import Api
 from flask_restful import Resource
 import logging
 
+from h2e_api.main.dispatch.dispatcher import Dispatcher
+
 logger = logging.getLogger(__name__)
 
 main_bp = Blueprint('main', __name__)
@@ -18,3 +20,5 @@ class HealthCheck(Resource):
 
 
 main_api.add_resource(HealthCheck, '/health')
+
+h2e_dispatcher = Dispatcher()
