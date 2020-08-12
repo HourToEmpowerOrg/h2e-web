@@ -27,12 +27,11 @@ class SignupForm extends React.Component {
       'name': null,
       'email': null,
       'phone': null,
-      'zip': null,
-      'subjects': null,
     }
 
     this.tutorSignupForm = this.tutorSignupForm.bind(this);
     this.submitTutorSignup = this.submitTutorSignup.bind(this);
+    this.submitSchoolSignup = this.submitSchoolSignup.bind(this);
   }
 
 
@@ -55,13 +54,32 @@ class SignupForm extends React.Component {
     axios.post(`${api_url}/applications/tutor`, signupData)
             .then(function (response) {
               if (response.status == 200){
-                self.setState({submitted: true})
+                self.setState({submitted: true, submitType: 'tutor'})
               }
             })
             .catch(function (error) {
                 console.log(error);
             });
 
+  }
+
+
+  submitSchoolSignup = (e) => {
+    e.preventDefault();;
+
+    const signupData = this.state;
+
+    const self = this;
+    axios.post(`${api_url}/applications/school`, signupData)
+            .then(function (response) {
+              if (response.status == 200){
+                self.setState({submitted: true, submitType: 'school'})
+              }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    
   }
 
 
@@ -168,7 +186,7 @@ class SignupForm extends React.Component {
                       required />
                   </div>
                   <div className="mb-12">
-                  <label class="form-label" for="form-zip">Your Home Zip Code</label>
+                  <label className="form-label" for="form-zip">Your Home Zip Code</label>
                     <Input
                       id="form-zip"
                       type="text"
@@ -179,7 +197,7 @@ class SignupForm extends React.Component {
                       required />
                   </div>
                   <div className="mb-12">
-                  <label class="form-label" for="form-subjects">Tutoring Subjects</label>
+                  <label className="form-label" for="form-subjects">Tutoring Subjects</label>
                     <Input
                       id="form-subjects"
                       type="text"
@@ -188,7 +206,7 @@ class SignupForm extends React.Component {
                       labelHidden
                       onChange = {e => this.setState({'subjects': e.target.value})}
                       required />
-                    <div class="form-hint">Please enter any subjects you'd be interested in tutoring for, separated by a comma.</div>
+                    <div className="form-hint">Please enter any subjects you'd be interested in tutoring for, separated by a comma.</div>
 
                   </div>
                   
@@ -209,17 +227,27 @@ class SignupForm extends React.Component {
   }
 
   schoolSignupForm() {
+
+    const fieldsValid = (!!this.state && this.state.name && this.state.email && this.state.city && this.state.state);
     return (
-      <div className="tiles-wrap">
-          <div className="tiles-item">
-            <div className="tiles-item-inner">
+      <div className="container-sm">
+          <div>
+            <div>
               <form>
                 <fieldset>
                   <div className="mb-12">
                     <Input
                       label="School Name"
-                      placeholder="School name" 
-                      labelHidden
+                      placeholder="School Name" 
+                      onChange = {e => this.setState({'name': e.target.value})}
+                      required />
+                  </div>
+                  <div className="mb-12">
+                    <Input
+                      type="email"
+                      label="Contact Name"
+                      placeholder="Contact Name"
+                      onChange = {e => this.setState({'contact_name': e.target.value})}
                       required />
                   </div>
                   <div className="mb-12">
@@ -227,11 +255,34 @@ class SignupForm extends React.Component {
                       type="email"
                       label="Contact Email"
                       placeholder="Contact Email"
-                      labelHidden
+                      onChange = {e => this.setState({'email': e.target.value})}
                       required />
                   </div>
+                  <div className="mb-12">
+                    <Input
+                      type="text"
+                      label="Contact Phone"
+                      placeholder="Contact Phone"
+                      onChange = {e => this.setState({'phone': e.target.value})}
+                      required />
+                  </div>
+                  <div className="mb-12">
+                    <Input
+                      label="School City"
+                      placeholder="School city" 
+                      onChange = {e => this.setState({'city': e.target.value})}
+                      required />
+                  </div>
+                  <div className="mb-12">
+                    <Input
+                      label="School State"
+                      placeholder="School State" 
+                      onChange = {e => this.setState({'state': e.target.value})}
+                      required />
+                  </div>                  
                   <div className="mt-24 mb-32">
-                    <Button color="primary" wide disabled>Submit</Button>
+                    <div className="form-hint">You'll hear back from us within 24 hours!</div>
+                    <Button color="primary" wide disabled={!fieldsValid} onClick={this.submitSchoolSignup}>Submit</Button>
                   </div>
                 </fieldset>
               </form>
@@ -274,7 +325,8 @@ class SignupForm extends React.Component {
         title: 'Welcome! Talk to your teacher to find out if your school is currently using HourToEmpower!', 
       },
       school: {
-        title: 'Welcome! Talk to your teacher to find out if your school is currently using HourToEmpower!', 
+        title: 'HourToEmower partners with schools to connect their students with high quality tutors across the country.', 
+        paragraph: 'Please fill out th form below if you are an administrator at a school interested in providing free tutoring services for your students. We will then schedule a time to determine if HourToEmpower is a fit for your school!'
       }
     };
 
@@ -303,7 +355,7 @@ class SignupForm extends React.Component {
 
             {userType === 'school' && (
               <div>
-                <div className="center-content">
+                <div>
                 {this.schoolSignupForm()}
                 </div>
               </div>
@@ -339,6 +391,7 @@ class SignupForm extends React.Component {
     );
 
     const submitState = this.state.submitted;
+    const submitType = this.state.submitType;
 
     return (
       <section
@@ -349,7 +402,7 @@ class SignupForm extends React.Component {
 
           {
             !!submitState && (
-              <SubmissionResult></SubmissionResult>
+              <SubmissionResult type={submitType}></SubmissionResult>
             )
           }
           {

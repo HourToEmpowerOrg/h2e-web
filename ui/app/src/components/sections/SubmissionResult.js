@@ -27,6 +27,7 @@ class SubmissionResult extends React.Component {
       bottomDivider,
       hasBgColor,
       invertColor,
+      type,
       ...props
     } = this.props;
 
@@ -46,8 +47,16 @@ class SubmissionResult extends React.Component {
     );
 
     const sectionHeader = {
-      title: 'Thank you for submitting your application to HourToEmpower',
+      tutor: {
+        title: 'Thank you for submitting your application to HourToEmpower!'
+      },
+      school: {
+        title: 'Thank you for your interest in partnering with HourToEmpower!'
+      }
     };
+
+
+
     return (
       <section
         {...props}
@@ -55,7 +64,7 @@ class SubmissionResult extends React.Component {
       >
         <div className="container">
           <div className={innerClasses}>
-            <SectionHeader tag="h3" data={sectionHeader} className="center-content" />
+            <SectionHeader tag="h3" data={sectionHeader[type]} className="center-content" />
             <div>
                 <div className="center-content">
 
