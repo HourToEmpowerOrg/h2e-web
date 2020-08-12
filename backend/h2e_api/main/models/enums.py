@@ -32,6 +32,11 @@ class UserType(HourToEmpowerEnum):
     ADMIN = auto()
 
 
+class UserStatus(HourToEmpowerEnum):
+    ACTIVE = auto()
+    INACTIVE = auto()
+
+
 class TutorApplicationStatus(HourToEmpowerEnum):
     SUBMITTED = auto()
     PENDING = auto()
