@@ -7,6 +7,7 @@ import Input from '../elements/Input';
 import Button from '../elements/Button';
 import Checkbox from '../elements/Checkbox';
 
+
 import axios from "axios";
 
 const api_url = process.env.REACT_APP_API_URL || '/api/v1'
@@ -20,6 +21,7 @@ const defaultProps = {
 }
 
 class LoginForm extends React.Component {
+
 
   constructor(props){
     super(props);
@@ -37,6 +39,8 @@ class LoginForm extends React.Component {
             .then(function (response) {
               if (response.status == 200){
                 console.log('Authenticated...')
+                history.push("/dashboard");
+
               }
             })
             .catch(function (error) {

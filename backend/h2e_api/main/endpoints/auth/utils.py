@@ -55,7 +55,6 @@ def _make_h2e_response(user, message, auth, request, call_start_time, auth_type)
     }
 
     if message == SUCCESS_MESSAGE:
-        print('')
         kwargs = {} if auth_type == AUTH_TYPE_PASSWORD else {
             'exp_time_in_minutes': 30,
             'time_to_update_token_in_minutes': 60 * 24 * 365 * 100
