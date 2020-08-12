@@ -6,7 +6,7 @@ from flask_restful import Resource
 from flask_restful_swagger import swagger
 
 from h2e_api.main.endpoints.applications.utils import submit_application
-from h2e_api.main.endpoints.applications.schemas import TutorApplicationSchema
+from h2e_api.main.endpoints.applications.schemas import TutorApplicationSchema, SchoolApplicationSchema
 from h2e_api.main.endpoints.applications.constants import ApplicationType
 
 
@@ -75,4 +75,17 @@ class SubmitTutorApplication(Resource):
         return output
 
 
+class SubmitSchoolApplication(Resource):
+    def post(self):
+        validated_input = SchoolApplicationSchema().load(request.json)
+        application = submit_application(ApplicationType.School, validated_input)
+        if application is not None:
+            output = {'message': 'Success! Application submitted'}, 200
+        else:
+            output = {'error': True, 'message': 'unknown user'}, 400
+
+        return output
+
+
 applications_api.add_resource(SubmitTutorApplication, '/applications/tutor')
+applications_api.add_resource(SubmitSchoolApplication, '/applications/school')
