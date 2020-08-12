@@ -7,6 +7,7 @@ import ScrollReveal from './utils/ScrollReveal';
 import LayoutDefault from './layouts/LayoutDefault';
 import LayoutAlternative from './layouts/LayoutAlternative';
 import LayoutSignin from './layouts/LayoutSignin';
+import LayoutTutor from './layouts/LayoutTutor';
 
 // Views 
 import Home from './views/Home';
@@ -21,7 +22,11 @@ import SignupTutor from './views/SignupTutor';
 import SignupStudent from './views/SignupStudent';
 import SignupSchools from './views/SignupSchools';
 
+// Tutor / Student shared 
+import Dashboard from './views/Dashboard';
+
 import NotFound from './views/NotFound'
+import ProtectedRoute from './utils/ProtectedRoute';
 
 class App extends React.Component {
 
@@ -52,6 +57,11 @@ class App extends React.Component {
             <AppRoute exact path="/signup/tutor" component={SignupTutor} layout={LayoutSignin} />
             <AppRoute exact path="/signup/schools" component={SignupSchools} layout={LayoutSignin} />
             <AppRoute path="/static/index.html" component={Home} layout={LayoutDefault} />
+
+            {/* TODO NEED TO HAVE THESE PROTECTED!!! */}
+            <ProtectedRoute exact path="/dashboard" component={Dashboard} layout={LayoutTutor} />
+
+
             <AppRoute path="*" component={NotFound} layout={LayoutDefault}></AppRoute>
           </Switch>
         )} />

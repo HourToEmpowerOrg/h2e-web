@@ -8,7 +8,7 @@ import Input from '../elements/Input';
 import Button from '../elements/Button';
 import axios from "axios";
 
-const api_url = process.env.REACT_APP_API_URL || '/api/v1'
+const api_url = '/api/v1'
 
 const propTypes = {
   ...SectionProps.types

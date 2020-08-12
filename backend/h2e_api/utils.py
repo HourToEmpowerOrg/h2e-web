@@ -6,8 +6,11 @@ from flask import send_file
 from flask import request
 from flask.wrappers import ResponseBase
 from h2e_api.main.endpoints.auth.constants import (
-    AUTH_TYPE_PASSWORD, AUTH_TYPE_COOKIE, AUTH_TYPE_HEADER, SUCCESS_MESSAGE, SUCCESS_TOKEN_NOT_UPDATED
+    AUTH_TYPE_PASSWORD, AUTH_TYPE_COOKIE, AUTH_TYPE_HEADER,
+    SUCCESS_MESSAGE, SUCCESS_TOKEN_NOT_UPDATED,
+    ERROR_USER_NOT_FOUND
 )
+from h2e_api.main.endpoints.auth.auth_lib import AuthLib
 
 COOKIE_NAME = 'hourtoempower'
 
@@ -91,3 +94,31 @@ def create_h2e_response_with_auth(token, message, resp=None, auth=AUTH_TYPE_HEAD
         resp = not_authenticated_response(message)
 
     return resp
+
+
+def message_is_success(message):
+    return message == SUCCESS_MESSAGE or message == SUCCESS_TOKEN_NOT_UPDATED
+
+
+def check_logged_in(perm_name):
+    # If user is not logged in, send error
+    (payload, message, token, auth_type) = AuthLib.authenticate(request, os.environ.get('SECRET_KEY'))
+
+    g.token_payload = payload
+
+    if payload and message_is_success(message):
+        # NOTE: it is intentional that the query does not have org_id as a filter to suport multi-org
+        user_q = User.query.filter(User.id == payload.get('user_id'))
+        user = user_q.one_or_none()
+
+        if user:
+            g.user = user
+        else:
+            return token, ERROR_USER_NOT_FOUND, auth_type, 401
+
+    return token, message, auth_type, 401
+
+
+def is_logged_in():
+    token, message, auth, status_code = check_logged_in(LOGGED_IN)
+    return message_is_success(message)
