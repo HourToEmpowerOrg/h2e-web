@@ -80,9 +80,10 @@ function ScheduleSection(props){
       <section
         {...props}
         className={outerClasses}
+        style={{paddingBottom: '12px'}}
       >
         <div className="container">
-          <div className={innerClasses}>
+          <div>
             <h4 className="dashboard-header">
                 Upcoming Sessions
             </h4>
@@ -90,6 +91,9 @@ function ScheduleSection(props){
                 {sessions.map(item => (
                     <SessionItem item={item}></SessionItem>
                 ))}
+            </div>
+            <div className="ml-12">
+                <div className="form-hint">Click a session to view its details</div>
             </div>
           </div>
         </div>

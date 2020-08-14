@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import 'react-bulma-components/dist/react-bulma-components.min.css';
 import { Link } from 'react-router-dom';
-import Logo from './partials/Logo';
-import Button from '../elements/Button';
+import { Button } from 'react-bulma-components';
 
 const propTypes = {
   active: PropTypes.bool,
@@ -98,68 +98,57 @@ class TutorHeader extends React.Component {
     );
 
     return (
-      <header
-        {...props}
-        className={classes}
-      >
-        <div className="container">
-          <div className={
-            classNames(
-              'site-header-inner',
-              bottomDivider && 'has-bottom-divider'
-            )}>
-            <BrandLogo />
-            {!hideNav &&
-              <React.Fragment>
-                <button
-                  ref={this.hamburger}
-                  className="header-nav-toggle"
-                  onClick={this.state.isActive ? this.closeMenu : this.openMenu}
-                >
-                  <span className="screen-reader">Menu</span>
-                  <span className="hamburger">
-                    <span className="hamburger-inner"></span>
-                  </span>
-                </button>
-                <nav
-                  ref={this.nav}
-                  className={
-                    classNames(
-                      'header-nav',
-                      this.state.isActive && 'is-active'
-                    )}>
-                  <div className="header-nav-inner">
-                    <ul className={
-                      classNames(
-                        'list-reset text-xs',
-                        navPosition && `header-nav-${navPosition}`
-                      )}>
-                    </ul>
-                    {!hideSignin &&
-                      <ul
-                        className="list-reset header-nav-left"
-                      >
-                        <li>
-                          <Link to="/dashboard">Dashboard</Link>
-                        </li>
-                        <li>
-                          <Link to="/preferences">Preferences</Link>
-                        </li>
-                      </ul>}
-                      {!hideSignin &&
-                      <ul
-                        className="list-reset header-nav-right"
-                      >
-                        <li>
-                          <Link>Log Out</Link>
-                        </li>
-                      </ul>}
-                  </div>
-                </nav>
-              </React.Fragment>}
+      <nav className="navbar is-fixed-top is-success" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
+          <a className="navbar-item">
+            HourToEmpower
+          </a>
+          <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" className="navbar-menu">
+          <div className="navbar-start">
+            <a className="navbar-item" href="/dashboard">
+              Dashboard
+            </a>
+
+            <a className="navbar-item" href="/preferences">
+              Preferences
+            </a>
+
+            <div className="navbar-item has-dropdown is-hoverable">
+              <a className="navbar-link">
+                More
+              </a>
+
+              <div className="navbar-dropdown">
+              <a className="navbar-item">
+                  View Terms of Service
+                </a>
+                <a className="navbar-item">
+                  Get Help
+                </a>
+                <hr className="navbar-divider"/>
+                <a className="navbar-item">
+                  Report an issue
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <a className="is-light">
+                  Log Out
+                </a>
+            </div>
           </div>
         </div>
-      </header>
+      </nav>
     )
   }
 }
