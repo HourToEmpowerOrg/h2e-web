@@ -1,4 +1,5 @@
 import os
+import jwt
 from json import dumps
 from flask import g
 from flask import make_response
@@ -11,6 +12,11 @@ from h2e_api.main.endpoints.auth.constants import (
     ERROR_USER_NOT_FOUND
 )
 from h2e_api.main.endpoints.auth.auth_lib import AuthLib
+from h2e_api.main.models.user import User
+from functools import wraps
+
+import logging
+import sys
 
 COOKIE_NAME = 'hourtoempower'
 
@@ -120,5 +126,57 @@ def check_logged_in(perm_name):
 
 
 def is_logged_in():
-    token, message, auth, status_code = check_logged_in(LOGGED_IN)
+    token, message, auth, status_code = check_logged_in('LOGGED_IN')
     return message_is_success(message)
+
+
+def decode_auth_token(auth_token):
+    """
+    Decodes the auth token
+    :param auth_token:
+    :return: integer|string
+    """
+    try:
+        payload = jwt.decode(auth_token, os.environ.get('SECRET_KEY'))
+        return payload['sub']
+    except jwt.ExpiredSignatureError:
+        return 'Signature expired. Please log in again.'
+    except jwt.InvalidTokenError:
+        return 'Invalid token. Please log in again.'
+
+
+def check_endpoint_accessible(perm_name):
+    def check_endpoint_accessible_decorator(func):
+        @wraps(func)
+        def wrap(*args, **kwargs):
+            """
+                Metrics all api calls and checks login
+            """
+            try:
+                token, message, auth, status_code = check_logged_in(perm_name)
+
+                # Return with code 401 if there is an authorization error
+                if not message_is_success(message):
+                    return not_authenticated_response(message)
+
+
+                transaction_name = request.method + ':' + request.path
+                #NewRelicUtils.set_transaction_name(str(g.active_organization.id), transaction_name)
+
+                # finally call f. f() now has access to g.user
+                func_output = func(*args, **kwargs)
+                to_return = set_h2e_response(token, message, func_output, auth=auth)
+
+                # TODO: If we want to log / metric request calls we should do it here
+
+            except Exception as e:
+                (exc, value, tb) = sys.exc_info()
+                logging.error(str(e), exc_info=(exc, value, tb))
+                #newrelic.agent.record_exception(exc=exc, value=value, tb=tb)
+                return {'message': str(e)}, getattr(e, 'code', 500)
+
+            return to_return
+
+        return wrap
+
+    return check_endpoint_accessible_decorator

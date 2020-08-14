@@ -20,6 +20,9 @@ def create_session(session_data):
 
     new_session.duration = new_session.end_time - new_session.start_time
 
+    db.session.add(new_session)
+    db.session.flush()
+
     new_session__tutor = SessionUser(
         session_id=new_session.id,
         user_id=session_data['tutor']
@@ -30,16 +33,14 @@ def create_session(session_data):
         user_id=session_data['student']
     )
 
-    db.session.add(new_session)
     db.session.add(new_session__tutor)
     db.session.add(new_session__student)
-    db.commit()
+    db.session.commit()
 
     return new_session
 
 
-def get_all_sessions_by_filter(filters):
-    user_id = filters['user_id']
+def get_all_sessions_by_filter(user_id, filters):
     date_from = filters.get('date_from')
     date_to = filters.get('date_to')
 
@@ -52,6 +53,8 @@ def get_all_sessions_by_filter(filters):
 
     if date_to:
         query = query.filter(Session.start_time <= date_to)
+
+    query = query.order_by(Session.start_time.asc())
 
     sessions = query.all()
     return sessions

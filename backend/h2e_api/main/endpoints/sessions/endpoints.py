@@ -1,5 +1,6 @@
 from flask import Blueprint
 from flask import request
+from flask import g
 
 from flask_restful import Api
 from flask_restful import Resource
@@ -9,6 +10,7 @@ from h2e_api.main.endpoints.sessions.utils import create_session, get_all_sessio
 from h2e_api.main.endpoints.sessions.schemas import (
     CreateNewSessionSchema, ListSessionsRequestSchema, SessionListSchema
 )
+from h2e_api.utils import check_endpoint_accessible
 
 
 session_bp = Blueprint('sessions', __name__)
@@ -75,13 +77,18 @@ class CreateNewSession(Resource):
 
         return output
 
+    @check_endpoint_accessible('TEST')
     def get(self):
         """
         User Id required in the query parameters
         """
-        validated_input = ListSessionsRequestSchema().load(request.json)
-        all_sessions = get_all_sessions_by_filter(validated_input)
-        output = SessionListSchema(strict=True).dump(all_sessions).data
+        validated_input = ListSessionsRequestSchema().load(request.args.to_dict())
+        all_sessions = get_all_sessions_by_filter(g.user.id, validated_input)
+        output = SessionListSchema().dump(
+            {
+                'count': len(all_sessions),
+                'sessions': all_sessions,
+            })
         return output
 
 

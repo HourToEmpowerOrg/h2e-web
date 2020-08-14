@@ -19,7 +19,7 @@ class CreateNewSessionSchema(Schema):
 
 
 class ListSessionsRequestSchema(Schema):
-    user_id = fields.String(required=True)
+    user_id = fields.String()
     date_from = fields.Date()
     date_to = fields.Date()
     status = fields.String() #TODO: Need to add a session status to filter for upcoming sessions

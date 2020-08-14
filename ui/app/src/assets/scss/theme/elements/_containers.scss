@@ -1,0 +1,23 @@
+.session-item {
+    color: #242A31;
+    border: 1px solid #E6ECF1;
+    margin: 0;
+    padding: 8px;
+    grid-area: next;
+    box-shadow: 0 3px 8px 0 rgba(116, 129, 141, 0.1);
+    transition: border 250ms ease;
+    border-radius: 3px;
+    -moz-transition: border 250ms ease;
+    text-decoration: none;
+    background-color: #FFFFFF;
+    margin: 12px;
+}
+
+
+.session-item-title {
+    font-size: 18px;
+}
+
+.session-item-body {
+    font-size: 14px;
+}
