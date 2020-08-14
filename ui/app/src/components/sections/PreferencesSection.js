@@ -47,9 +47,10 @@ class PrefferencesSection extends React.Component {
       <section
         {...props}
         className={outerClasses}
+        style={{paddingTop: '12px'}}
       >
         <div className="container">
-          <div className={innerClasses}>
+          <div>
             <h4 className="dashboard-header">
                 Scheduling Preferences
             </h4>
