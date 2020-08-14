@@ -320,6 +320,7 @@ class SignupForm extends React.Component {
     const sectionHeaders = {
       tutor: {
         title: 'Volunteer a small amount of time to fight educational inequity. An hour of your time is an immeasurable amount for a student in need', 
+        paragraph: 'Thank you for your interest in volunteering for Hour to Empower. Please fill out the details below. You will receive an email confirmation as well as an application form to gauge interests and suitability. Please note, as part of the screening process there is a mandatory background check.'
       },
       student: {
         title: 'Welcome! Talk to your teacher to find out if your school is currently using HourToEmpower!', 

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
+import axios from "axios";
+import Moment from 'react-moment';
+import 'moment-timezone'
 
 const propTypes = {
   children: PropTypes.node,
@@ -13,9 +16,40 @@ const defaultProps = {
   ...SectionProps.defaults
 }
 
-class ScheduleSection extends React.Component {
+function SessionItem({item}) {
+    return (
+        <div className="session-item" key={item.id}>
+            <div className="session-item-title">{item.title}</div>
+            <span className="seession-item-body">
+            <Moment format="ddd, MMM, D - h:mm A z" local>
+                {item.start_time}
+            </Moment>   
+            </span>
+            <br/>
+            <a>{item.session_info.meeting_link}</a>
+        </div>
+    )
 
-  render() {
+}
+
+function ScheduleSection(props){
+
+    const [sessions, setSessions] = useState([])
+
+
+    useEffect(() => {
+        async function fetchData() {
+          // You can await here
+          const result = await axios(
+            '/api/v1/sessions',
+          );
+          // ...
+          setSessions(result.data.sessions);
+        }
+        fetchData();
+      }, []); // Or [] if effect doesn't need props or state
+
+  
     const {
       className,
       children,
@@ -25,8 +59,7 @@ class ScheduleSection extends React.Component {
       bottomDivider,
       hasBgColor,
       invertColor,
-      ...props
-    } = this.props;
+    } = props;
 
     const outerClasses = classNames(
       'section',
@@ -53,14 +86,15 @@ class ScheduleSection extends React.Component {
             <h4 className="dashboard-header">
                 Upcoming Sessions
             </h4>
+            <div>
+                {sessions.map(item => (
+                    <SessionItem item={item}></SessionItem>
+                ))}
+            </div>
           </div>
         </div>
       </section>
     );
-  }
 }
-
-ScheduleSection.propTypes = propTypes;
-ScheduleSection.defaultProps = defaultProps;
 
 export default ScheduleSection;
