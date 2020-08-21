@@ -7,7 +7,7 @@ class ScheduleItemSchema(Schema):
     id = fields.String()
 
     class Meta:
-        additional = ("start_time", "end_time", "created_at", "repeat", "day")
+        additional = ("start_time", "end_time", "created_at", "repeat_type", "day")
 
 
 class CreateNewScheduleItemSchema(Schema):

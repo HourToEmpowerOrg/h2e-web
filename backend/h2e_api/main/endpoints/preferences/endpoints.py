@@ -6,7 +6,7 @@ from flask_restful import Api
 from flask_restful import Resource
 from flask_restful_swagger import swagger
 
-from h2e_api.main.endpoints.preferences.utils import create_schedule_item, get_all_schedule_items_by_filter
+from h2e_api.main.endpoints.preferences.utils import create_schedule_item, get_all_schedule_items_by_filter, delete_schedule_item
 from h2e_api.main.endpoints.preferences.schemas import (
     CreateNewScheduleItemSchema, ListSchdeuleItemsRequestSchema, ScheduleItemListSchema
 )
@@ -91,7 +91,7 @@ class ScheduleItems(Resource):
         User Id required in the query parameters
         """
         validated_input = ListSchdeuleItemsRequestSchema().load(request.args.to_dict())
-        user_schedule = get_all_schedule_items_by_filter(g.user.id, validated_input)
+        user_schedule = get_all_schedule_items_by_filter(validated_input['user_id'], validated_input)
         output = ScheduleItemListSchema().dump(
             {
                 'count': len(user_schedule),
@@ -100,4 +100,15 @@ class ScheduleItems(Resource):
         return output
 
 
+class EditScheduleItem(Resource):
+    def delete(self, item_id):
+        try:
+            delete_schedule_item(item_id)
+            return  {'message': 'Success! Schedule Item deleted'}, 200
+        except Exception as e:
+            print(e)
+            return {'message': 'Error! Schedule Item not deleted'}, 500
+
+
 preferences_api.add_resource(ScheduleItems, '/schedule')
+preferences_api.add_resource(EditScheduleItem, '/schedule/<string:item_id>')

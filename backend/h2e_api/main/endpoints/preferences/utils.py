@@ -24,3 +24,7 @@ def get_all_schedule_items_by_filter(user_id, filters):
         query = query.order_by(ScheduleItem.day.asc())
 
     return query.all()
+
+
+def delete_schedule_item(item_id):
+    ScheduleItem.query.filter(ScheduleItem.id == item_id).delete()
