@@ -50,7 +50,7 @@ class HeroSplit extends React.Component {
     } = this.props;
 
     const outerClasses = classNames(
-      'hero section',
+      'h2e-hero section',
       topOuterDivider && 'has-top-divider',
       bottomOuterDivider && 'has-bottom-divider',
       hasBgColor && 'has-bg-color',
@@ -59,7 +59,7 @@ class HeroSplit extends React.Component {
     );
 
     const innerClasses = classNames(
-      'hero-inner section-inner',
+      'h2e-hero-inner section-inner',
       topDivider && 'has-top-divider',
       bottomDivider && 'has-bottom-divider'
     );
@@ -85,7 +85,7 @@ class HeroSplit extends React.Component {
           <div className={innerClasses}>
             <div className={splitClasses}>
               <div className="split-item">
-                <div className="hero-content split-item-content center-content-mobile reveal-from-top">
+                <div className="h2e-hero-content split-item-content center-content-mobile reveal-from-top">
                   <h1 className="mt-0 mb-16">
                     Pro Bono Tutoring
                   </h1>
@@ -98,15 +98,15 @@ class HeroSplit extends React.Component {
                     </SmoothScroll>                
                   </ButtonGroup>
                   <ButtonGroup className="center-content">
-                  <Link to="/login" className="ml-8 login-link" tag="a" color="secondary">
+                  <Link to="/login" className="login-link" tag="a" color="secondary">
                       Login
                     </Link>  
                   </ButtonGroup>
                 </div>
-                <div className="hero-figure split-item-image split-item-image-fill illustration-element-01 reveal-from-bottom">
+                <div className="h2e-hero-figure split-item-image split-item-image-fill illustration-element-01 reveal-from-bottom">
                     <Image
                       src={require('./../../assets/images/video-placeholder.jpg')}
-                      alt="Hero"
+                      alt="h2e-hero"
                       width={528}
                       height={396} />
                 </div>

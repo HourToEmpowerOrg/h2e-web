@@ -1,8 +1,7 @@
-.hero {
+.h2e-hero {
 
     &.has-bg-color {
 		position: relative;
-		background-color: transparent;
         z-index: auto;
         
 		&::before {

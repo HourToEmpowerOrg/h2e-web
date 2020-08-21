@@ -18,6 +18,7 @@ from h2e_api.main.endpoints.front_end.endpoints import front_end_bp
 from h2e_api.main.endpoints.applications.endpoints import applications_bp
 from h2e_api.main.endpoints.mailing_list.endpoints import mailing_bp
 from h2e_api.main.endpoints.sessions.endpoints import session_bp
+from h2e_api.main.endpoints.preferences.endpoints import preferences_bp
 from h2e_api.main.endpoints.auth.endpoints import auth_bp
 from h2e_api.utils import util_send_file, not_authenticated_response
 
@@ -32,18 +33,24 @@ api_prefix = '/api/v1'
 
 
 def setup_static_file_loader(app: Flask):
-    url_prefix = app.config['URL_PREFIX']
+    static_prefix = app.config['STATIC_PREFIX']
 
     @app.before_request
     def before_request():
         path = request.path
-        if url_prefix != '' and path.startswith(url_prefix):
-            path = path[len(url_prefix):]
+        print(f'path {path}')
+        print(f'static prefix {static_prefix}')
+        if static_prefix != '' and static_prefix in path:
+            path = path[path.index(static_prefix):]
 
         if path == '/static/index.html':
             return util_send_file(os.path.dirname(os.path.abspath(__file__)) + path, add_etags=False, cache_timeout=0)
         elif path.startswith('/static/') or path.startswith('/static/favicon/'):
+            print(f'sending starts with: {os.path.dirname(os.path.abspath(__file__)) + path}')
             return util_send_file(os.path.dirname(os.path.abspath(__file__)) + path)
+        #else:
+        print(f"sending default: {os.path.dirname(os.path.abspath(__file__)) + '/static/index.html'}")
+            #return util_send_file(os.path.dirname(os.path.abspath(__file__)) + '/static/index.html')
 
 
 def create_app():
@@ -71,7 +78,7 @@ def initilize_services(app):
     db.init_app(app)
 
     ma = Marshmallow(app)
-    migrate = Migrate(app, db)
+    migrate = Migrate(app, db, compare_type=True)
     CORS(app, max_age=3600)  # NOTE: max_age is capped at 600 for Chrome
 
 
@@ -85,3 +92,4 @@ def register_blueprints(app):
     app.register_blueprint(applications_bp, url_prefix=api_prefix)
     app.register_blueprint(mailing_bp, url_prefix=api_prefix)
     app.register_blueprint(session_bp, url_prefix=api_prefix)
+    app.register_blueprint(preferences_bp, url_prefix=api_prefix)

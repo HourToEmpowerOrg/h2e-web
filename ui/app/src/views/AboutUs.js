@@ -58,7 +58,7 @@ class AboutUs extends React.Component {
     return (
       <React.Fragment>
 
-      <Testimonial className="has-bg-color-cut illustration-section-02" />
+      <Testimonial hasBgColor className="illustration-section-02" />
 
         <GenericSection>
           <div className="center-content">

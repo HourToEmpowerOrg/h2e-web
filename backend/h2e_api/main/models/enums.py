@@ -47,3 +47,11 @@ class TutorApplicationStatus(HourToEmpowerEnum):
 class MailingSubscribeStatus(HourToEmpowerEnum):
     ACTIVE = auto()
     INACTIVE = auto()
+
+
+class ScheduleRepeat(HourToEmpowerEnum):
+    DAILY = auto()
+    WEEKLY = auto()
+    BI_WEEKLY = auto()
+    MONTHLY = auto()
+
