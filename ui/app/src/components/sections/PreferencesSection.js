@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
+import ScheduleItem from '../elements/ScheduleItem.js'
+import axios from "axios";
 
 const propTypes = {
   children: PropTypes.node,
@@ -13,52 +15,71 @@ const defaultProps = {
   ...SectionProps.defaults
 }
 
-class PrefferencesSection extends React.Component {
+function PrefferencesSection(props) {
 
-  render() {
-    const {
-      className,
-      children,
-      topOuterDivider,
-      bottomOuterDivider,
-      topDivider,
-      bottomDivider,
-      hasBgColor,
-      invertColor,
-      ...props
-    } = this.props;
+  const [scheduleItems, setScheduleItems] = useState([]);
 
-    const outerClasses = classNames(
-      'section',
-      topOuterDivider && 'has-top-divider',
-      bottomOuterDivider && 'has-bottom-divider',
-      hasBgColor && 'has-bg-color',
-      invertColor && 'invert-color',
-      className
-    );
+  useEffect(() => {
+    async function fetchData() {
+      // You can await here
+      const result = await axios(
+        '/api/v1/preferences/schedule',
+      );
+      // ...
+      setScheduleItems(result.data.items);
+    }
+    fetchData();
+  }, []); // Or [] if effect doesn't need props or state
 
-    const innerClasses = classNames(
-      'section-inner',
-      topDivider && 'has-top-divider',
-      bottomDivider && 'has-bottom-divider'
-    );
+  const {
+    className,
+    children,
+    topOuterDivider,
+    bottomOuterDivider,
+    topDivider,
+    bottomDivider,
+    hasBgColor,
+    invertColor,
+  } = props;
 
-    return (
-      <section
-        {...props}
-        className={outerClasses}
-        style={{paddingTop: '12px'}}
-      >
-        <div className="container">
-          <div>
-            <h4 className="dashboard-header">
-                Scheduling Preferences
-            </h4>
-          </div>
+  const outerClasses = classNames(
+    'section',
+    topOuterDivider && 'has-top-divider',
+    bottomOuterDivider && 'has-bottom-divider',
+    hasBgColor && 'has-bg-color',
+    invertColor && 'invert-color',
+    className
+  );
+
+  const innerClasses = classNames(
+    'section-inner',
+    topDivider && 'has-top-divider',
+    bottomDivider && 'has-bottom-divider'
+  );
+
+  return (
+    <section
+      {...props}
+      className={outerClasses}
+      style={{paddingTop: '12px', paddingBottom:'0px'}}
+    >
+      <div className="container" style={{marginBottom: '8px'}}>
+        <div>
+          <h4 className="dashboard-header">
+              Scheduling Preferences
+          </h4>
+          {
+            scheduleItems.map((item) => {
+              return (
+                <ScheduleItem item={item}/>
+              )
+            })
+          }
         </div>
-      </section>
-    );
-  }
+      </div>
+    </section>
+  );
+  
 }
 
 PrefferencesSection.propTypes = propTypes;

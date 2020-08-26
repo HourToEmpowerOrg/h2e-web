@@ -91,7 +91,7 @@ class ScheduleItems(Resource):
         User Id required in the query parameters
         """
         validated_input = ListSchdeuleItemsRequestSchema().load(request.args.to_dict())
-        user_schedule = get_all_schedule_items_by_filter(validated_input['user_id'], validated_input)
+        user_schedule = get_all_schedule_items_by_filter(g.user.id, validated_input)
         output = ScheduleItemListSchema().dump(
             {
                 'count': len(user_schedule),
@@ -110,5 +110,5 @@ class EditScheduleItem(Resource):
             return {'message': 'Error! Schedule Item not deleted'}, 500
 
 
-preferences_api.add_resource(ScheduleItems, '/schedule')
-preferences_api.add_resource(EditScheduleItem, '/schedule/<string:item_id>')
+preferences_api.add_resource(ScheduleItems, '/preferences/schedule')
+preferences_api.add_resource(EditScheduleItem, '/preferences/schedule/<string:item_id>')
