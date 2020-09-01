@@ -58,7 +58,7 @@ class TempLoginForm extends React.Component {
             <SectionHeader tag="h3" data={sectionHeader} className="center-content" />
             <div>
                 <div className="center-content">
-                  <p>Hour To Empower is still a work in progress.</p>
+                  <p>Hour to Empower is still a work in progress.</p>
 
                 <h4>For Students</h4>
 

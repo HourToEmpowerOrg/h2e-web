@@ -5,6 +5,7 @@ from marshmallow import fields
 class SessionSchema(Schema):
     id = fields.String()
     session_info = fields.Dict()
+    # TODO: Add notes, tags
 
     class Meta:
         additional = ("title", "start_time", "end_time", "created_at", "duration")

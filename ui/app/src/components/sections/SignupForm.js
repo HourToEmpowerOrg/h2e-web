@@ -339,7 +339,7 @@ class SignupForm extends React.Component {
               <div>
                 <div className="center-content">
                   <p>
-                    Hour To Empower is still being set up, but if you are interested in becoming a Tutor, please fill out the form below, and someone from HourToEmpower will reach out to you with next steps.
+                    Hour to Empower is still being set up, but if you are interested in becoming a Tutor, please fill out the form below, and someone from HourToEmpower will reach out to you with next steps.
                   </p>
                 </div>
                 {this.tutorSignupForm()}

@@ -6,9 +6,9 @@ from flask_restful import Api
 from flask_restful import Resource
 from flask_restful_swagger import swagger
 
-from h2e_api.main.endpoints.sessions.utils import create_session, get_all_sessions_by_filter
+from h2e_api.main.endpoints.sessions.utils import create_session, get_all_sessions_by_filter, get_session_info
 from h2e_api.main.endpoints.sessions.schemas import (
-    CreateNewSessionSchema, ListSessionsRequestSchema, SessionListSchema
+    CreateNewSessionSchema, ListSessionsRequestSchema, SessionListSchema, SessionSchema
 )
 from h2e_api.utils import check_endpoint_accessible
 
@@ -92,4 +92,11 @@ class CreateNewSession(Resource):
         return output
 
 
+class SessionDetails(Resource):
+    def get(self, session_id):
+        session_info = get_session_info(session_id, g.user.id)
+        return SessionSchema().dump(session_info)
+
+
 sessions_api.add_resource(CreateNewSession, '/sessions')
+sessions_api.add_resource(SessionDetails, '/sessions/<string:session_id>')

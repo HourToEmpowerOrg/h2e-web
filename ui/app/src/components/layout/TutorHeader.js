@@ -30,7 +30,7 @@ const BrandLogo = () => {
   return (
 
       <div className={brandClasses}>
-        <Link to="/dashboard" style={{ textDecoration: 'none' }}>Hour To Empower</Link>
+        <Link to="/dashboard" style={{ textDecoration: 'none' }}>Hour to Empower</Link>
       </div>
   )
 }
