@@ -28,6 +28,7 @@ class ProductionConfig(Config):
     ENDPOINT = os.environ.get('ENDPOINT')
     SQLALCHEMY_DATABASE_URI = f"postgresql://{USERNAME}:{PASSWORD}@{ENDPOINT}/{DB_NAME}"
     DATABASE_URL = f"postgresql://{USERNAME}:{PASSWORD}@{ENDPOINT}/{DB_NAME}"
+    STATIC_PREFIX = ''
 
 
 config = {
