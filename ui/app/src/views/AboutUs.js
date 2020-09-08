@@ -69,7 +69,7 @@ class AboutUs extends React.Component {
 
           <div className="container">
             <p className="mt-12">
-              Hour to Empower is a 501c(3) organization that partners with schools to effectively provide free tutoring for under-resourced schools. 
+              Hour to Empower is a (pending) 501c(3) organization that partners with schools to effectively provide free tutoring for under-resourced schools. 
               By leveraging a network of college-educated, volunteer tutors, students enrolled at participating schools can choose from a series of available 
               times that best suits their schedules, provide feedback by rating their tutors, and receive vital support that complements what they are learning 
               in the classroom. 

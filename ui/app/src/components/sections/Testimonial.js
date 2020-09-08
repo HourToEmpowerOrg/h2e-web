@@ -60,10 +60,10 @@ class Testimonial extends React.Component {
       >
         <div className="container">
           <div className={innerClasses}>
-            <SectionHeader data={sectionHeader} tag="h3" className="center-content invert-color" />
+            <SectionHeader data={sectionHeader} tag="h1" className="center-content invert-color" />
             <div className={tilesClasses} style={{minHeight:'200px'}}>
 
-              <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap">
+              {/* <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap">
                 <div className="tiles-item-inner has-shadow">
                   <div className="testimonial-item-header mb-16">
                     <div className="testimonial-item-image">
@@ -89,9 +89,9 @@ class Testimonial extends React.Component {
                     </span>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap" data-reveal-delay="200">
+              {/* <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap" data-reveal-delay="200">
                 <div className="tiles-item-inner has-shadow">
                   <div className="testimonial-item-header mb-16">
                     <div className="testimonial-item-image">
@@ -117,7 +117,7 @@ class Testimonial extends React.Component {
                     </span>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               {/* <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap" data-reveal-delay="400">
                 <div className="tiles-item-inner has-shadow">

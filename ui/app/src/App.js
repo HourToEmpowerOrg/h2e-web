@@ -15,6 +15,7 @@ import Secondary from './views/Secondary';
 import Login from './views/Login';
 import AboutUs from './views/AboutUs'
 import Parents from './views/Parents'
+import TermsOfUse from './views/TermsOfUse'
 
 //Sign up pages
 import Signup from './views/Signup';
@@ -24,9 +25,9 @@ import SignupSchools from './views/SignupSchools';
 
 // Tutor / Student shared 
 import Dashboard from './views/Dashboard';
-
 import NotFound from './views/NotFound'
 import ProtectedRoute from './utils/ProtectedRoute';
+import Preferences from './views/Preferences';
 
 class App extends React.Component {
 
@@ -58,8 +59,11 @@ class App extends React.Component {
             <AppRoute exact path="/signup/schools" component={SignupSchools} layout={LayoutSignin} />
             <AppRoute path="/static/index.html" component={Home} layout={LayoutDefault} />
 
+            <AppRoute exact path="/termsofuse" component={TermsOfUse} layout={LayoutDefault} />
+
             {/* TODO NEED TO HAVE THESE PROTECTED!!! */}
             <ProtectedRoute exact path="/dashboard" component={Dashboard} layout={LayoutTutor} />
+            <ProtectedRoute exact path="/preferences" component={Preferences} layout={LayoutTutor} />
 
 
             <AppRoute path="*" component={NotFound} layout={LayoutDefault}></AppRoute>

@@ -58,3 +58,14 @@ def get_all_sessions_by_filter(user_id, filters):
 
     sessions = query.all()
     return sessions
+
+
+def get_session_info(session_id, user_id):
+    # TODO: Make sure user id has access to this session
+    session = Session.query.filter(Session.id == session_id).one_or_none()
+    session_data = {
+        'session': session
+    }
+    return session_data
+
+

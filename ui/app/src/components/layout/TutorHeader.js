@@ -126,7 +126,7 @@ class TutorHeader extends React.Component {
               </a>
 
               <div className="navbar-dropdown">
-              <a className="navbar-item">
+              <a className="navbar-item" href="/termsofuse">
                   View Terms of Service
                 </a>
                 <a className="navbar-item">

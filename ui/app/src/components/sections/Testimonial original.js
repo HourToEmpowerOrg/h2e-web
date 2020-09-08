@@ -61,7 +61,7 @@ class Testimonial extends React.Component {
         <div className="container">
           <div className={innerClasses}>
             <SectionHeader data={sectionHeader} tag="h1" className="center-content invert-color" />
-            <div className={tilesClasses}>
+            {/* <div className={tilesClasses}>
 
               <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap">
                 <div className="tiles-item-inner has-shadow">
@@ -147,7 +147,7 @@ class Testimonial extends React.Component {
                 </div>
               </div>
 
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

@@ -66,7 +66,7 @@ class Team extends React.Component {
           <div className={innerClasses}>
             {/* TUTOR SECTION */}
             <SectionHeader data={tutorSectionHeader} className="center-content reveal-from-bottom" />
-            <div className={tilesClasses}>
+            {/* <div className={tilesClasses}>
 
               <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap">
                 <div className="tiles-item-inner">
@@ -122,7 +122,7 @@ class Team extends React.Component {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* TEAM SECTION */}
             <SectionHeader data={teamSectionHeader} className="center-content reveal-from-bottom" />
             <div className={tilesClasses}>
@@ -143,7 +143,7 @@ class Team extends React.Component {
                       Rachael Chacko
                     </h5>
                     <div className="team-item-role text-xs fw-600 mb-8">
-                      Title
+                      President, CEO
                     </div>
                     <div className="team-item-link text-xs fw-600 mb-8">
                       <a href="https://www.linkedin.com/in/rachael-chacko-ab556a101/">LinkedIn Profile</a>
@@ -170,7 +170,7 @@ class Team extends React.Component {
                       William Bertrand
                     </h5>
                     <div className="team-item-role text-xs fw-600 mb-8">
-                      Title
+                      CTO
                     </div>
                     <div className="team-item-link text-xs fw-600 mb-8">
                       <a href="https://www.linkedin.com/in/williambertrand/">LinkedIn Profile</a>
