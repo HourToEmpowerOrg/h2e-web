@@ -29,7 +29,7 @@ def submit_application(application_type: ApplicationType, submission_data):
 
         # TODO: Re-enable this once less secure apps are alloweed:
         # Todo part 2 - should update to use OAuth and gmail API
-        # h2e_dispatcher.emit(TUTOR_SIGNUP, tutor_app)
+        h2e_dispatcher.emit(TUTOR_SIGNUP, tutor_app)
         return tutor_app
 
     elif application_type == ApplicationType.School:
