@@ -1,14 +1,22 @@
 from marshmallow import Schema
 from marshmallow import fields
+from marshmallow import post_dump
 
 
 class SessionSchema(Schema):
-    id = fields.String()
+    id = fields.UUID()
     session_info = fields.Dict()
-    # TODO: Add notes, tags
+    note = fields.String()
+    participant_name = fields.String()
+    participant_email = fields.String()
 
+    # TODO: Add notes, tags
     class Meta:
         additional = ("title", "start_time", "end_time", "created_at", "duration")
+
+
+class SessionDetailsSchema(Schema):
+    session = fields.Nested(SessionSchema)
 
 
 class CreateNewSessionSchema(Schema):
@@ -29,3 +37,7 @@ class ListSessionsRequestSchema(Schema):
 class SessionListSchema(Schema):
     count = fields.Integer()
     sessions = fields.Nested(SessionSchema, many=True)
+
+
+class SessionNoteSchema(Schema):
+    text = fields.String()

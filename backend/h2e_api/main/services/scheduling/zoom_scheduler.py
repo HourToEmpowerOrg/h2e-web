@@ -2,7 +2,9 @@ import requests
 import json
 from h2e_api.main.models.user import User
 
-# TODO: As we get more services to schedule with, create an abstract class that this inherits from with  create / cancel meeting functions
+
+# TODO: As we get more services to schedule with,
+#  create an abstract class that this inherits from with  create / cancel meeting functions
 class ZoomScheduler:
     zoom_api_url = 'https://api.zoom.us/'
     meeting_url = 'v2/users/{}/meetings'
@@ -33,9 +35,6 @@ class ZoomScheduler:
             }
         }
 
-        print('PAYLOAD TO SEND: ')
-        print(payload)
-
         return payload
 
     @classmethod
@@ -51,6 +50,5 @@ class ZoomScheduler:
             raise Exception(f"Zoom scheduling error: \n {str(response.content)} \n ---------------------")
 
         meeting_info = response.json()
-        print('Got zoom meeting info :>)')
         return meeting_info
 

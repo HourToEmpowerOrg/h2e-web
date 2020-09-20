@@ -25,3 +25,13 @@ class Session(db.Model):
     __table_args__ = (
         Index('session__start_time__idx', 'start_time'),
     )
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'start_time': self.start_time,
+            'end_time': self.end_time,
+            'duration': self.duration,
+            'session_info': self.session_info
+        }

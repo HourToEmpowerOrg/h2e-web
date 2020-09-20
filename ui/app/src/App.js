@@ -28,6 +28,7 @@ import Dashboard from './views/Dashboard';
 import NotFound from './views/NotFound'
 import ProtectedRoute from './utils/ProtectedRoute';
 import Preferences from './views/Preferences';
+import SessionDetailsPage from './views/SessionDetails';
 
 import ReactGA from 'react-ga';
 ReactGA.initialize('UA-178422805-1');
@@ -67,6 +68,8 @@ class App extends React.Component {
             {/* TODO NEED TO HAVE THESE PROTECTED!!! */}
             <ProtectedRoute exact path="/dashboard" component={Dashboard} layout={LayoutTutor} />
             <ProtectedRoute exact path="/preferences" component={Preferences} layout={LayoutTutor} />
+            {/* TODO: How to change layout based on useer type? */}
+            <ProtectedRoute exact path="/session/:id" component={SessionDetailsPage} layout={LayoutTutor} />
 
 
             <AppRoute path="*" component={NotFound} layout={LayoutDefault}></AppRoute>

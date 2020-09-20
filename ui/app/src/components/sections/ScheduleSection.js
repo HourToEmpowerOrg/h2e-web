@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import { SectionProps } from '../../utils/SectionProps';
 import axios from "axios";
 import Moment from 'react-moment';
@@ -17,7 +18,10 @@ const defaultProps = {
 }
 
 function SessionItem({item}) {
+
+
     return (
+      <Link to={`/session/${item.id}`} style={{textDecoration: 'none'}}>
         <div className="session-item" key={item.id}>
             <div className="session-item-title">{item.title}</div>
             <span className="seession-item-body">
@@ -28,6 +32,7 @@ function SessionItem({item}) {
             <br/>
             <a>{item.session_info.join_url}</a>
         </div>
+        </Link>
     )
 
 }

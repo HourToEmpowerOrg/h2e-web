@@ -13,6 +13,10 @@
     margin: 12px;
     cursor: pointer;
 }
+.session-item:hover {
+    border: 1px solid  rgba(116, 129, 141, 0.2);
+    box-shadow: 0 5px 12px 0 rgba(116, 129, 141, 0.2);
+}
 
 
 .session-item-title {
@@ -21,4 +25,13 @@
 
 .session-item-body {
     font-size: 14px;
+}
+
+.session-item-link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.page-header {
+    margin-bottom: 4px;
 }

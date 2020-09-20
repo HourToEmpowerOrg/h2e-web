@@ -6,9 +6,15 @@ from flask_restful import Api
 from flask_restful import Resource
 from flask_restful_swagger import swagger
 
-from h2e_api.main.endpoints.sessions.utils import create_session, get_all_sessions_by_filter, get_session_info
+from h2e_api.main.endpoints.sessions.utils import (
+    create_session,
+    get_all_sessions_by_filter,
+    get_session_info,
+    update_session_note,
+)
 from h2e_api.main.endpoints.sessions.schemas import (
-    CreateNewSessionSchema, ListSessionsRequestSchema, SessionListSchema, SessionSchema
+    CreateNewSessionSchema, ListSessionsRequestSchema, SessionListSchema,
+    SessionDetailsSchema, SessionNoteSchema
 )
 from h2e_api.utils import check_endpoint_accessible
 
@@ -93,10 +99,20 @@ class CreateNewSession(Resource):
 
 
 class SessionDetails(Resource):
+    @check_endpoint_accessible('TEST')
     def get(self, session_id):
         session_info = get_session_info(session_id, g.user.id)
-        return SessionSchema().dump(session_info)
+        return SessionDetailsSchema().dump({'session': session_info})
+
+
+class SessionNote(Resource):
+    @check_endpoint_accessible('TEST')
+    def post(self, session_id):
+        validated_input = SessionNoteSchema().load(request.json)
+        update_session_note(session_id, validated_input)
+        return {'message': 'Note Updated'}, 200
 
 
 sessions_api.add_resource(CreateNewSession, '/sessions')
 sessions_api.add_resource(SessionDetails, '/sessions/<string:session_id>')
+sessions_api.add_resource(SessionNote, '/sessions/<string:session_id>/note')

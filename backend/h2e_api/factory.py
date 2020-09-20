@@ -38,18 +38,18 @@ def setup_static_file_loader(app: Flask):
     @app.before_request
     def before_request():
         path = request.path
-        print(f'path {path}')
-        print(f'static prefix {static_prefix}')
+        # print(f'path {path}')
+        # print(f'static prefix {static_prefix}')
         if static_prefix != '' and static_prefix in path:
             path = path[path.index(static_prefix):]
 
         if path == '/static/index.html':
             return util_send_file(os.path.dirname(os.path.abspath(__file__)) + path, add_etags=False, cache_timeout=0)
         elif path.startswith('/static/') or path.startswith('/static/favicon/'):
-            print(f'sending starts with: {os.path.dirname(os.path.abspath(__file__)) + path}')
+            # print(f'sending starts with: {os.path.dirname(os.path.abspath(__file__)) + path}')
             return util_send_file(os.path.dirname(os.path.abspath(__file__)) + path)
         #else:
-        print(f"sending default: {os.path.dirname(os.path.abspath(__file__)) + '/static/index.html'}")
+        # print(f"sending default: {os.path.dirname(os.path.abspath(__file__)) + '/static/index.html'}")
             #return util_send_file(os.path.dirname(os.path.abspath(__file__)) + '/static/index.html')
 
 
