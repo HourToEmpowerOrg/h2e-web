@@ -26,7 +26,7 @@ function SessionItem({item}) {
             </Moment>   
             </span>
             <br/>
-            <a>{item.session_info.meeting_link}</a>
+            <a>{item.session_info.join_url}</a>
         </div>
     )
 

@@ -16,6 +16,7 @@ import Button from '../components/elements/Button';
 import Modal from '../components/elements/Modal';
 import Accordion from '../components/elements/Accordion';
 import AccordionItem from '../components/elements/AccordionItem';
+import ReactGA from 'react-ga';
 
 class AboutUs extends React.Component {
 
@@ -34,6 +35,8 @@ class AboutUs extends React.Component {
   }
 
   render() {
+
+    ReactGA.pageview('AboutUs');
 
     const genericSection01Header = {
       title: 'Newsletter modal is a component commonly used'

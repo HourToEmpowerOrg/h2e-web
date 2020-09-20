@@ -29,6 +29,9 @@ import NotFound from './views/NotFound'
 import ProtectedRoute from './utils/ProtectedRoute';
 import Preferences from './views/Preferences';
 
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-178422805-1');
+
 class App extends React.Component {
 
   componentDidMount() {

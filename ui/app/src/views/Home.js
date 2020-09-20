@@ -6,9 +6,11 @@ import News from '../components/sections/News';
 import Roadmap from '../components/sections/Roadmap';
 import Pricing from '../components/sections/Pricing';
 import Cta from '../components/sections/Cta';
+import ReactGA from 'react-ga';
 
 class Home extends React.Component {
   render() {
+    ReactGA.pageview('Landing');
     return (
       <React.Fragment>
         <HeroSplit hasBgColor invertColor />
