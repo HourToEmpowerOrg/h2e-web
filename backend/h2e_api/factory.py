@@ -53,12 +53,13 @@ def setup_static_file_loader(app: Flask):
             #return util_send_file(os.path.dirname(os.path.abspath(__file__)) + '/static/index.html')
 
 
-def create_app():
+def create_app(env_name=None):
     """Application factory, used to create application
     """
 
     app = Flask(__name__, static_folder='/static', static_url_path='/')
-    env_name = os.environ.get('FLASK_ENV')
+    if env_name is None:
+        env_name = os.environ.get('FLASK_ENV')
     print(f'Configuration: {env_name}')
     app.config.from_object(config[env_name])
 

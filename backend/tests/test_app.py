@@ -1,6 +1,7 @@
 import unittest
 from flask import current_app
-from app import create_app, db
+from h2e_api.factory import create_app
+from h2e_api.main.models.BaseModel import db
 
 
 class BasicTestCase(unittest.TestCase):

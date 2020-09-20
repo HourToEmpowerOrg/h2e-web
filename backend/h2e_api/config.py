@@ -17,6 +17,12 @@ class DevelopmentConfig(Config):
     STATIC_PREFIX = ''
 
 
+class TestingConfig(Config):
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL')
+    STATIC_PREFIX = ''
+
+
 class ProductionConfig(Config):
     """
         Configure as env variables
@@ -33,6 +39,7 @@ class ProductionConfig(Config):
 
 config = {
     'Development': DevelopmentConfig,
+    'Testing': TestingConfig,
     'Production': ProductionConfig,
     'Default': DevelopmentConfig,
 }
