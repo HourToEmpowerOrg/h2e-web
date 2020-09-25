@@ -49,12 +49,13 @@ class Team extends React.Component {
     );
 
     const tutorSectionHeader = {
-      title: '(H)Our Tutors',
-      paragraph: 'Meet our Tutors. All of our tutors are volunteers who we recruit, train, and certify.'
+      title: 'Our Tutors',
+      paragraph: 'All of our tutors are volunteers who we recruit, train, and certify.',
+      paragraph2: 'Meet our Tutors. All of our tutors are volunteers who we recruit, train, and certify.'
     };
 
     const teamSectionHeader = {
-      title: '(H)Our Team'
+      title: 'Our Team'
     }
 
     return (

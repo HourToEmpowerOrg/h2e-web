@@ -103,9 +103,9 @@ class HeroSplit extends React.Component {
                     </Link>  
                   </ButtonGroup>
                 </div>
-                <div className="h2e-hero-figure split-item-image split-item-image-fill illustration-element-01 reveal-from-bottom">
+                <div className="h2e-hero-figure split-item-image split-item-image-fill illustration-section-01 reveal-from-bottom">
                     <Image
-                      src={require('./../../assets/images/video-placeholder.jpg')}
+                      src={require('./../../assets/images/logo_muted.png')}
                       alt="h2e-hero"
                       width={528}
                       height={396} />

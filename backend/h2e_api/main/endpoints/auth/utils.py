@@ -79,6 +79,9 @@ def _make_h2e_response(user, message, auth, request, call_start_time, auth_type)
 def validate_login(auth_json):
     user = User.query.filter_by(email=auth_json['email']).first()
 
+    if not user:
+        return None, 'ERROR_INVALID_USERNAME'
+
     if not user.check_password(auth_json['password']):
         return None, 'ERROR_INVALID_PASSWORD'
 

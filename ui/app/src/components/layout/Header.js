@@ -28,7 +28,6 @@ const brandClasses = classNames('header-brand')
 
 const BrandLogo = () => {
   return (
-
       <div className={brandClasses}>
         <Link to="/" style={{ textDecoration: 'none' }}>Hour to Empower</Link>
       </div>

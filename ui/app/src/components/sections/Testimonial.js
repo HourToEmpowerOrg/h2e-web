@@ -60,7 +60,7 @@ class Testimonial extends React.Component {
       >
         <div className="container">
           <div className={innerClasses}>
-            <SectionHeader data={sectionHeader} tag="h1 " className="center-content invert-color" />
+            <SectionHeader data={sectionHeader} tag="h1" className="center-content invert-color" />
             <div className={tilesClasses} style={{minHeight:'200px'}}>
 
               {/* <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap">

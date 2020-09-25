@@ -2,6 +2,8 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie'
 
+import axios from "axios";
+
 
 const getUserFromToken = token => {
   if (token) {
@@ -44,6 +46,9 @@ const ProtectedRoute = ({
 }) => {
 
   Layout = (Layout === undefined) ? props => (<React.Fragment>{props.children}</React.Fragment>) : Layout;
+  const session = getSession()
+
+  // TODO: Check for route based on tutor or student user...
 
   return (
     <Route

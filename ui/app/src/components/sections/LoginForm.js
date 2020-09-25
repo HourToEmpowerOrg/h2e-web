@@ -25,8 +25,13 @@ function LoginForm(props) {
     axios.post(`${api_url}/login`, loginData)
             .then(function (response) {
               if (response.status == 200){
-                console.log('Authenticated...')
-                history.push("/dashboard");
+                if(response.data.role == 'STUDENT'){
+                  history.push("/student/dashboard");
+                }
+                else{
+                  history.push("/dashboard");
+                }
+                
               }
             })
             .catch(function (error) {

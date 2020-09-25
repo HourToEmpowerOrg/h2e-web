@@ -8,6 +8,7 @@ import LayoutDefault from './layouts/LayoutDefault';
 import LayoutAlternative from './layouts/LayoutAlternative';
 import LayoutSignin from './layouts/LayoutSignin';
 import LayoutTutor from './layouts/LayoutTutor';
+import LayoutStudent from './layouts/LayoutStudent';
 
 // Views 
 import Home from './views/Home';
@@ -23,12 +24,15 @@ import SignupTutor from './views/SignupTutor';
 import SignupStudent from './views/SignupStudent';
 import SignupSchools from './views/SignupSchools';
 
-// Tutor / Student shared 
+// Tutor Views
 import Dashboard from './views/Dashboard';
 import NotFound from './views/NotFound'
 import ProtectedRoute from './utils/ProtectedRoute';
 import Preferences from './views/Preferences';
 import SessionDetailsPage from './views/SessionDetails';
+
+// Student Views
+import StudentDashboard from './views/StudentDashboard';
 
 import ReactGA from 'react-ga';
 ReactGA.initialize('UA-178422805-1');
@@ -70,6 +74,12 @@ class App extends React.Component {
             <ProtectedRoute exact path="/preferences" component={Preferences} layout={LayoutTutor} />
             {/* TODO: How to change layout based on useer type? */}
             <ProtectedRoute exact path="/session/:id" component={SessionDetailsPage} layout={LayoutTutor} />
+
+            {/*  STUDENT ROUTES TODO: acces to These should be handled based on user type */}
+            <ProtectedRoute exact path="/student/dashboard" component={StudentDashboard} layout={LayoutStudent} />
+            {/* <ProtectedRoute exact path="/student/preferences" component={StudentPreferences} layout={LayoutStudent} /> */}
+            {/* TODO: How to change layout based on useer type? */}
+            {/* <ProtectedRoute exact path="/student/session/:id" component={StudentSessionDetailsPage} layout={LayoutStudent} /> */}
 
 
             <AppRoute path="*" component={NotFound} layout={LayoutDefault}></AppRoute>

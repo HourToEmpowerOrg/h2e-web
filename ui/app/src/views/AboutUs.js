@@ -55,7 +55,7 @@ class AboutUs extends React.Component {
     }    
 
     const missionSectionData = {
-      title: '(H)Our Mission'
+      title: 'Our Mission'
     }
 
     return (
