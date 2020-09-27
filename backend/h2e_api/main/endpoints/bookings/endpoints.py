@@ -17,8 +17,8 @@ from h2e_api.main.endpoints.bookings.schemas import (
 from h2e_api.utils import check_endpoint_accessible
 
 
-session_bp = Blueprint('sessions', __name__)
-sessions_api = swagger.docs(Api(session_bp))
+bookings_bp = Blueprint('bookings', __name__)
+bookings_api = swagger.docs(Api(bookings_bp))
 
 
 class PotentialBookings(Resource):
@@ -76,5 +76,4 @@ class AcceptBooking(Resource):
         pass
 
 
-
-sessions_api.add_resource(PotentialBookings, '/bookings')
+bookings_api.add_resource(PotentialBookings, '/bookings')

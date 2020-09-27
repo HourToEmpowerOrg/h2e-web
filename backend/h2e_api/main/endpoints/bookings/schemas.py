@@ -5,6 +5,7 @@ from marshmallow import fields
 class ListBookingsRequestSchema(Schema):
     date_from = fields.DateTime()
     date_to = fields.DateTime()
+    subject = fields.String()
 
 
 class BookingSchema(Schema):

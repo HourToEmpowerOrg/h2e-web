@@ -18,6 +18,7 @@ from h2e_api.main.endpoints.front_end.endpoints import front_end_bp
 from h2e_api.main.endpoints.applications.endpoints import applications_bp
 from h2e_api.main.endpoints.mailing_list.endpoints import mailing_bp
 from h2e_api.main.endpoints.sessions.endpoints import session_bp
+from h2e_api.main.endpoints.bookings.endpoints import bookings_bp
 from h2e_api.main.endpoints.preferences.endpoints import preferences_bp
 from h2e_api.main.endpoints.auth.endpoints import auth_bp
 from h2e_api.utils import util_send_file, not_authenticated_response
@@ -93,4 +94,5 @@ def register_blueprints(app):
     app.register_blueprint(applications_bp, url_prefix=api_prefix)
     app.register_blueprint(mailing_bp, url_prefix=api_prefix)
     app.register_blueprint(session_bp, url_prefix=api_prefix)
+    app.register_blueprint(bookings_bp, url_prefix=api_prefix)
     app.register_blueprint(preferences_bp, url_prefix=api_prefix)
