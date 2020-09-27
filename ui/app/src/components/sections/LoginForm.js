@@ -66,7 +66,7 @@ function LoginForm(props) {
   );
 
   const sectionHeader = {
-    title: 'HourToEmpower',
+    title: 'Hour to Empower',
   };
 
   return (

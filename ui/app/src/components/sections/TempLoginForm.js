@@ -62,14 +62,14 @@ class TempLoginForm extends React.Component {
 
                 <h4>For Students</h4>
 
-                  <p>If you're a <span style={{fontWeight:'bold'}}>student</span>, speak with your teacher to find out if your school is planning on using HourToEmpower</p>
+                  <p>If you're a <span style={{fontWeight:'bold'}}>student</span>, speak with your teacher to find out if your school is planning on using Hour to Empower</p>
 
                   <h4>For Tutors</h4>
                   <p>If you're interested in becoming a <span style={{fontWeight:'bold'}}>tutor</span>, please take a look at our <Link to="/signup/tutor">Tutor Application</Link></p>
 
 
                   <h4>For Parents</h4>
-                  <p>Help your child get started with HourToEmpower by sending an email to <a href="mailto:hrtoempower@gmail.com">hrtoempower@gmail.com</a> </p>
+                  <p>Help your child get started with Hour to Empower by sending an email to <a href="mailto:hrtoempower@gmail.com">hrtoempower@gmail.com</a> </p>
 
 
                   <h4>For Everyone</h4>

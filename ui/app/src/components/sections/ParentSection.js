@@ -57,7 +57,7 @@ class ParentSection extends React.Component {
           <div className={innerClasses}>
             <div>
                 <div className="center-content">
-                  <h3>Help your child get started with HourToEmpower</h3>                
+                  <h3>Help your child get started with Hour to Empower</h3>                
                 </div>
                 <br/>
                 <p>

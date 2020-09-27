@@ -323,11 +323,11 @@ class SignupForm extends React.Component {
         paragraph: 'Thank you for your interest in volunteering for Hour to Empower. Please fill out the details below. You will receive an email confirmation as well as an application form to gauge interests and suitability. Please note, as part of the screening process there is a mandatory background check.'
       },
       student: {
-        title: 'Welcome! Talk to your teacher to find out if your school is currently using HourToEmpower!', 
+        title: 'Welcome! Talk to your teacher to find out if your school is currently using Hour to Empower!', 
       },
       school: {
-        title: 'HourToEmower partners with schools to connect their students with high quality tutors across the country.', 
-        paragraph: 'Please fill out th form below if you are an administrator at a school interested in providing free tutoring services for your students. We will then schedule a time to determine if HourToEmpower is a fit for your school!'
+        title: 'Hour to Empower partners with schools to connect their students with high quality tutors across the country.', 
+        paragraph: 'Please fill out th form below if you are an administrator at a school interested in providing free tutoring services for your students. We will then schedule a time to determine if Hour to Empower is a fit for your school!'
       }
     };
 
@@ -339,7 +339,7 @@ class SignupForm extends React.Component {
               <div>
                 <div className="center-content">
                   <p>
-                    Hour to Empower is still being set up, but if you are interested in becoming a Tutor, please fill out the form below, and someone from HourToEmpower will reach out to you with next steps.
+                    Hour to Empower is still being set up, but if you are interested in becoming a Tutor, please fill out the form below, and someone from Hour to Empower will reach out to you with next steps.
                   </p>
                 </div>
                 {this.tutorSignupForm()}

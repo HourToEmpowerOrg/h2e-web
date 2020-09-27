@@ -48,10 +48,10 @@ class SubmissionResult extends React.Component {
 
     const sectionHeader = {
       tutor: {
-        title: 'Thank you for submitting your application to HourToEmpower!'
+        title: 'Thank you for submitting your application to Hour to Empower!'
       },
       school: {
-        title: 'Thank you for your interest in partnering with HourToEmpower!'
+        title: 'Thank you for your interest in partnering with Hour to Empower!'
       }
     };
 

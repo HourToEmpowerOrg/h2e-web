@@ -43,7 +43,7 @@ def get_all_bookings_by_filter(user_id, filters):
         for i in range(int(duration / session_duration)):
             session = {
                 'start_time': datetime.combine(filters.get('date_from'), p.start_time) + timedelta(hours=i),
-                'end_time': datetime.combine(filters.get('date_from'), p.start_time) + timedelta(hours=i + duration),
+                'end_time': datetime.combine(filters.get('date_from'), p.start_time) + timedelta(hours=i + session_duration),
                 'tutor_name': 'Session with Hour to Empower Tutor'
             }
             final_bookings.append(session)
