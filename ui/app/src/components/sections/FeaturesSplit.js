@@ -54,8 +54,8 @@ class FeaturesSplit extends React.Component {
     );
 
     const sectionHeader = {
-      title: 'Workflow that just works',
-      paragraph: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum — semper quis lectus nulla at volutpat diam ut venenatis.'
+      title: 'A simple process for Student and Tutor',
+      paragraph: 'We\'re simplifying the process of scheduling a tutoring session to make it as easy as possible to connect students and tutors.'
     };
 
     return (
@@ -71,10 +71,10 @@ class FeaturesSplit extends React.Component {
               <div className="split-item">
                 <div className="split-item-content center-content-mobile">
                   <h3 className="mt-0 mb-16 reveal-from-bottom" data-reveal-container=".split-item">
-                    Data-driven insights
+                    Tutor sets their schedule preferences
                   </h3>
                   <p className="m-0 reveal-from-bottom" data-reveal-delay="100" data-reveal-container=".split-item">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Hour to Empower tutors have the flexibility to define what their schedule will look like.
                   </p>
                 </div>
                 <div className={
@@ -86,7 +86,7 @@ class FeaturesSplit extends React.Component {
                   data-reveal-delay="200">
                   <Image
                     className="has-shadow"
-                    src={require('./../../assets/images/features-split-image-01.png')}
+                    src={require('./../../assets/images/screenshot-tutor-pref.png')}
                     alt="Features split 01"
                     width={528}
                     height={396} />
@@ -96,10 +96,10 @@ class FeaturesSplit extends React.Component {
               <div className="split-item">
                 <div className="split-item-content center-content-mobile">
                   <h3 className="mt-0 mb-16 reveal-from-bottom" data-reveal-container=".split-item">
-                    Data-driven insights
+                    Students book a session
                   </h3>
                   <p className="m-0 reveal-from-bottom" data-reveal-delay="100" data-reveal-container=".split-item">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    A student in need of a tutor simply chooses a date and subject, and is then provided with options for a free one-hour tutoring session with one of our vetted tutors.
                   </p>
                 </div>
                 <div className={
@@ -111,38 +111,12 @@ class FeaturesSplit extends React.Component {
                   data-reveal-delay="200">
                   <Image
                     className="has-shadow"
-                    src={require('./../../assets/images/features-split-image-02.png')}
+                    src={require('./../../assets/images/screenshot-student-book.png')}
                     alt="Features split 02"
                     width={528}
                     height={396} />
                 </div>
               </div>
-
-              <div className="split-item">
-                <div className="split-item-content center-content-mobile">
-                  <h3 className="mt-0 mb-16 reveal-from-bottom" data-reveal-container=".split-item">
-                    Data-driven insights
-                  </h3>
-                  <p className="m-0 reveal-from-bottom" data-reveal-delay="100" data-reveal-container=".split-item">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </p>
-                </div>
-                <div className={
-                  classNames(
-                    'split-item-image center-content-mobile reveal-scale-up',
-                    imageFill && 'split-item-image-fill'
-                  )}
-                  data-reveal-container=".split-item"
-                  data-reveal-delay="200">
-                  <Image
-                    className="has-shadow"
-                    src={require('./../../assets/images/features-split-image-03.png')}
-                    alt="Features split 03"
-                    width={528}
-                    height={396} />
-                </div>
-              </div>
-
             </div>
           </div>
         </div>

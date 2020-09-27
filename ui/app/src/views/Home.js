@@ -7,6 +7,7 @@ import Roadmap from '../components/sections/Roadmap';
 import Pricing from '../components/sections/Pricing';
 import Cta from '../components/sections/Cta';
 import ReactGA from 'react-ga';
+import FeaturesSplit from '../components/sections/FeaturesSplit';
 
 class Home extends React.Component {
   render() {
@@ -15,6 +16,7 @@ class Home extends React.Component {
       <React.Fragment>
         <HeroSplit hasBgColor invertColor />
         <Roadmap/>
+        <FeaturesSplit></FeaturesSplit>
         {/* <FeaturesTiles /> */}
         {/* <FeaturesTabs topDivider bottomOuterDivider /> */}
         {/* <News className="illustration-section-01" /> */}

@@ -24,7 +24,8 @@
 }
 
 .session-item-body {
-    font-size: 14px;
+    font-size: 18px;
+    padding: 8px;
 }
 
 .session-item-link {
@@ -34,4 +35,23 @@
 
 .page-header {
     margin-bottom: 4px;
+}
+
+.entry-item {
+    margin: 8px;
+    padding: 10px;
+    line-height: 40px;
+}
+
+.subject-tag {
+    align-items: center;
+    flex-shrink: 0;
+    height: 18px;
+    border-radius: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 14px;
+    line-height: 120%;
+    color: rgb(55, 53, 47);
+    background: rgba(0, 135, 107, 0.2);
 }

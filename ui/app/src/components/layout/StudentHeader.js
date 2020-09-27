@@ -98,7 +98,7 @@ class StudentHeader extends React.Component {
     );
 
     return (
-      <nav className="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
+      <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <a className="navbar-item">
             HourToEmpower
@@ -114,10 +114,6 @@ class StudentHeader extends React.Component {
           <div className="navbar-start">
             <a className="navbar-item" href="/student/dashboard">
               Dashboard
-            </a>
-
-            <a className="navbar-item" href="/student/preferences">
-              Preferences
             </a>
 
             <a className="navbar-item" href="/student/book-session">
