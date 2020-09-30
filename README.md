@@ -3,7 +3,7 @@
 
 Web application for HourToEmpower: Signup, Registration, and Tutor and Student session scheduling.
 
-### React frontend: /ui
+### React frontend: `/ui`
 
 To start, cd into ui and run:
 
@@ -16,6 +16,7 @@ To start, cd into ui and run:
 
 Setting up:
 - Add a `.env` frile in `backend/h2e_api` directory with contents:
+- create postgres db `hrtoempower`
 ```.env
 FLASK_ENV=Development
 DEV_DATABASE_URL=postgresql://localhost:5432/hrtoempower
@@ -35,9 +36,8 @@ Make sure your database is up to date if running locally:
 
 ### Migrations for Production Database
 - TODO: Find a better way to automate this
-Currently, set `FLASK_ENV=Production` in your .env file, and re-run `flask db upgrade` after already generating the migration.
 
-
+Currently, set `FLASK_ENV=Production` in your .env file, and re-run `flask db upgrade` from inside `/h2e_api` directory after already generating the migration. 
 
 ### Deploying:
 Requirements: EB CLI installed and configured, python 3.7
@@ -48,3 +48,12 @@ The steps the script is taking are:
 - cd ui/app and run npm build
 - cd to backend directory
 - run eb deploy
+
+
+### TODOS: 
+- Set up development RDS
+    - can use this db for DEV rather than requiring a local DB for dev and testing
+- Testing set up
+    - frontend jest tests?
+    - backend pytest
+- CI/CD set up
