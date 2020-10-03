@@ -17,6 +17,8 @@ function BookSession (props) {
     const [showInfo, setShowInfo] = useState(false);
     const [selectedSubject, setSelectedSubject] = useState('math');
 
+    const [booked, setBooked] = useState(false);
+
 
     const getBookings = () => {
       setLoading(true);
@@ -27,6 +29,16 @@ function BookSession (props) {
       }).catch(err => {
         console.error(err);
       })
+    }
+
+    const requestBooking = (booking) => {
+      axios.post(`/api/v1/bookings/request`, booking)
+        .then( (response) => {
+          setBooked(true); //TODO: Show booking success message
+        })
+        .catch((err) => {
+          console.error(err);
+        })
     }
 
     const {
@@ -106,7 +118,7 @@ function BookSession (props) {
                       </Moment>  
                       <p>{booking.tutor_name}</p>
                       <p style={{marginTop: '2px', marginBottom: '2px'}}> <span className="subject-tag">Math</span></p>
-                      <a>Book this session</a>
+                      <a onClick={()=> requestBooking(booking)}>Book this session</a>
                   </div>
                   )
                 })

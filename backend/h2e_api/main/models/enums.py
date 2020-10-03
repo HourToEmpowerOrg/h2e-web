@@ -55,3 +55,7 @@ class ScheduleRepeat(HourToEmpowerEnum):
     BI_WEEKLY = auto()
     MONTHLY = auto()
 
+
+class SessionStatus(HourToEmpowerEnum):
+    PENDING = auto()
+    ACCEPTED = auto()

@@ -34,6 +34,19 @@ SENDER_PASS=<emal-app-password>
 Make sure your database is up to date if running locally:
 `flask db migrate; flask db upgrade;`
 
+#### Notes on making newe `enum` types in the DB
+For some reason sqlalchemy doesn't really handle this very well. So you'll need to modify the migrations script manually
+
+Example:
+```
+    from sqlalchemy.dialects import postgresql #add this import
+
+    session_status_enum = postgresql.ENUM('PENDING', 'ACCEPTED', name='session_status', create_type=True, nullable=True) #add this line
+    session_status_enum.create(op.get_bind()) #add this line
+    op.add_column('session_status', sa.Column('status', sa.Enum('PENDING', 'ACCEPTED', name='session_status'), nullable=True)) #original line
+
+``` 
+
 ### Migrations for Production Database
 - TODO: Find a better way to automate this
 
