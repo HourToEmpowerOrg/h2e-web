@@ -6,6 +6,8 @@ from flask_restful import Api
 
 from h2e_api.utils import is_dev
 
+from h2e_api.main.endpoints.front_end.utils.config_utils import get_config
+
 front_end_bp = Blueprint('front_end', __name__)
 front_end = Api(front_end_bp)
 
@@ -30,6 +32,13 @@ class IndexHtml(Resource):
     pass
 
 
+class Config(Resource):
+    def get(self, school_id):
+        config = get_config(school_id)
+        return config, 200
+
+
 front_end.add_resource(Home, '/')
 front_end.add_resource(FavIcon, '/favicon.ico')
 front_end.add_resource(IndexHtml, '/static/index.html')
+front_end.add_resource(Config, '/config/<string:school_id>')
