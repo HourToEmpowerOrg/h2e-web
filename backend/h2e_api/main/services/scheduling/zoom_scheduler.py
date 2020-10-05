@@ -1,6 +1,7 @@
 import requests
 import json
 from h2e_api.main.models.user import User
+import os
 
 
 # TODO: As we get more services to schedule with,
@@ -12,7 +13,7 @@ class ZoomScheduler:
 
     # TODO: get from env...
     headers = {
-        'authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Ii1CQmh4R0k5VHYtZndKOURyMi14cWciLCJleHAiOjE2MDExNzE4MjcsImlhdCI6MTYwMDU2NzAyOX0.XbjScFeKCq6VrII8aiMQXM8tQMBH5d7XMKkqNgFVcj4",
+        'authorization': f"Bearer {os.getenv('ZOOM_TOKEN')}",
         'content-type': "application/json"
     }
 
