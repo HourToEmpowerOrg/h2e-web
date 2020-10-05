@@ -8,11 +8,14 @@ from flask_restful_swagger import swagger
 
 from h2e_api.main.endpoints.bookings.utils import (
     get_all_bookings_by_filter,
-
+    create_booking_request,
+    respond_to_booking,
 )
 from h2e_api.main.endpoints.bookings.schemas import (
     ListBookingsRequestSchema,
-    BookingsListSchema
+    BookingsListSchema,
+    BookingSchema,
+    BookingResponseSchema,
 )
 from h2e_api.utils import check_endpoint_accessible
 
@@ -70,10 +73,28 @@ class PotentialBookings(Resource):
         return output
 
 
-class AcceptBooking(Resource):
-    #TODO: Create new session request
+class RequestBooking(Resource):
+    """
+        Called when Student hits "Book Session" in UI
+    """
+    @check_endpoint_accessible('DEFAULT')
     def post(self):
-        pass
+        validated_input = BookingSchema().load(request.json)
+        create_booking_request(g.user.id, validated_input)
+        return {'message': 'booking request sent'}, 200
+
+
+class RespondBooking(Resource):
+    """
+        Called when Tutor hits "accept this session" or "decline"
+    """
+    @check_endpoint_accessible('DEFAULT')
+    def post(self):
+        validated_input = BookingResponseSchema().load(request.json)
+        booking = respond_to_booking(validated_input)
+        return BookingSchema().dump(booking).data
 
 
 bookings_api.add_resource(PotentialBookings, '/bookings')
+bookings_api.add_resource(RequestBooking, '/bookings/request')
+bookings_api.add_resource(RespondBooking, '/bookings/respond')

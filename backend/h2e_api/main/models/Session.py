@@ -7,6 +7,8 @@ from sqlalchemy import TIMESTAMP
 from sqlalchemy import Interval
 from sqlalchemy import Index
 
+from h2e_api.main.models.enums import SessionStatus
+
 
 # CREATE EXTENSION IF NOT EXISTS 1"uuid-ossp";
 class Session(db.Model):
@@ -16,6 +18,7 @@ class Session(db.Model):
     start_time = db.Column(TIMESTAMP(timezone=True))
     end_time = db.Column(TIMESTAMP(timezone=True))
     duration = db.Column(Interval)
+    session_status = db.Column(db.Enum(SessionStatus, name='session_status'))
 
     created_at = db.Column(db.DateTime, nullable=False, default=func.now())
 
