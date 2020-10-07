@@ -1,6 +1,6 @@
 FROM python:3.6.5
 
-MAINTAINER William Bertrand "w.bertrand@hey.com"
+LABEL William Bertrand "w.bertrand@hey.com"
 
 RUN apt-get update \
  && apt-get install -y bash \
