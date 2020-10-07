@@ -1,0 +1,39 @@
+version: "3"
+services:
+    h2e_ui:
+        build: ./ui
+        command: ["sh", "run.sh"]
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./ui:/app
+        networks:
+            - h2e
+
+    h2e_api:
+        build: ./backend
+        command: ["sh", "run.sh"]
+        ports:
+            - "5000:5000"
+        volumes:
+            - ./backend:/app
+        env_file:
+            - .env
+        networks:
+            - h2e
+
+    h2e_db:
+        ports:
+            - "5432:5432"
+        volumes:
+            - "db-data:/var/lib/postgresql/data"
+        env_file:
+            - .env
+        networks:
+            - h2e
+
+volumes:
+    db-data:
+
+networks:
+    h2e:

@@ -1,0 +1,29 @@
+name: h2e_api Tests
+on:
+    push:
+        branches:
+            - master
+
+        tags:
+            - v*
+
+    pull_request:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Build docker-compose stack for GitHub actions
+              run: make test
+
+            - name: Check running containers
+              run: docker ps -a
+
+            - name: Check h2e_api logs
+              run: docker logs h2e_api
+
+            - name: Run h2e_api tests
+              run: docker exec h2e_api pytest --skip-auth
