@@ -15,6 +15,7 @@ class TeamsService:
         if signup_type == 'tutor':
             teams_message = pymsteams.connectorcard(url)
             teams_message.title("New Tutor Signup")
+            teams_message.text("New Tutor Signup")
 
             # Add info section
             info_section = pymsteams.cardsection()
