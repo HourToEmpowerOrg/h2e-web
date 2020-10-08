@@ -24,7 +24,8 @@ function LoginForm(props) {
 
     axios.post(`${api_url}/login`, loginData)
             .then(function (response) {
-              if (response.status == 200){
+              if (response.status == 200) {
+
                 if(response.data.role == 'STUDENT'){
                   history.push("/student/dashboard");
                 }

@@ -33,12 +33,12 @@ class IndexHtml(Resource):
 
 
 class Config(Resource):
-    def get(self, school_id):
-        config = get_config(school_id)
+    def get(self):
+        config = get_config()
         return config, 200
 
 
 front_end.add_resource(Home, '/')
 front_end.add_resource(FavIcon, '/favicon.ico')
 front_end.add_resource(IndexHtml, '/static/index.html')
-front_end.add_resource(Config, '/config/<string:school_id>')
+front_end.add_resource(Config, '/config')

@@ -1,5 +1,6 @@
 from h2e_api.main.models.School import School
 from uuid import UUID
+from flask import g
 
 
 def validate_uuid4(uuid_string):
@@ -15,14 +16,15 @@ def validate_uuid4(uuid_string):
     ])
 
 
-def get_config(school_id):
+def get_config():
 
-    if not validate_uuid4(school_id):
+    user = g.user
+
+    if user.school_id:
+        school = School.query.filter(School.id == user.school_id).one_or_none()
+        return {
+            'config': school.config,
+            'logo': school.logo_url
+        }
+    else:
         return None
-
-    school = School.query.filter(School.id == school_id).one_or_none()
-
-    if school is None:
-        raise Exception(f'School for id not found: {school_id}')
-
-    return school.config
