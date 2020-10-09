@@ -61,6 +61,7 @@ def create_app(env_name=None):
     app = Flask(__name__, static_folder='/static', static_url_path='/')
     if env_name is None:
         env_name = os.environ.get('FLASK_ENV')
+    env_name = env_name.lower()
     print(f'Configuration: {env_name}')
     app.config.from_object(config[env_name])
 

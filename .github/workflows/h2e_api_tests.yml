@@ -1,29 +1,42 @@
-name: h2e_api Tests
+name: h2e_api
 on:
-    push:
-        branches:
-            - master
+  push:
+    branches:
+      - master
 
-        tags:
-            - v*
+    tags:
+      - v*
 
-    pull_request:
+  pull_request:
 
 jobs:
-    test:
-        runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
+    env:
+      TAG: latest
+      USERNAME: ${{ secrets.USERNAME }}
+      DB_PWD: ${{ secrets.DB_PWD }}
+      DB_NAME: ${{ secrets.DB_NAME }}
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Build docker-compose stack for GitHub actions
-              run: make test
+      - name: Build docker-compose stack for GitHub actions
+        run: make test
 
-            - name: Check running containers
-              run: docker ps -a
+      - name: Check running containers
+        run: docker-compose ps
 
-            - name: Check h2e_api logs
-              run: docker logs h2e_api
+      - name: Check h2e_db logs
+        run: docker-compose logs h2e_db
 
-            - name: Run h2e_api tests
-              run: docker exec h2e_api pytest --skip-auth
+      - name: Check h2e_api logs
+        run: docker-compose logs h2e_api
+
+      - name: Setup test hrtoempower tables
+        run: |
+          docker-compose exec -T h2e_db psql -U ${USERNAME} -d ${DB_NAME} -c "CREATE EXTENSION \"uuid-ossp\";"
+          docker-compose exec -T h2e_api bash -c "cd h2e_api && flask db upgrade"
+
+      - name: Run h2e_api tests
+        run: docker-compose exec -T h2e_api pytest -v
