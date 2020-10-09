@@ -1,23 +1,23 @@
 version: '3'
 services:
-    h2e_ui:
-        image: "h2e_ui:${TAG}"
-        container_name: h2e_ui
-        build: ./ui
-        depends_on:
-            - h2e_api
+#   h2e_ui:
+#     image: "h2e_ui:${TAG}"
+#     container_name: h2e_ui
+#     build: ./ui
+#     depends_on:
+#       - h2e_api
 
-    h2e_api:
-        image: "h2e_api:${TAG}"
-        container_name: h2e_api
-        build: ./backend
-        depends_on:
-            - h2e_db
+  h2e_api:
+    image: "h2e_api:${TAG}"
+    container_name: h2e_api
+    build: ./backend
+    depends_on:
+      - h2e_db
 
-    h2e_db:
-        image: postgres:latest
-        container_name: h2e_db
-        environment:
-            - POSTGRES_USER=${USERNAME}  
-            - POSTGRES_PASSWORD=${DB_PWD}
-            - POSTGRES_DB=${DB_NAME}
+  h2e_db:
+    image: postgres:latest
+    container_name: h2e_db
+    environment:
+      - POSTGRES_USER=${USERNAME}  
+      - POSTGRES_PASSWORD=${DB_PWD}
+      - POSTGRES_DB=${DB_NAME}

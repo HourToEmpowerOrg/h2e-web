@@ -20,11 +20,12 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
+    TESTING = True
 
 
 class TestingConfig(Config):
     DEBUG = True
-    STATIC_PREFIX = ''
+    TESTING = True
 
 
 class ProductionConfig(Config):
@@ -33,11 +34,12 @@ class ProductionConfig(Config):
         IF running locally, add to your .env file
     """
     DEBUG = False
+    TESTING = False
 
 
 config = {
-    'Development': DevelopmentConfig,
-    'Testing': TestingConfig,
-    'Production': ProductionConfig,
-    'Default': DevelopmentConfig,
+    'development': DevelopmentConfig,
+    'testing': TestingConfig,
+    'production': ProductionConfig,
+    'default': DevelopmentConfig,
 }

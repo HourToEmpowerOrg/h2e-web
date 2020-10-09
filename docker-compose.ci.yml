@@ -1,0 +1,16 @@
+version: "3"
+services:
+  h2e_api:
+    command: ["sh", "run.sh"]
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=Testing
+      - ENDPOINT=h2e_db:5432
+      - USERNAME
+      - DB_PWD
+      - DB_NAME
+
+  h2e_db:
+    ports:
+      - "5432:5432"

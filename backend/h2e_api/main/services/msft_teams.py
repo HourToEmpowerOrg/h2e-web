@@ -6,12 +6,15 @@ url = 'https://outlook.office.com/webhook/fdbcb1e1-56ee-4345-b771-872d38fa6b3e@7
 
 class TeamsService:
     def __init__(self):
+        self.mode = os.getenv('FLASK_ENV')
         self.client_id = os.getenv('MSFT_CLIENT_ID')
         self.client_secret = os.getenv('MSFT_CLIENT_SECRET')
         self.redirect_uri = os.getenv('MSFT_REDIRECT')
 
-    @classmethod
-    def send_new_signup_message(cls, signup_type='tutor', data=None):
+    def send_new_signup_message(self, signup_type='tutor', data=None):
+        if self.mode.lower() != 'production':
+            return
+
         if signup_type == 'tutor':
             teams_message = pymsteams.connectorcard(url)
             teams_message.title("New Tutor Signup")
