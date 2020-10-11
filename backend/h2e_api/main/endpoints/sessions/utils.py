@@ -1,6 +1,7 @@
 from h2e_api.factory import db
 
 from h2e_api.main.models.Session import Session
+from h2e_api.main.models.enums import SessionStatus
 from h2e_api.main.models.user import User
 from h2e_api.main.models.SessionUser import SessionUser
 from h2e_api.main.models.SessionNote import SessionNote
@@ -17,10 +18,11 @@ def create_session(session_data):
 
 
 def get_all_sessions_by_filter(user_id, filters):
-    return SessionRepository.get_all_by_filter(
+    sessions = SessionRepository.get_all_by_filter(
         user_id=user_id,
         **filters
     )
+    return sessions
 
 
 def get_session_info(session_id, user_id):

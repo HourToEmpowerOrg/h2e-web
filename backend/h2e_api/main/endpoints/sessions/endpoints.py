@@ -23,7 +23,7 @@ session_bp = Blueprint('sessions', __name__)
 sessions_api = swagger.docs(Api(session_bp))
 
 
-class CreateNewSession(Resource):
+class Sessions(Resource):
     @swagger.operation(
         notes='Create a Tutoring session',
         responseClass='ApplicationResponse',
@@ -83,36 +83,33 @@ class CreateNewSession(Resource):
 
         return output
 
-    @check_endpoint_accessible('TEST')
+    @check_endpoint_accessible('TUTOR')
     def get(self):
-        """
-        User Id required in the query parameters
-        """
         validated_input = ListSessionsRequestSchema().load(request.args.to_dict())
-        all_sessions = get_all_sessions_by_filter(g.user.id, validated_input)
+        sessions = get_all_sessions_by_filter(g.user.id, validated_input)
         output = SessionListSchema().dump(
             {
-                'count': len(all_sessions),
-                'sessions': all_sessions,
+                'count': len(sessions),
+                'sessions': sessions,
             })
         return output
 
 
 class SessionDetails(Resource):
-    @check_endpoint_accessible('TEST')
+    @check_endpoint_accessible('USER')
     def get(self, session_id):
         session_info = get_session_info(session_id, g.user.id)
         return SessionDetailsSchema().dump({'session': session_info})
 
 
 class SessionNote(Resource):
-    @check_endpoint_accessible('TEST')
+    @check_endpoint_accessible('USER')
     def post(self, session_id):
         validated_input = SessionNoteSchema().load(request.json)
         update_session_note(session_id, validated_input)
         return {'message': 'Note Updated'}, 200
 
 
-sessions_api.add_resource(CreateNewSession, '/sessions')
+sessions_api.add_resource(Sessions, '/sessions')
 sessions_api.add_resource(SessionDetails, '/sessions/<string:session_id>')
 sessions_api.add_resource(SessionNote, '/sessions/<string:session_id>/note')

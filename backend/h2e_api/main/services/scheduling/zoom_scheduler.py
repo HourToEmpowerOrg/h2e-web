@@ -11,11 +11,13 @@ class ZoomScheduler:
     meeting_url = 'v2/users/{}/meetings'
     zoom_user_id = "6EtUWKDhT_6jKxjLdW_4rA"  # TODO: How should we handle this?
 
-    # TODO: get from env...
-    headers = {
-        'authorization': f"Bearer {os.getenv('ZOOM_TOKEN')}",
-        'content-type': "application/json"
-    }
+    @classmethod
+    def get_headers(cls):
+        headers = {
+            'authorization': f"Bearer {os.getenv('ZOOM_TOKEN')}",
+            'content-type': "application/json"
+        }
+        return headers
 
     @classmethod
     def _create_meeting_body(cls, session_data):
@@ -44,7 +46,7 @@ class ZoomScheduler:
         response = requests.post(
             cls.zoom_api_url + cls.meeting_url.replace('{}', cls.zoom_user_id),
             json=payload,
-            headers=cls.headers
+            headers=cls.get_headers()
         )
 
         if response.status_code > 201:

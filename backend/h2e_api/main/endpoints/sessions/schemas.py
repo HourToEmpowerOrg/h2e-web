@@ -1,5 +1,8 @@
 from marshmallow import Schema
 from marshmallow import fields
+from marshmallow.validate import OneOf
+from h2e_api.main.models.enums import SessionStatus
+from datetime import datetime
 
 
 class SessionSchema(Schema):
@@ -9,9 +12,8 @@ class SessionSchema(Schema):
     participant_name = fields.String()
     participant_email = fields.String()
 
-    # TODO: Add notes, tags
     class Meta:
-        additional = ("title", "start_time", "end_time", "created_at", "duration")
+        additional = ("title", "start_time", "end_time", "created_at", "duration", "session_status")
 
 
 class SessionDetailsSchema(Schema):
@@ -28,14 +30,15 @@ class CreateNewSessionSchema(Schema):
 
 class ListSessionsRequestSchema(Schema):
     user_id = fields.String()
-    date_from = fields.Date()
+    date_from = fields.Date(missing=datetime.now().date)
     date_to = fields.Date()
-    status = fields.String() #TODO: Need to add a session status to filter for upcoming sessions
+    status = fields.String(validate=OneOf([s.name for s in SessionStatus]))
 
 
 class SessionListSchema(Schema):
     count = fields.Integer()
     sessions = fields.Nested(SessionSchema, many=True)
+    pending = fields.Nested(SessionSchema, many=True)
 
 
 class SessionNoteSchema(Schema):

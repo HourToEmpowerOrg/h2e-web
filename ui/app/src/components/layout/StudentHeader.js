@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import 'react-bulma-components/dist/react-bulma-components.min.css';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bulma-components';
+import axios from 'axios';
 
 const propTypes = {
   active: PropTypes.bool,
@@ -79,6 +80,10 @@ class StudentHeader extends React.Component {
     this.closeMenu();
   }
 
+  logout = () => {
+    axios.post('/logout')
+  }
+
   render() {
     const {
       className,
@@ -139,9 +144,9 @@ class StudentHeader extends React.Component {
 
           <div className="navbar-end">
             <div className="navbar-item">
-              <a className="is-light">
+            <Link className="is-light" to="/login" onClick={() => this.logout()}>
                   Log Out
-                </a>
+              </Link>
             </div>
           </div>
         </div>

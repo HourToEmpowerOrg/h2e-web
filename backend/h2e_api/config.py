@@ -7,9 +7,9 @@ class Config:
     URL_PREFIX = ''
     STATIC_PREFIX = ''
 
-    USERNAME = os.environ.get('USERNAME', 'postgress')
+    USERNAME = os.environ.get('USERNAME', '')
     PASSWORD = os.environ.get('DB_PWD', '')
-    DB_NAME = os.environ.get('DB_NAME', 'hrtoempoweer')
+    DB_NAME = os.environ.get('DB_NAME', 'hrtoempower')
     ENDPOINT = os.environ.get('ENDPOINT', 'localhost:5432')
     SQLALCHEMY_DATABASE_URI = f"postgresql://{USERNAME}:{PASSWORD}@{ENDPOINT}/{DB_NAME}"
 

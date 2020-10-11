@@ -77,24 +77,24 @@ class RequestBooking(Resource):
     """
         Called when Student hits "Book Session" in UI
     """
-    @check_endpoint_accessible('DEFAULT')
+    @check_endpoint_accessible('STUDENT')
     def post(self):
         validated_input = BookingSchema().load(request.json)
-        create_booking_request(g.user.id, validated_input)
-        return {'message': 'booking request sent'}, 200
+        booking = create_booking_request(g.user.id, validated_input)
+        return BookingSchema().dump(booking)
 
 
 class RespondBooking(Resource):
     """
         Called when Tutor hits "accept this session" or "decline"
     """
-    @check_endpoint_accessible('DEFAULT')
-    def post(self):
+    @check_endpoint_accessible('TUTOR')
+    def post(self, session_id):
         validated_input = BookingResponseSchema().load(request.json)
-        booking = respond_to_booking(validated_input)
-        return BookingSchema().dump(booking).data
+        booking = respond_to_booking(session_id, validated_input)
+        return BookingSchema().dump(booking)
 
 
 bookings_api.add_resource(PotentialBookings, '/bookings')
 bookings_api.add_resource(RequestBooking, '/bookings/request')
-bookings_api.add_resource(RespondBooking, '/bookings/respond')
+bookings_api.add_resource(RespondBooking, '/bookings/respond/<string:session_id>')

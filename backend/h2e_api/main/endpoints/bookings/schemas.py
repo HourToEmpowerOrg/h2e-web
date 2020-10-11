@@ -1,7 +1,6 @@
-from marshmallow import Schema
-from marshmallow import fields
-
+from marshmallow import Schema, fields
 from marshmallow.validate import OneOf
+from h2e_api.main.models.enums import SessionStatus
 
 
 class ListBookingsRequestSchema(Schema):
@@ -15,7 +14,7 @@ class BookingSchema(Schema):
     tutor_id = fields.UUID()
     start_time = fields.DateTime()
     end_time = fields.DateTime()
-    duration = fields.Integer() # In minutes
+    duration = fields.TimeDelta()
 
 
 class BookingsListSchema(Schema):
@@ -24,5 +23,4 @@ class BookingsListSchema(Schema):
 
 
 class BookingResponseSchema(Schema):
-    session_status = fields.String(validate=OneOf(['ACCEPTED', 'DENIED']))
-    session_id = fields.UUID()
+    response = fields.String(validate=OneOf([s.name for s in SessionStatus]))

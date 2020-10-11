@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import 'react-bulma-components/dist/react-bulma-components.min.css';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bulma-components';
+import axios from 'axios';
 
 const propTypes = {
   active: PropTypes.bool,
@@ -28,7 +29,6 @@ const brandClasses = classNames('header-brand')
 
 const BrandLogo = () => {
   return (
-
       <div className={brandClasses}>
         <Link to="/dashboard" style={{ textDecoration: 'none' }}>Hour to Empower</Link>
       </div>
@@ -77,6 +77,10 @@ class TutorHeader extends React.Component {
     if (!this.nav.current) return
     if (!this.state.isActive || this.nav.current.contains(e.target) || e.target === this.hamburger.current) return;
     this.closeMenu();
+  }
+
+  logout = () => {
+    axios.post('/logout')
   }
 
   render() {
@@ -142,9 +146,9 @@ class TutorHeader extends React.Component {
 
           <div className="navbar-end">
             <div className="navbar-item">
-              <a className="is-light">
+              <Link className="is-light" to="/login" onClick={() => this.logout()}>
                   Log Out
-                </a>
+              </Link>
             </div>
           </div>
         </div>

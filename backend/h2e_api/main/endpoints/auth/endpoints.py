@@ -3,6 +3,7 @@ from marshmallow import fields
 from marshmallow.validate import OneOf
 from flask import Blueprint
 from flask import request
+from flask import current_app
 
 from flask_restful import Api
 from flask_restful import Resource
@@ -41,6 +42,12 @@ class Login(Resource):
         return check_user_login_information(validated_data, AUTH_TYPE_COOKIE, request)
 
 
+class Logout(Resource):
+    def post(self):
+        response = current_app.make_response("")
+        return set_h2e_response('', 'Log Out', response)
+
+
 class Signup(Resource):
     def post(self):
         validated_data = SignUpRequestSchema().load(request.json)
@@ -65,4 +72,5 @@ class Signup(Resource):
 
 
 auth_api.add_resource(Login, '/login')
+auth_api.add_resource(Logout, '/logout')
 auth_api.add_resource(Signup, '/signup')
