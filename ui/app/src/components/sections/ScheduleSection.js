@@ -21,8 +21,7 @@ function SessionItem({item, onRespond}) {
 
     const respondToRequest = (item, resp) => {
       axios.post(`/api/v1/bookings/respond/${item.id}`, {response: resp})
-        .then(response => {
-            console.log('got response')
+        .then(_ => {
             onRespond()
         }).catch(err => {
           console.error(err)
@@ -95,7 +94,7 @@ function ScheduleSection(props){
           setLoading(false);
         }
         fetchData();
-      }, [loading]); // Or [] if effect doesn't need props or state
+      }, [loading]); // re-perform fetchData on loading change
 
     
     const onRespond = () => {
