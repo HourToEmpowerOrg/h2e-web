@@ -68,12 +68,10 @@ def set_h2e_response(token, message, output=None, auth=AUTH_TYPE_HEADER):
         resp = create_h2e_response_with_auth(token, message)
     elif isinstance(output, ResponseBase):
         resp = create_h2e_response_with_auth(token, message, resp=output, auth=auth)
-    elif isinstance(output, (dict, list)):
+    else:
         dumped = dumps(output)
         output = make_response(dumped)
         resp = create_h2e_response_with_auth(token, message, resp=output, auth=auth)
-    else:
-        resp = create_h2e_response_with_auth('', 'ERROR_INVALID_ENDPOINT_RETURN_TYPE')
 
     return resp
 

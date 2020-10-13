@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import SectionHeader from './partials/SectionHeader';
@@ -17,6 +18,8 @@ function LoginForm(props) {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [cookies, setCookie, removeCookie] = useCookies(['h2e']);
+
 
   const submitLogin = (e) => {
     e.preventDefault();;
@@ -24,9 +27,15 @@ function LoginForm(props) {
 
     axios.post(`${api_url}/login`, loginData)
             .then(function (response) {
-              if (response.status == 200){
-                if(response.data.role == 'STUDENT'){
-                  history.push("/student/dashboard");
+              if (response.status == 200) {
+
+                if(response.data.role == 'STUDENT') {
+                  axios.get('/api/v1/config').then(response => {
+                    setCookie('config', response.data);
+                    history.push("/student/dashboard");
+                  }).catch(err => {
+                    history.push("/student/dashboard");
+                  })
                 }
                 else{
                   history.push("/dashboard");

@@ -16,6 +16,7 @@
     "react": "^16.9.0",
     "react-bulma-components": "^3.4.0",
     "react-calendar": "^3.1.0",
+    "react-cookie": "^4.0.3",
     "react-dom": "^16.9.0",
     "react-ga": "^3.1.2",
     "react-moment": "^0.9.7",
