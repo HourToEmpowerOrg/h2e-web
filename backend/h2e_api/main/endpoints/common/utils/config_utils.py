@@ -17,14 +17,13 @@ def validate_uuid4(uuid_string):
 
 
 def get_config():
-
     user = g.user
 
-    if user.school_id:
-        school = School.query.filter(School.id == user.school_id).one_or_none()
+    if user.school:
+        school = School.query.filter(School.id == user.school).one_or_none()
         return {
-            'config': school.config,
-            'logo': school.logo_url
+            **school.config,
+            'logo_url': school.logo_url
         }
     else:
         return None

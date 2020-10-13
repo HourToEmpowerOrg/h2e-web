@@ -93,6 +93,8 @@ function BookSession (props) {
               Choose Subject: 
               <select style={{marginLeft: '4px'}}>
                 <option>Math</option>
+                
+                <option>College Application Prep</option>
               </select>
             </div>
 

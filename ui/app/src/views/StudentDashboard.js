@@ -8,7 +8,6 @@ class StudentDashboard extends React.Component {
     return (
       <React.Fragment>
             <ScheduleSection></ScheduleSection>
-            <PrefferencesSection></PrefferencesSection>
             <SeessionHistorySection></SeessionHistorySection>
       </React.Fragment>
     );

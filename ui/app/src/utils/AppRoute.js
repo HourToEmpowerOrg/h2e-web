@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { SectionProps } from './SectionProps';
 
 const AppRoute = ({
   component: Component,
@@ -13,7 +14,7 @@ const AppRoute = ({
     <Route
       {...rest}
       render={props => (
-        <Layout>
+        <Layout config={props.config}>
           <Component {...props} />
         </Layout>
       )} />

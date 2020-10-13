@@ -35,6 +35,8 @@ import SessionDetailsPage from './views/SessionDetails';
 import StudentDashboard from './views/StudentDashboard';
 import BookSession from './views/student/BookSession';
 
+import axios from 'axios';
+
 import ReactGA from 'react-ga';
 ReactGA.initialize('UA-178422805-1');
 
@@ -77,7 +79,7 @@ class App extends React.Component {
             <ProtectedRoute exact path="/session/:id" component={SessionDetailsPage} layout={LayoutTutor} />
 
             {/*  STUDENT ROUTES TODO: acces to These should be handled based on user type */}
-            <ProtectedRoute exact path="/student/dashboard" component={StudentDashboard} layout={LayoutStudent} />
+            <ProtectedRoute exact path="/student/dashboard" component={StudentDashboard} layout={LayoutStudent}/>
             {/* <ProtectedRoute exact path="/student/preferences" component={StudentPreferences} layout={LayoutStudent} /> */}
             {/* TODO: How to change layout based on useer type? */}
             <ProtectedRoute exact path="/student/book-session" component={BookSession} layout={LayoutStudent} />

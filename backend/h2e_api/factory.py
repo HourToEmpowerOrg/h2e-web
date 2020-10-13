@@ -21,6 +21,7 @@ from h2e_api.main.endpoints.sessions.endpoints import session_bp
 from h2e_api.main.endpoints.bookings.endpoints import bookings_bp
 from h2e_api.main.endpoints.preferences.endpoints import preferences_bp
 from h2e_api.main.endpoints.auth.endpoints import auth_bp
+from h2e_api.main.endpoints.common.endpoints import common_bp
 from h2e_api.utils import util_send_file, not_authenticated_response
 
 logging.basicConfig(level=logging.INFO)
@@ -89,6 +90,7 @@ def register_blueprints(app):
     """
     app.register_blueprint(front_end_bp)
     app.register_blueprint(main_bp)
+    app.register_blueprint(common_bp, url_prefix=api_prefix)
     app.register_blueprint(users_bp, url_prefix=api_prefix)
     app.register_blueprint(auth_bp, url_prefix=api_prefix)
     app.register_blueprint(applications_bp, url_prefix=api_prefix)
