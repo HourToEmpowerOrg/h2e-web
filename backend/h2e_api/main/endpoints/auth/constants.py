@@ -12,7 +12,7 @@ ERROR_NO_AUTH_HEADER = 'No Authorization Header'
 ERROR_INVALID_AUTH_COOKIE = 'Invalid Authorization Cookie'
 ERROR_INVALID_AUTH_HEADER = 'Invalid Authorization Header'
 ERROR_INVALID_AGENT_LOGIN_REQUEST = 'Invalid auth body: organization_id and platform_agent_id required'
-
+ERROR_INVALID_PERMISSION = 'Invalid permission requested for this endpoint'
 ERROR_INVALID_PASSWORD = 'Password Incorrect'
 ERROR_USER_NOT_FOUND = 'User Not Found'
 

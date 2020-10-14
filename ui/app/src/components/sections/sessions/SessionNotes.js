@@ -104,9 +104,9 @@ function SessionNotes(props){
                 Session Notes
             </h4>
             
-            <div class="mb-16">
-                <label class="form-label" for="form-message">Type Below to add or edit notes for this tutoring session</label>
-                <textarea id="form-message" class="form-input" placeholder="Type notes for your student here..." value={noteText} onChange={e => setNoteText(e.target.value)}></textarea>
+            <div className="mb-16">
+                <label className="form-label" htmlFor="form-message">Type Below to add or edit notes for this tutoring session</label>
+                <textarea id="form-message" className="form-input" placeholder="Type notes for your student here..." value={noteText} onChange={e => setNoteText(e.target.value)}></textarea>
             </div>
             
           </div>

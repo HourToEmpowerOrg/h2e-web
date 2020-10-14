@@ -7,7 +7,7 @@ class StudentDashboard extends React.Component {
   render() {
     return (
       <React.Fragment>
-            <ScheduleSection></ScheduleSection>
+            <ScheduleSection showPending={false} userType={'student'}></ScheduleSection>
             <SeessionHistorySection></SeessionHistorySection>
       </React.Fragment>
     );

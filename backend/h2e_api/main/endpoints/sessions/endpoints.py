@@ -83,7 +83,7 @@ class Sessions(Resource):
 
         return output
 
-    @check_endpoint_accessible('TUTOR')
+    @check_endpoint_accessible('USER')
     def get(self):
         validated_input = ListSessionsRequestSchema().load(request.args.to_dict())
         sessions = get_all_sessions_by_filter(g.user.id, validated_input)

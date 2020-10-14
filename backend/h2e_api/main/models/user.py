@@ -23,6 +23,8 @@ class User(db.Model):
     # Student users will have a reference to their school
     school = db.Column(ForeignKey('school.id'))
 
+    teams_user_id = db.Column(db.String(64))
+
     user_status = db.Column(db.Enum(UserStatus, name='user_status'))
     timezone = db.Column(db.String(16), nullable=True)
     created_at = db.Column(db.DateTime, nullable=False, default=func.now())

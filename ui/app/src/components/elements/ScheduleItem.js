@@ -47,7 +47,7 @@ function ScheduleItem({item}) {
             </span>
 
             <div style={{float: 'right', position:'absolute', top:'4px', right: '8px'}}>
-                <a class="button-link text-xs" href="/preferences">Edit</a>
+                {/* <a class="button-link text-xs" href="/preferences">Edit</a> */}
             </div>
         </div>
     )

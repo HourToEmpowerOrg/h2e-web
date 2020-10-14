@@ -1,18 +1,21 @@
-import requests
-import json
 from h2e_api.main.models.user import User
+from h2e_api.main.services.scheduling.base_scheduler import BaseScheduler
 import os
 
 
-# TODO: As we get more services to schedule with,
-#  create an abstract class that this inherits from with  create / cancel meeting functions
-class ZoomScheduler:
-    zoom_api_url = 'https://api.zoom.us/'
-    meeting_url = 'v2/users/{}/meetings'
-    zoom_user_id = "6EtUWKDhT_6jKxjLdW_4rA"  # TODO: How should we handle this?
+class ZoomScheduler(BaseScheduler):
+    api_url = 'https://api.zoom.us/'
+    meeting_path = 'v2/users/{}/meetings'
 
     @classmethod
-    def get_headers(cls):
+    def create_url(cls):
+        """
+            Need to inject user id to the Zoom create meeting request
+        """
+        return cls.api_url + cls.meeting_path.replace('{}', os.getenv('ZOOM_CLIENT_ID')),
+
+    @classmethod
+    def create_headers(cls):
         headers = {
             'authorization': f"Bearer {os.getenv('ZOOM_TOKEN')}",
             'content-type': "application/json"
@@ -20,7 +23,7 @@ class ZoomScheduler:
         return headers
 
     @classmethod
-    def _create_meeting_body(cls, session_data):
+    def create_payload(cls, session_data):
         tutor_id = session_data['tutor']
         user = User.query.filter(User.id == tutor_id).one_or_none()
 
@@ -39,19 +42,3 @@ class ZoomScheduler:
         }
 
         return payload
-
-    @classmethod
-    def create_meeting(cls, session_data):
-        payload = cls._create_meeting_body(session_data)
-        response = requests.post(
-            cls.zoom_api_url + cls.meeting_url.replace('{}', cls.zoom_user_id),
-            json=payload,
-            headers=cls.get_headers()
-        )
-
-        if response.status_code > 201:
-            raise Exception(f"Zoom scheduling error: \n {str(response.content)} \n ---------------------")
-
-        meeting_info = response.json()
-        return meeting_info
-

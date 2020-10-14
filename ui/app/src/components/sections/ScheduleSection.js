@@ -17,7 +17,7 @@ const defaultProps = {
   ...SectionProps.defaults
 }
 
-function SessionItem({item, onRespond}) {
+function SessionItem({item, onRespond, itemPath}) {
 
     const respondToRequest = (item, resp) => {
       axios.post(`/api/v1/bookings/respond/${item.id}`, {response: resp})
@@ -28,9 +28,11 @@ function SessionItem({item, onRespond}) {
         })
     }
 
+    const itemLink = itemPath ? `/${itemPath}/session/${item.id}` : `/session/${item.id}`
+
     if(item.session_status == 'ACCEPTED') {
       return (
-        <Link to={`/session/${item.id}`} style={{textDecoration: 'none'}}>
+        <Link to={itemLink} style={{textDecoration: 'none'}}>
           <div className="session-item" key={item.id}>
               <div className="session-item-title">{item.title}</div>
               <span className="seession-item-body">
@@ -110,6 +112,7 @@ function ScheduleSection(props){
       bottomDivider,
       hasBgColor,
       invertColor,
+      userType
     } = props;
 
     const outerClasses = classNames(
@@ -143,6 +146,7 @@ function ScheduleSection(props){
 
           {
             pending.map(item => (
+              item.session_info && 
               <SessionItem item={item} onRespond={onRespond}></SessionItem>
             ))
           }
@@ -157,7 +161,7 @@ function ScheduleSection(props){
         className={outerClasses}
         style={{paddingBottom: '12px'}}
       >
-        { !!pending.length && renderPendingRequests() }
+        { props.showPending && !!pending.length && renderPendingRequests() }
         <div className="container">
           <div>
             <h4 className="dashboard-header">
@@ -172,10 +176,15 @@ function ScheduleSection(props){
             </div>
             <div>
                 {sessions.map(item => (
-                    <SessionItem item={item}></SessionItem>
+                    <SessionItem item={item} itemPath={userType}></SessionItem>
                 ))}
             </div>
           </div>
+          { !props.showPending && pending.length && (
+            <div className="form-hint">
+              You have {pending.length} session{pending.length > 1 ? 's' : ''} waiting for Tutor confirmation.
+            </div>
+          ) }
         </div>
       </section>
     );
