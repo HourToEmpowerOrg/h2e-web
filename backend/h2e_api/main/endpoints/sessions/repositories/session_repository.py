@@ -3,6 +3,7 @@ from h2e_api.main.models import (
     SessionUser,
     User,
 )
+from h2e_api.main.models.enums import SessionStatus
 from h2e_api.main.models.BaseModel import db
 from h2e_api.main.endpoints.common.base_repository import BaseRepository
 from h2e_api.main.services.scheduler import create_session_meeting
@@ -23,6 +24,7 @@ class SessionRepository(BaseRepository):
             title=session_data.get('title', f'Tutoring Session With {tutor.display_name}'),
             start_time=session_data['start_time'],
             end_time=session_data['end_time'],
+            session_status=session_data.get('status', SessionStatus.PENDING),
             session_info=meeting_info
         )
 
@@ -67,7 +69,7 @@ class SessionRepository(BaseRepository):
             query = query.filter(Session.start_time <= date_to)
 
         if status is not None:
-            query = query.filter(Session.status == status)
+            query = query.filter(Session.session_status == status)
 
         if sort_by == 'start_time':
             query = query.order_by(Session.start_time.asc())

@@ -36,5 +36,3 @@ class ZoomScheduler(BaseScheduler):
         }
 
         return payload
-
-
