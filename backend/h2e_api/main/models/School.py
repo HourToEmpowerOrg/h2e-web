@@ -12,5 +12,6 @@ class School(db.Model):
     config = db.Column(JSONB) # Config settings for UI
     logo_url = db.Column(db.String(128)) # Should be url to resource in S3
     meeting_platform = db.Column(db.String(12)) # Platform used for meetings: Zoom or MSFT Teams
+    admin_id = db.Column(db.String(64))
 
     created_at = db.Column(db.DateTime, nullable=False, default=func.now())
