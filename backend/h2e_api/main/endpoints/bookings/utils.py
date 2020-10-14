@@ -34,6 +34,7 @@ def get_all_bookings_by_filter(filters):
         .with_entities(ScheduleItem, User)\
         .all()
 
+    # Map of tutor_id -> list of their sessions for today
     existing_sessions = TutorSessionRepository.get_sessions_for_tutors(selected_date)
 
     final_bookings = []

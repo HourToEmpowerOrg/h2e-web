@@ -68,7 +68,7 @@ class App extends React.Component {
             <AppRoute exact path="/signup/student" component={SignupStudent} layout={LayoutSignin} />
             <AppRoute exact path="/signup/tutor" component={SignupTutor} layout={LayoutSignin} />
             <AppRoute exact path="/signup/schools" component={SignupSchools} layout={LayoutSignin} />
-            {/* <AppRoute path="/static/index.html" component={Home} layout={LayoutDefault} /> */}
+            <AppRoute path="/static/index.html" component={Home} layout={LayoutDefault} />
 
             <AppRoute exact path="/termsofuse" component={TermsOfUse} layout={LayoutDefault} />
 

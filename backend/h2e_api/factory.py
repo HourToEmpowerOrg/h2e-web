@@ -55,6 +55,7 @@ def setup_static_file_loader(app: Flask):
             #return util_send_file(os.path.dirname(os.path.abspath(__file__)) + '/static/index.html')
 
 
+
 def create_app(env_name=None):
     """Application factory, used to create application
     """
