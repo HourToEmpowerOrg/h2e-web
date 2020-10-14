@@ -67,11 +67,12 @@ def create_booking_request(user_id, booking_data):
     return new_session
 
 
-def respond_to_booking(validated_data):
+def respond_to_booking(session_id, validated_data):
     session = SessionRepository.update_by_id(
-        validated_data['session_id'],
+        session_id,
         fields_for_update=['session_status'],
-        session_status=validated_data['session_status']
+        session_status=validated_data['response'],
+        commit=True,
     )
 
     return session

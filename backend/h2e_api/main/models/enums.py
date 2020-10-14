@@ -59,3 +59,4 @@ class ScheduleRepeat(HourToEmpowerEnum):
 class SessionStatus(HourToEmpowerEnum):
     PENDING = auto()
     ACCEPTED = auto()
+    DECLINED = auto()
