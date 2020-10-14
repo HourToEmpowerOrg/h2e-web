@@ -10,7 +10,6 @@ import os
 class MSTeamsScheduler(BaseScheduler):
     api_url = 'https://graph.microsoft.com/v1.0'
     meeting_path = '/me/onlineMeetings'
-    user_id = None
 
     @classmethod
     def parse_response(cls, data):

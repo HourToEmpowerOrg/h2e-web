@@ -50,7 +50,7 @@ class BaseScheduler(ABC):
         )
 
         if response.status_code > 201:
-            raise Exception(f"Scheduling error: \n {str(response.content)} \n ---------------------")
+            raise Exception(f"Scheduling error: \n {str(response.content)} \n")
 
         meeting_info = cls.parse_response(response.json())
         return meeting_info
