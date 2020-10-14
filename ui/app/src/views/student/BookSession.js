@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
+import { Link } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import classNames from 'classnames';
 import Moment from 'react-moment';
@@ -13,8 +14,8 @@ function BookSession (props) {
     const [showPicker, setShowPicker] = useState(false);
 
     const [bookings, setBookings] = useState([])
-    const [loading, setLoading] = useState(false);
-    const [showInfo, setShowInfo] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [showInfo, setShowInfo] = useState(true);
     const [selectedSubject, setSelectedSubject] = useState('math');
 
     const [booked, setBooked] = useState(false);
@@ -23,7 +24,7 @@ function BookSession (props) {
     const getBookings = () => {
       setLoading(true);
       setShowInfo(false);
-      axios.get(`/api/v1/bookings?date_from=${moment(dateValue).format()}&subject=${selectedSubject}`).then(response => {
+      axios.get(`/api/v1/bookings?date=${moment(dateValue).format()}&subject=${selectedSubject}`).then(response => {
         setLoading(false);
         setBookings(response.data.bookings);
       }).catch(err => {
@@ -34,11 +35,29 @@ function BookSession (props) {
     const requestBooking = (booking) => {
       axios.post(`/api/v1/bookings/request`, booking)
         .then( (response) => {
-          setBooked(true); //TODO: Show booking success message
+          setBooked(true);
         })
         .catch((err) => {
           console.error(err);
         })
+    }
+
+    const renderBookedModal = () => {
+      return (
+        <div className="modal is-active">
+          <div className="modal-background"></div>
+            <div className="modal-card">
+              <section className="modal-card-body">
+                Your Request for this session has been sent! You'll see this session on your dashboard once the Tutor has confirmed.
+              </section>
+              <footer class="modal-card-foot">
+                <Link to="/student/dashboard">
+                  <button class="button is-success">Dashboard</button>
+                </Link>
+              </footer>
+            </div>
+        </div>
+      )
     }
 
     const {
@@ -67,7 +86,9 @@ function BookSession (props) {
         className={outerClasses}
         style={{paddingBottom: '12px'}}
       >
-        <div className="container">
+        <div className="container is-clipped">
+
+            {booked && renderBookedModal()}
             
             <h4 className="page-header"> Book a Session </h4>
 
@@ -103,7 +124,7 @@ function BookSession (props) {
             <div>
               <h4>Sessions</h4>
               {
-                !showInfo && (
+                showInfo && (
                   <p>Select a Date and Subject, then click Submit to see potential sessions to book here</p>
                 )
               }
@@ -124,6 +145,11 @@ function BookSession (props) {
                   </div>
                   )
                 })
+              }
+              {
+                !loading && bookings.length == 0 && (
+                  <p>It does not look like there are any available sessions for that day. Please try another.</p>
+                )
               }
             </div>
 

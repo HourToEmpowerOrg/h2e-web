@@ -7,7 +7,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <React.Fragment>
-            <ScheduleSection></ScheduleSection>
+            <ScheduleSection showPending={true}></ScheduleSection>
             <PrefferencesSection></PrefferencesSection>
             <SeessionHistorySection></SeessionHistorySection>
       </React.Fragment>

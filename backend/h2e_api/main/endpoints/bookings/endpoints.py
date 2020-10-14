@@ -58,13 +58,13 @@ class PotentialBookings(Resource):
             }
         ]
     )
-    @check_endpoint_accessible('DEFAULT')
+    @check_endpoint_accessible('STUDENT')
     def get(self):
         """
         User Id required in the query parameters
         """
         validated_input = ListBookingsRequestSchema().load(request.args.to_dict())
-        all_bookings = get_all_bookings_by_filter(g.user.id, validated_input)
+        all_bookings = get_all_bookings_by_filter(validated_input)
         output = BookingsListSchema().dump(
             {
                 'count': len(all_bookings),

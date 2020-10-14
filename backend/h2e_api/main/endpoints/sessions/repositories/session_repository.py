@@ -10,6 +10,7 @@ from h2e_api.main.services.scheduler import create_session_meeting
 
 
 class SessionRepository(BaseRepository):
+    model_class = Session
 
     @classmethod
     def create(cls, session_data):

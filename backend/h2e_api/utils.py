@@ -9,7 +9,8 @@ from flask.wrappers import ResponseBase
 from h2e_api.main.endpoints.auth.constants import (
     AUTH_TYPE_PASSWORD, AUTH_TYPE_COOKIE, AUTH_TYPE_HEADER,
     SUCCESS_MESSAGE, SUCCESS_TOKEN_NOT_UPDATED,
-    ERROR_USER_NOT_FOUND
+    ERROR_USER_NOT_FOUND,
+    ERROR_INVALID_PERMISSION
 )
 from h2e_api.main.endpoints.auth.auth_lib import AuthLib
 from h2e_api.main.models.user import User
@@ -111,7 +112,6 @@ def check_logged_in(perm_name):
     g.token_payload = payload
 
     if payload and message_is_success(message):
-        # NOTE: it is intentional that the query does not have org_id as a filter to suport multi-org
         user_q = User.query.filter(User.id == payload.get('user_id'))
         user = user_q.one_or_none()
 
@@ -119,6 +119,10 @@ def check_logged_in(perm_name):
             g.user = user
         else:
             return token, ERROR_USER_NOT_FOUND, auth_type, 401
+
+        if perm_name and perm_name not in ['DEFAULT', 'USER']:
+            if user.user_type.name != perm_name:
+                return token, ERROR_INVALID_PERMISSION, auth_type, 401
 
     return token, message, auth_type, 401
 

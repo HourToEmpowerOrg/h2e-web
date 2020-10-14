@@ -4,8 +4,7 @@ from h2e_api.main.models.enums import SessionStatus
 
 
 class ListBookingsRequestSchema(Schema):
-    date_from = fields.DateTime()
-    date_to = fields.DateTime()
+    date = fields.DateTime()
     subject = fields.String()
 
 
@@ -15,6 +14,7 @@ class BookingSchema(Schema):
     start_time = fields.DateTime()
     end_time = fields.DateTime()
     duration = fields.TimeDelta()
+    title = fields.String(missing='Hour To Empower Tutoring Session')
 
 
 class BookingsListSchema(Schema):

@@ -78,12 +78,14 @@ class App extends React.Component {
             {/* TODO: How to change layout based on user type? */}
             <ProtectedRoute exact path="/session/:id" component={SessionDetailsPage} layout={LayoutTutor} />
 
+
+
             {/*  STUDENT ROUTES TODO: acces to These should be handled based on user type */}
+            <ProtectedRoute exact path="/student/session/:id" component={SessionDetailsPage} layout={LayoutStudent} />
+
             <ProtectedRoute exact path="/student/dashboard" component={StudentDashboard} layout={LayoutStudent}/>
             {/* <ProtectedRoute exact path="/student/preferences" component={StudentPreferences} layout={LayoutStudent} /> */}
-            {/* TODO: How to change layout based on useer type? */}
             <ProtectedRoute exact path="/student/book-session" component={BookSession} layout={LayoutStudent} />
-            {/* <ProtectedRoute exact path="/student/session/:id" component={StudentSessionDetailsPage} layout={LayoutStudent} /> */}
 
 
             <AppRoute path="*" component={NotFound} layout={LayoutDefault}></AppRoute>

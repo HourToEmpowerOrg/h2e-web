@@ -9,7 +9,17 @@ class BaseScheduler(ABC):
     """
     api_url = None
     meeting_path = None
-    user_id = None
+
+    @classmethod
+    def parse_response(cls, data):
+        """
+            Override this method if any fields in Platform's meeting info needs to be changed
+        """
+        return data
+
+    @classmethod
+    def create_url(cls):
+        return cls.api_url + cls.meeting_path
 
     @classmethod
     @abstractmethod
@@ -34,13 +44,13 @@ class BaseScheduler(ABC):
         payload = cls.create_payload(session)
 
         response = requests.post(
-            cls.api_url + cls.meeting_path.replace('{}', cls.user_id),
+            cls.create_url(),
             json=payload,
             headers=cls.create_headers()
         )
 
         if response.status_code > 201:
-            raise Exception(f"Zoom scheduling error: \n {str(response.content)} \n ---------------------")
+            raise Exception(f"Scheduling error: \n {str(response.content)} \n ---------------------")
 
-        meeting_info = response.json()
+        meeting_info = cls.parse_response(response.json())
         return meeting_info

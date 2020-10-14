@@ -60,3 +60,8 @@ class SessionStatus(HourToEmpowerEnum):
     PENDING = auto()
     ACCEPTED = auto()
     DECLINED = auto()
+
+
+class MeetingPlatform:
+    TEAMS = 'TEAMS'
+    ZOOM = 'ZOOM'

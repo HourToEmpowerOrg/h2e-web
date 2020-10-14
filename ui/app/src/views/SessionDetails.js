@@ -20,7 +20,7 @@ function SessionDetailsPage(props) {
           setSession(result.data.session);
         }
         fetchData(props.match.params.id);
-      }, {}); // Or [] if effect doesn't need props or state
+      }, []); // Or [] if effect doesn't need props or state
 
     return (
         <React.Fragment>

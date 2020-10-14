@@ -26,9 +26,9 @@ def get_all_sessions_by_filter(user_id, filters):
 
 
 def get_session_info(session_id, user_id):
-    # TODO: Make sure user id has access to this session
+
     result = Session.query.filter(Session.id == session_id)\
-        .join(SessionNote, SessionNote.session_id == session_id)\
+        .outerjoin(SessionNote, SessionNote.session_id == session_id)\
         .with_entities(
             Session,
             SessionNote

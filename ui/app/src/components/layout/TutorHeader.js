@@ -133,7 +133,7 @@ class TutorHeader extends React.Component {
               <a className="navbar-item" href="/termsofuse">
                   View Terms of Service
                 </a>
-                <a className="navbar-item">
+                <a className="navbar-item" href="mailto:contact@hourtoempower.org">
                   Get Help
                 </a>
                 <hr className="navbar-divider"/>

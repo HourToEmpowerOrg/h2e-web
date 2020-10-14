@@ -85,7 +85,7 @@ class ScheduleItems(Resource):
 
         return output
 
-    @check_endpoint_accessible('TEST')
+    @check_endpoint_accessible('USER')
     def get(self):
         """
         User Id required in the query parameters

@@ -6,7 +6,13 @@ import os
 class ZoomScheduler(BaseScheduler):
     api_url = 'https://api.zoom.us/'
     meeting_path = 'v2/users/{}/meetings'
-    user_id = "6EtUWKDhT_6jKxjLdW_4rA"  # TODO : Meed to remove this
+
+    @classmethod
+    def create_url(cls):
+        """
+            Need to inject user id to the Zoom create meeting request
+        """
+        return cls.api_url + cls.meeting_path.replace('{}', os.getenv('ZOOM_CLIENT_ID')),
 
     @classmethod
     def create_headers(cls):
