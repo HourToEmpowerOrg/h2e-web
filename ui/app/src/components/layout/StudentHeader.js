@@ -124,13 +124,14 @@ class StudentHeader extends React.Component {
 
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <a className="navbar-item" href="/student/dashboard">
-              Dashboard
-            </a>
 
-            <a className="navbar-item" href="/student/book-session">
-              Book a Session!
-            </a>
+            <Link to="/student/dashboard" className="navbar-item">
+                Dashboard
+            </Link>
+
+              <Link to="/student/book-session" className="navbar-item">
+                Book a Session!
+              </Link>
 
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">

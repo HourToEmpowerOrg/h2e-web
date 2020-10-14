@@ -114,8 +114,7 @@ function BookSession (props) {
               Choose Subject: 
               <select style={{marginLeft: '4px'}}>
                 <option>Math</option>
-                
-                <option>College Application Prep</option>
+                {/* <option>College Application Prep</option> */}
               </select>
             </div>
 
@@ -139,7 +138,8 @@ function BookSession (props) {
                       <Moment format="h:mm A z" local>
                         {booking.end_time}
                       </Moment>  
-                      <p>{booking.tutor_name}</p>
+                      <p style={{marginTop: '2px', marginBottom: '2px'}}>{booking.tutor_name}</p>
+                      <span className="form-hint">This tutor has a rating of <strong>5.0</strong></span>
                       <p style={{marginTop: '2px', marginBottom: '2px'}}> <span className="subject-tag">Math</span></p>
                       <a onClick={()=> requestBooking(booking)}>Book this session</a>
                   </div>

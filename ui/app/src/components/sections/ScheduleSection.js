@@ -36,12 +36,17 @@ function SessionItem({item, onRespond, itemPath}) {
           <div className="session-item" key={item.id}>
               <div className="session-item-title">{item.title}</div>
               <span className="seession-item-body">
-              <Moment format="ddd, MMM, D - h:mm A z" local>
+              <Moment format="ddd, MMM D h:mm A z" local>
                   {item.start_time}
-              </Moment>   
+              </Moment> {' to '}
+              <Moment format="h:mm A z" local>
+                  {item.end_time}
+              </Moment>
               </span>
               <br/>
-              <a>{item.session_info.join_url}</a>
+              <a>
+                {item.session_info.join_url && item.session_info.join_url.indexOf('teams') > 0 ? ('Scheduled Microsoft Teeams Meeting') : ('Scheduled Zoom Meeting')}
+              </a>
           </div>
           </Link>
       )
@@ -180,7 +185,7 @@ function ScheduleSection(props){
                 ))}
             </div>
           </div>
-          { !props.showPending && pending.length && (
+          { !props.showPending && pending.length > 0 && (
             <div className="form-hint">
               You have {pending.length} session{pending.length > 1 ? 's' : ''} waiting for Tutor confirmation.
             </div>

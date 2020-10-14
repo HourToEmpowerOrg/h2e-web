@@ -12,7 +12,7 @@ class ZoomScheduler(BaseScheduler):
         """
             Need to inject user id to the Zoom create meeting request
         """
-        return cls.api_url + cls.meeting_path.replace('{}', os.getenv('ZOOM_CLIENT_ID')),
+        return cls.api_url + cls.meeting_path.replace('{}', os.getenv('ZOOM_CLIENT_ID'))
 
     @classmethod
     def create_headers(cls):

@@ -30,7 +30,7 @@ class CreateNewSessionSchema(Schema):
 
 class ListSessionsRequestSchema(Schema):
     user_id = fields.String()
-    date_from = fields.Date(missing=datetime.now().date)
+    date_from = fields.Date()
     date_to = fields.Date()
     status = fields.String(validate=OneOf([s.name for s in SessionStatus]))
 

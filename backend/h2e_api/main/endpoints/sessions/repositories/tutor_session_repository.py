@@ -5,7 +5,7 @@ from h2e_api.main.models import (
 )
 from collections import defaultdict
 from h2e_api.main.models.enums import UserType
-from sqlalchemy import  Date, and_
+from sqlalchemy import Date, and_
 from h2e_api.main.endpoints.common.base_repository import BaseRepository
 
 

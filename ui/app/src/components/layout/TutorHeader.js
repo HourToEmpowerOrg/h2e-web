@@ -116,13 +116,13 @@ class TutorHeader extends React.Component {
 
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <a className="navbar-item" href="/dashboard">
-              Dashboard
-            </a>
+            <Link to="/dashboard" className="navbar-item">
+                Dashboard
+            </Link >
 
-            <a className="navbar-item" href="/preferences">
+            <Link to="/preferences" className="navbar-item">
               Preferences
-            </a>
+            </Link>
 
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">
