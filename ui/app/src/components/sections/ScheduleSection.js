@@ -45,7 +45,7 @@ function SessionItem({item, onRespond, itemPath}) {
               </span>
               <br/>
               <a>
-                {item.session_info.join_url && item.session_info.join_url.indexOf('teams') > 0 ? ('Scheduled Microsoft Teeams Meeting') : ('Scheduled Zoom Meeting')}
+                {item.session_info.join_url && item.session_info.join_url.indexOf('teams') > 0 ? ('Scheduled Microsoft Teams Meeting') : ('Scheduled Zoom Meeting')}
               </a>
           </div>
           </Link>
