@@ -1,9 +1,7 @@
 from flask import Blueprint, current_app, redirect, request
 from flask import url_for
-
 from flask_restful import Resource
 from flask_restful import Api
-
 from h2e_api.utils import is_dev
 
 front_end_bp = Blueprint('front_end', __name__)

@@ -1,6 +1,7 @@
 from h2e_api.main.models.BaseModel import db
 import sqlalchemy
 from sqlalchemy import func
+from sqlalchemy import ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from h2e_api.main.models.enums import UserType, UserStatus
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -18,6 +19,10 @@ class User(db.Model):
     last_login = db.Column(db.DateTime, nullable=True)
 
     user_type = db.Column(db.Enum(UserType, name='user_type'))
+
+    # Student users will have a reference to their school
+    school = db.Column(ForeignKey('school.id'))
+
     user_status = db.Column(db.Enum(UserStatus, name='user_status'))
     timezone = db.Column(db.String(16), nullable=True)
     created_at = db.Column(db.DateTime, nullable=False, default=func.now())

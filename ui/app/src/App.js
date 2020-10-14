@@ -35,10 +35,12 @@ import SessionDetailsPage from './views/SessionDetails';
 import StudentDashboard from './views/StudentDashboard';
 import BookSession from './views/student/BookSession';
 
+import axios from 'axios';
+
 import ReactGA from 'react-ga';
 ReactGA.initialize('UA-178422805-1');
 
-class App extends React.Component {
+class App extends React.Component { 
 
   componentDidMount() {
     document.body.classList.add('is-loaded')
@@ -66,18 +68,18 @@ class App extends React.Component {
             <AppRoute exact path="/signup/student" component={SignupStudent} layout={LayoutSignin} />
             <AppRoute exact path="/signup/tutor" component={SignupTutor} layout={LayoutSignin} />
             <AppRoute exact path="/signup/schools" component={SignupSchools} layout={LayoutSignin} />
-            <AppRoute path="/static/index.html" component={Home} layout={LayoutDefault} />
+            {/* <AppRoute path="/static/index.html" component={Home} layout={LayoutDefault} /> */}
 
             <AppRoute exact path="/termsofuse" component={TermsOfUse} layout={LayoutDefault} />
 
-            {/* TODO NEED TO HAVE THESE PROTECTED!!! */}
             <ProtectedRoute exact path="/dashboard" component={Dashboard} layout={LayoutTutor} />
             <ProtectedRoute exact path="/preferences" component={Preferences} layout={LayoutTutor} />
-            {/* TODO: How to change layout based on useer type? */}
+            
+            {/* TODO: How to change layout based on user type? */}
             <ProtectedRoute exact path="/session/:id" component={SessionDetailsPage} layout={LayoutTutor} />
 
             {/*  STUDENT ROUTES TODO: acces to These should be handled based on user type */}
-            <ProtectedRoute exact path="/student/dashboard" component={StudentDashboard} layout={LayoutStudent} />
+            <ProtectedRoute exact path="/student/dashboard" component={StudentDashboard} layout={LayoutStudent}/>
             {/* <ProtectedRoute exact path="/student/preferences" component={StudentPreferences} layout={LayoutStudent} /> */}
             {/* TODO: How to change layout based on useer type? */}
             <ProtectedRoute exact path="/student/book-session" component={BookSession} layout={LayoutStudent} />

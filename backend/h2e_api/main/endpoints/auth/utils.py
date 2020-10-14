@@ -8,7 +8,9 @@ from flask import make_response
 
 import pytz
 
-from h2e_api.main.models.user import User
+from h2e_api.main.models import (
+    User,
+ )
 from h2e_api.main.models.enums import UserType, UserStatus
 from h2e_api.main.endpoints.auth.auth_lib import AuthLib
 
@@ -47,7 +49,7 @@ def make_login_response(user, auth_type=AUTH_TYPE_PASSWORD, **kwargs):
     return token, message, resp
 
 
-def _make_h2e_response(user, message, auth, request, call_start_time, auth_type):
+def _make_h2e_response(user, message, auth, request, call_start_time, auth_type, school_config={}):
     from h2e_api.utils import set_h2e_response
 
     g.token_payload = {

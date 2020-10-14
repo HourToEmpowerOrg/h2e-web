@@ -93,6 +93,7 @@ class StudentHeader extends React.Component {
       hideSignin,
       bottomOuterDivider,
       bottomDivider,
+      config,
       ...props
     } = this.props;
 
@@ -103,10 +104,16 @@ class StudentHeader extends React.Component {
     );
 
     return (
-      <nav className="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation">
+      <nav 
+        className="navbar is-fixed-top is-dark" 
+        role="navigation" 
+        aria-label="main navigation"
+        style={{backgroundColor: !!config && config.secondary || '#3273dc'}}>
         <div className="navbar-brand">
           <a className="navbar-item">
-            Hour to Empower
+            {!!config && !!config.logo_url ? (
+              <img src={config.logo_url} className="header-logo"/>
+            ) : "Hour to Empower"}
           </a>
           <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
