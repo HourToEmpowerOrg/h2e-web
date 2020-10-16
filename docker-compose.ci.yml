@@ -7,9 +7,9 @@ services:
     environment:
       - FLASK_ENV=Testing
       - ENDPOINT=h2e_db:5432
-      - USERNAME
-      - DB_PWD
-      - DB_NAME
+      - POSTGRES_USER=${USERNAME}
+      - POSTGRES_PASSWORD=${DB_PWD}
+      - POSTGRES_DB=${DB_NAME}
 
   h2e_db:
     ports:

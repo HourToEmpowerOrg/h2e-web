@@ -40,3 +40,8 @@ jobs:
 
       - name: Run h2e_api tests
         run: docker-compose exec -T h2e_api pytest -v
+
+      - name: Install UI modules
+          run: docker-compose exec -T h2e_ui yarn
+      - name: Run UI tests
+          run: docker-compose exec -T h2e_ui yarn test
