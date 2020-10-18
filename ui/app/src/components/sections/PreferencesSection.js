@@ -59,7 +59,6 @@ function PrefferencesSection(props) {
 
   return (
     <section
-      {...props}
       className={outerClasses}
       style={{paddingTop: '12px', paddingBottom:'0px'}}
     >

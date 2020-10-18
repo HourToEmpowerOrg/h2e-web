@@ -62,7 +62,6 @@ function SeessionHistorySection(props) {
 
   return (
     <section
-      {...props}
       className={outerClasses}
       style={{paddingTop: '0px', paddingBottom:'0px'}}
     >

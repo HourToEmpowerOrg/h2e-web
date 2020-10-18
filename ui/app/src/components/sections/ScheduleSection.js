@@ -117,7 +117,9 @@ function ScheduleSection(props){
       bottomDivider,
       hasBgColor,
       invertColor,
-      userType
+      userType,
+      showPending,
+      ...rest
     } = props;
 
     const outerClasses = classNames(
@@ -162,7 +164,6 @@ function ScheduleSection(props){
 
     return (
       <section
-        {...props}
         className={outerClasses}
         style={{paddingBottom: '12px'}}
       >
