@@ -1,13 +1,15 @@
 version: "3"
 services:
-#   h2e_ui:
-#     command: ["sh", "run.sh"]
-#     ports:
-#       - "3000:3000"
-#     volumes:
-#       - ./ui:/app
-#     networks:
-#       - h2e
+  h2e_ui:
+      build:
+        context: ./ui/app
+      ports:
+        - "3000:3000"
+      container_name: h2e_ui
+      stdin_open: true
+      volumes:
+         - ./ui/app:/usr/src/app/ui
+         - /usr/src/app/ui/node_modules
 
   h2e_api:
     command: ["sh", "run.sh"]
