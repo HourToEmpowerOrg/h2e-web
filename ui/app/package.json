@@ -27,7 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "postbuild": "rm -r ../../backend/h2e_api/static && mv build ../../backend/h2e_api/static"
   },
