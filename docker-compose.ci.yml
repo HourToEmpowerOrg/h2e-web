@@ -11,7 +11,7 @@ services:
       - ./ui/app:/usr/src/app/ui
       - /usr/src/app/ui/node_modules
     environment:
-      - CI = true
+      - CI: true
 
   h2e_api:
     command: ["sh", "run.sh"]
