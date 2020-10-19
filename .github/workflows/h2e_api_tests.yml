@@ -46,4 +46,4 @@ jobs:
         run: docker-compose exec -T h2e_ui npm install
 
       - name: Run h2e_ui tests
-        run: docker-compose exec -T h2e_ui npm test
+        run: docker-compose exec -T h2e_ui npm test --watchAll=false
