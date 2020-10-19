@@ -9,6 +9,10 @@ const history = createBrowserHistory();
 
 jest.mock("react-ga")
 
+afterEach(() => {
+  
+ });
+
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(

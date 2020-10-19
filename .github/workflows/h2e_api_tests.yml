@@ -17,6 +17,7 @@ jobs:
       USERNAME: ${{ secrets.USERNAME }}
       DB_PWD: ${{ secrets.DB_PWD }}
       DB_NAME: ${{ secrets.DB_NAME }}
+      CI: true
 
     steps:
       - uses: actions/checkout@v2
