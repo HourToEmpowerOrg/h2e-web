@@ -40,25 +40,23 @@ def setup_static_file_loader(app: Flask):
     @app.before_request
     def before_request():
         path = request.path
-        # print(f'path {path}')
-        # print(f'static prefix {static_prefix}')
         if static_prefix != '' and static_prefix in path:
             path = path[path.index(static_prefix):]
 
         if path == '/static/index.html':
             return util_send_file(os.path.dirname(os.path.abspath(__file__)) + path, add_etags=False, cache_timeout=0)
-        elif path.startswith('/static/') or path.startswith('/static/favicon/') and not path.startswith('/static/static/'):
+        elif path.startswith('/static/') or path.startswith('/static/favicon/'):
             """
                 TODO: There is definitely a beter way to do this
                 But right now we have our static resources inside a static folder within the static directory, so we
                 need to have all static resources loaded from /static/static, for some reason on second load the 
                 web app requests resources from just the /static path
             """
-            path = '/static' + path
-            return util_send_file(os.path.dirname(os.path.abspath(__file__)) + path)
-        #else:
-        # print(f"sending default: {os.path.dirname(os.path.abspath(__file__)) + '/static/index.html'}")
-            #return util_send_file(os.path.dirname(os.path.abspath(__file__)) + '/static/index.html')
+            if os.path.isfile(os.path.dirname(os.path.abspath(__file__)) + path):
+                return util_send_file(os.path.dirname(os.path.abspath(__file__)) + path)
+            else:
+                path = '/static' + path
+                return util_send_file(os.path.dirname(os.path.abspath(__file__)) + path)
 
 
 def create_app(env_name=None):
