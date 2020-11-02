@@ -8,6 +8,15 @@ import Input from '../elements/Input';
 import Button from '../elements/Button';
 import axios from "axios";
 
+import Select from 'react-select'
+
+const subjectOptions = [
+  { value: 'math', label: 'Math' },
+  { value: 'science', label: 'Science' },
+  { value: 'social_studies', label: 'Social Studies' },
+  { value: 'college_applications', label: 'College Applications' },
+]
+
 const api_url = '/api/v1'
 
 const propTypes = {
@@ -32,6 +41,7 @@ class SignupForm extends React.Component {
     this.tutorSignupForm = this.tutorSignupForm.bind(this);
     this.submitTutorSignup = this.submitTutorSignup.bind(this);
     this.submitSchoolSignup = this.submitSchoolSignup.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
   }
 
 
@@ -39,17 +49,6 @@ class SignupForm extends React.Component {
     e.preventDefault();;
 
     const signupData = this.state;
-    
-    //Build the subject list - TODO: A list of available subjects should eventually be loaded from the API
-
-    var subjects = signupData.subjects.split(',')
-
-    var res = subjects.map(element => {
-      return {'id': element.trim()}
-    });
-
-    signupData['subjects'] = res
-    
     const self = this;
     axios.post(`${api_url}/applications/tutor`, signupData)
             .then(function (response) {
@@ -80,6 +79,16 @@ class SignupForm extends React.Component {
                 console.log(error);
             });
     
+  }
+
+  onInputChange = (value, action) => {
+    console.log('changed...');
+    console.dir(value)
+    this.setState({
+      'subjects': value.map(function(i) {
+        return i.value
+      })
+    })
   }
 
 
@@ -198,15 +207,15 @@ class SignupForm extends React.Component {
                   </div>
                   <div className="mb-12">
                   <label className="form-label" for="form-subjects">Tutoring Subjects</label>
-                    <Input
-                      id="form-subjects"
-                      type="text"
-                      label="Subjects"
-                      placeholder="Comma separated subjects"
-                      labelHidden
-                      onChange = {e => this.setState({'subjects': e.target.value})}
-                      required />
-                    <div className="form-hint">Please enter any subjects you'd be interested in tutoring for, separated by a comma.</div>
+                      <Select 
+                        isMulti
+                        name="subjects"
+                        options={subjectOptions}
+                        className="basic-multi-select"
+                        classNamePrefix="select"
+                        onChange={this.onInputChange}
+                      />
+                    <div className="form-hint">Please select any subjects you'd be interested in tutoring for from the dropdown above.</div>
 
                   </div>
                   
