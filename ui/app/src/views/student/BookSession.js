@@ -7,6 +7,8 @@ import Moment from 'react-moment';
 import 'moment-timezone'
 import axios from 'axios';
 
+import Select from 'react-select'
+
 var moment = require('moment');
 
 function BookSession (props) {
