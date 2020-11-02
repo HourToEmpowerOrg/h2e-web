@@ -17,6 +17,25 @@ const subjectOptions = [
   { value: 'college_applications', label: 'College Applications' },
 ]
 
+const subjectStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    padding: 10,
+  }),
+  control: (provided, state) => ({
+    ...provided,
+    padding: 10,
+    fontSize: 16,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: '#E7ECF2',
+  }),
+  placeholder: (provided, state) => ({
+    ...provided,
+    color: 'rgb(163, 174, 186)'
+  })
+}
+
 const api_url = '/api/v1'
 
 const propTypes = {
@@ -82,8 +101,6 @@ class SignupForm extends React.Component {
   }
 
   onInputChange = (value, action) => {
-    console.log('changed...');
-    console.dir(value)
     this.setState({
       'subjects': value.map(function(i) {
         return i.value
@@ -210,10 +227,12 @@ class SignupForm extends React.Component {
                       <Select 
                         isMulti
                         name="subjects"
+                        styles={subjectStyles}
                         options={subjectOptions}
                         className="basic-multi-select"
                         classNamePrefix="select"
                         onChange={this.onInputChange}
+                        placeholder="Please select your subject(s)"
                       />
                     <div className="form-hint">Please select any subjects you'd be interested in tutoring for from the dropdown above.</div>
 
