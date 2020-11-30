@@ -8,9 +8,7 @@ import Input from '../elements/Input';
 import Button from '../elements/Button';
 import Checkbox from '../elements/Checkbox';
 import axios from "axios";
-
-
-const api_url = '/api/v1'
+import {apiUrl} from '../../Api';
 
 function LoginForm(props) {
 
@@ -25,12 +23,12 @@ function LoginForm(props) {
     e.preventDefault();;
     const loginData = {email: email, password: password}
 
-    axios.post(`${api_url}/login`, loginData)
+    axios.post(`${apiUrl}/login`, loginData)
             .then(function (response) {
               if (response.status == 200) {
 
                 if(response.data.role == 'STUDENT') {
-                  axios.get('/api/v1/config').then(response => {
+                  axios.get(`${apiUrl}/config`).then(response => {
                     setCookie('config', response.data);
                     history.push("/student/dashboard");
                   }).catch(err => {

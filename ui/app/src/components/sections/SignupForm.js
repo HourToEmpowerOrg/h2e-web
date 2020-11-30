@@ -7,36 +7,10 @@ import SubmissionResult from './SubmissionResult';
 import Input from '../elements/Input';
 import Button from '../elements/Button';
 import axios from "axios";
+import {apiUrl} from '../../Api';
+import {subjectOptions, subjectStyles} from '../../SubjectConstants';
 
 import Select from 'react-select'
-
-const subjectOptions = [
-  { value: 'math', label: 'Math' },
-  { value: 'science', label: 'Science' },
-  { value: 'social_studies', label: 'Social Studies' },
-  { value: 'college_applications', label: 'College Applications' },
-]
-
-const subjectStyles = {
-  option: (provided, state) => ({
-    ...provided,
-    padding: 10,
-  }),
-  control: (provided, state) => ({
-    ...provided,
-    padding: 10,
-    fontSize: 16,
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: '#E7ECF2',
-  }),
-  placeholder: (provided, state) => ({
-    ...provided,
-    color: 'rgb(163, 174, 186)'
-  })
-}
-
-const api_url = '/api/v1'
 
 const propTypes = {
   ...SectionProps.types
@@ -69,7 +43,7 @@ class SignupForm extends React.Component {
 
     const signupData = this.state;
     const self = this;
-    axios.post(`${api_url}/applications/tutor`, signupData)
+    axios.post(`${apiUrl}/applications/tutor`, signupData)
             .then(function (response) {
               if (response.status == 200){
                 self.setState({submitted: true, submitType: 'tutor'})
@@ -88,7 +62,7 @@ class SignupForm extends React.Component {
     const signupData = this.state;
 
     const self = this;
-    axios.post(`${api_url}/applications/school`, signupData)
+    axios.post(`${apiUrl}/applications/school`, signupData)
             .then(function (response) {
               if (response.status == 200){
                 self.setState({submitted: true, submitType: 'school'})

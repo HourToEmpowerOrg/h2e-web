@@ -3,8 +3,7 @@ import classNames from 'classnames';
 import axios from "axios";
 import Moment from 'react-moment';
 import 'moment-timezone'
-
-const api_url = '/api/v1'
+import {apiUrl} from '../../../Api';
 
 
 // Debounce Hook
@@ -33,7 +32,7 @@ function useDebounce(value, delay) {
   }
 
 function updateSessionNote(session_id, note) {
-    return axios.post(`${api_url}/sessions/${session_id}/note`, {'text': note})
+    return axios.post(`${apiUrl}/sessions/${session_id}/note`, {'text': note})
 }
 
 function SessionNotes(props){  

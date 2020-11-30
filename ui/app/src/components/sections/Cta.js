@@ -5,11 +5,9 @@ import { SectionProps } from '../../utils/SectionProps';
 import Input from '../elements/Input';
 import Button from '../elements/Button';
 import { toast } from "react-toastify";
-
+import {apiUrl} from '../../Api';
 
 import axios from "axios";
-
-const api_url = '/api/v1'
 
 const propTypes = {
   ...SectionProps.types,
@@ -37,7 +35,7 @@ class Cta extends React.Component {
 
     const signupData = {'email':this.state.email};    
     const self = this;
-    axios.post(`${api_url}/mailing/join`, signupData)
+    axios.post(`${apiUrl}/mailing/join`, signupData)
             .then(function (response) {
               if (response.status == 200) {
                 self.setState({submitted: true})

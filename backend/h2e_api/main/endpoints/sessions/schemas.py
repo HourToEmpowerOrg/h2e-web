@@ -2,7 +2,6 @@ from marshmallow import Schema
 from marshmallow import fields
 from marshmallow.validate import OneOf
 from h2e_api.main.models.enums import SessionStatus
-from datetime import datetime
 
 
 class SessionSchema(Schema):

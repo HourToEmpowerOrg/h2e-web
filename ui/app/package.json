@@ -3,7 +3,6 @@
   "homepage": ".",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
   "dependencies": {
     "axios": "^0.19.2",
     "bulma-calendar": "^6.0.9",

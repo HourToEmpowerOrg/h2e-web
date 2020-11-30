@@ -6,6 +6,7 @@ import { SectionProps } from '../../utils/SectionProps';
 import axios from "axios";
 import Moment from 'react-moment';
 import 'moment-timezone'
+import {apiUrl} from '../../Api';
 
 const propTypes = {
   children: PropTypes.node,
@@ -20,7 +21,7 @@ const defaultProps = {
 function SessionItem({item, onRespond, itemPath}) {
 
     const respondToRequest = (item, resp) => {
-      axios.post(`/api/v1/bookings/respond/${item.id}`, {response: resp})
+      axios.post(`${apiUrl}/bookings/respond/${item.id}`, {response: resp})
         .then(_ => {
             onRespond()
         }).catch(err => {
