@@ -3,9 +3,10 @@ from marshmallow import fields
 
 
 class TutorSchema(Schema):
-    display_name = fields.String
-    id = fields.String
+    display_name = fields.String()
+    id = fields.String()
 
-    value = fields.String(attribute='id')
-    label = fields.String(attribute='display_name')
 
+class TutorListSchema(Schema):
+    items = fields.Nested(TutorSchema, many=True)
+    count = fields.Integer()
