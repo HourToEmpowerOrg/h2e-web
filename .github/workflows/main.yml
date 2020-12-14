@@ -11,6 +11,9 @@ jobs:
     
     - name: Checkout source code
       uses: actions/checkout@v2
+    
+    - name: build ui
+      run: cd ui/app && npm run build && cd ../../backend
 
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*'
