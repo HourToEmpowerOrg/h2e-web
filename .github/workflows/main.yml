@@ -6,14 +6,19 @@ on:
     
 jobs:
   build:
+    env:
+      deploy_pck: ${{ github.sha }}_deploy.zip
     runs-on: ubuntu-latest
     steps:
     
     - name: Checkout source code
       uses: actions/checkout@v2
+    
+    - name: Build UI
+      run: cd ui/app && npm run build && cd ../../backend
 
     - name: Create ZIP deployment package
-      run: zip -r ${{ github.sha }}_deploy.zip ./
+      run: zip -r prod_deploy.zip ./
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -23,13 +28,13 @@ jobs:
         aws-region: "us-west-1"
 
     - name: Upload package to S3 bucket
-      run: aws s3 cp ${{ github.sha }}_deploy.zip s3://elasticbeanstalk-us-west-1-663435045241/
+      run: aws s3 cp prod_deploy.zip s3://elasticbeanstalk-us-west-1-663435045241/
 
     - name: Create new EB Application Version
       run: |
         aws elasticbeanstalk create-application-version \
         --application-name h2e-backend \
-        --source-bundle S3Bucket="elasticbeanstalk-us-west-1-663435045241",S3Key=${{ github.sha }}_deploy.zip \
+        --source-bundle S3Bucket="elasticbeanstalk-us-west-1-663435045241",S3Key="prod_deploy.zip" \
         --version-label "ver-${{ github.sha }}" \
         --description "commit-sha-${{ github.sha }}"
 
