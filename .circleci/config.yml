@@ -1,0 +1,21 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+  eb: circleci/aws-elastic-beanstalk@1.0.0
+  node: circleci/node@4.1.0
+workflows:
+  elastic-beanstalk-workflow:
+    jobs:
+      - node/test
+      - eb/deploy:
+          context: aws-creds
+          environment-name: h2e-web-prod
+          filters:
+            branches:
+              only:
+                - setup-circleci
+          label: version-<<pipeline.number>>
+          requires:
+            - node/test
+
