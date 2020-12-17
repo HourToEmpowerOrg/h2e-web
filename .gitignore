@@ -43,3 +43,5 @@ backend/venv/
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 node_modules
+
+h2e_api/.env
