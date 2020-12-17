@@ -23,7 +23,7 @@ jobs:
         aws-region: "us-west-1"
 
     - name: Upload package to S3 bucket
-      run: aws s3 cp deploy_package.zip s3://elasticbeanstalk-us-west-1-663435045241/
+      run: aws s3 cp ${{ github.sha }}_deploy.zip s3://elasticbeanstalk-us-west-1-663435045241/
 
     - name: Create new EB Application Version
       run: |
