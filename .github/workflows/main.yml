@@ -13,9 +13,16 @@ jobs:
     
     - name: Checkout source code
       uses: actions/checkout@v2
-    
+  
     - name: Build UI
-      run: cd ui/app && npm run build && cd ../../backend
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: cd ui && npm install
+    - run: npm run build
+    - run: cd ../../backend
 
     - name: Create ZIP deployment package
       run: zip -r prod_deploy.zip ./
