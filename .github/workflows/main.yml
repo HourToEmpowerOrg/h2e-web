@@ -11,21 +11,27 @@ jobs:
     
     - name: Checkout source code
       uses: actions/checkout@v2
-    
-    - name: build ui
-      run: cd ui/app && npm run build && cd ../../backend
 
-    - name: Generate deployment package
-      run: zip -r deploy.zip . -x '*.git*'
-      
-    - name: Deploy to EB
-      uses: einaregilsson/beanstalk-deploy@v14
+    - name: Create ZIP deployment package
+      run: zip -r ${{ github.sha }}_deploy.zip ./
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: h2e-backend
-        environment_name: h2e-backend-dev
-        version_label: 12345
-        region: us-west-1
-        deployment_package: deploy.zip
-        version_description: ${{github.SHA}}
+        aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+        aws-region: "us-west-1"
+
+    - name: Upload package to S3 bucket
+      run: aws s3 cp deploy_package.zip s3://elasticbeanstalk-us-west-1-663435045241/
+
+    - name: Create new EB Application Version
+      run: |
+        aws elasticbeanstalk create-application-version \
+        --application-name h2e-backend \
+        --source-bundle S3Bucket="elasticbeanstalk-us-west-1-663435045241",S3Key=${{ github.sha }}_deploy.zip \
+        --version-label "ver-${{ github.sha }}" \
+        --description "commit-sha-${{ github.sha }}"
+
+    - name: Deploy new EB Application Version
+      run: aws elasticbeanstalk update-environment --environment-name H2eBackend-prod --version-label "ver-${{ github.sha }}"
