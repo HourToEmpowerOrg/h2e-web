@@ -18,6 +18,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
+    - run: echo "current wd" && pwd
+    - run: echo "files:" && ls
     - run: cd ui && npm install
     - run: npm run build
     - run: cd ../../backend
