@@ -2,7 +2,7 @@ name: h2e_api
 on:
   push:
     branches:
-      - main
+      - main-test-pause
 
     tags:
       - v*
