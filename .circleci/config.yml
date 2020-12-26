@@ -1,0 +1,36 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+  eb: circleci/aws-elastic-beanstalk@1.0.0
+  node: circleci/node@4.1.0
+
+jobs:
+  build_test_ui:
+    executor:
+      name: node/default
+      tag: '13'
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          command: yarn run test
+          name: Run YARN tests
+
+workflows:
+  build_and_test:
+    jobs:
+      - build_ui
+      - eb/deploy:
+          context: aws-creds
+          environment-name: h2e-web-prod
+          filters:
+            branches:
+              only:
+                - setup-circleci
+          label: version-<<pipeline.number>>
+          requires:
+            - build_ui
+
+

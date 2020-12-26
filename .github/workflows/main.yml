@@ -1,0 +1,46 @@
+name: Deploy main to Prod
+on:
+  push:
+    branches:
+    - main-prod
+    
+jobs:
+  build:
+    env:
+      deploy_pck: ${{ github.sha }}_deploy.zip
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: Checkout source code
+      uses: actions/checkout@v2
+    
+    - name: Build UI using Node.js 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm install
+    - run: npm run build
+
+    - name: Create ZIP deployment package
+      run: zip -r prod_deploy.zip ./
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: "us-west-1"
+
+    - name: Upload package to S3 bucket
+      run: aws s3 cp prod_deploy.zip s3://elasticbeanstalk-us-west-1-663435045241/
+
+    - name: Create new EB Application Version
+      run: |
+        aws elasticbeanstalk create-application-version \
+        --application-name h2e-backend \
+        --source-bundle S3Bucket="elasticbeanstalk-us-west-1-663435045241",S3Key="prod_deploy.zip" \
+        --version-label "ver-${{ github.sha }}" \
+        --description "commit-sha-${{ github.sha }}"
+
+    - name: Deploy new EB Application Version
+      run: aws elasticbeanstalk update-environment --environment-name H2eBackend-prod --version-label "ver-${{ github.sha }}"

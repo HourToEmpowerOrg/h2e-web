@@ -10,7 +10,6 @@ import axios from 'axios';
 import Select from 'react-select'
 import AsyncSelect from 'react-select/async';
 import {apiUrl} from '../../Api';
-import axios from 'axios';
 
 //TODO: This should be loaded from our api
 import {subjectOptions} from '../../SubjectConstants';

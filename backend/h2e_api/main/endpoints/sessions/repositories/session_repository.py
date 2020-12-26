@@ -7,6 +7,7 @@ from h2e_api.main.models.enums import SessionStatus
 from h2e_api.main.models.BaseModel import db
 from h2e_api.main.endpoints.common.base_repository import BaseRepository
 from h2e_api.main.services.scheduler import create_session_meeting
+from datetime import datetime
 
 
 class SessionRepository(BaseRepository):
@@ -53,7 +54,7 @@ class SessionRepository(BaseRepository):
     @classmethod
     def get_all_by_filter(cls, user_id, **kwargs):
 
-        date_from = kwargs.get('date_from')
+        date_from = kwargs.get('date_from', datetime.now())
         date_to = kwargs.get('date_to')
         sort_by = kwargs.get('sort_by', 'start_time')
         status = kwargs.get('status')
