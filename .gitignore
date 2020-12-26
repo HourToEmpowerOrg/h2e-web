@@ -15,7 +15,6 @@ ui/app/coverage
 
 # production
 ui/app/build
-backend/h2e_api/static
 
 # misc
 .DS_Store
