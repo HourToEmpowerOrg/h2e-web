@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import { Link } from 'react-router-dom';
-import Calendar from 'react-calendar';
+
 import classNames from 'classnames';
 import Moment from 'react-moment';
 import 'moment-timezone'
@@ -9,23 +9,16 @@ import axios from 'axios';
 
 import Select from 'react-select'
 import AsyncSelect from 'react-select/async';
+import DatePicker from 'react-datepicker';
 import {apiUrl} from '../../Api';
 
 //TODO: This should be loaded from our api
 import {subjectOptions} from '../../SubjectConstants';
-
-//TODO: Load this from a /tutors endpoint
-const tutorOptions = [
-  { value: '123456', label: 'Peter Rathers' },
-  { value: '123455523', label: 'Rachael C' },
-  { value: '124566623', label: 'John D' },
-  { value: '124566623', label: 'Randy S' },
-  { value: '124566623', label: 'Rachael T' },
-  { value: '124566623', label: 'Ra S' },
-]
+import TutorHeader from '../../components/layout/TutorHeader';
 
 const filterTutors = (tutorList, inputValue) => {
-  return tutorOptions.filter(i =>
+  if(!tutorList) return [];
+  return tutorList.filter(i =>
     i.label.toLowerCase().includes(inputValue.toLowerCase())
   );
 };
@@ -33,12 +26,9 @@ const filterTutors = (tutorList, inputValue) => {
 const loadTutorOptions = (inputValue, callback) => {
 
   axios.get(`${apiUrl}/tutors`).then(response => {
-    callback(filterTutors(response.data, inputValue))
+    callback(filterTutors(response.data.items, inputValue))
   })
   
-  setTimeout(() => {
-    callback(filterTutors(inputValue));
-  }, 1000);
 };
 
 var moment = require('moment');
@@ -53,14 +43,27 @@ function BookSession (props) {
     const [selectedSubject, setSelectedSubject] = useState('math');
 
     const [booked, setBooked] = useState(false);
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState();
     const [subjects, setSubjects] = useState([]);
+    const [selectedTutor, setSelectedTutor] = useState();
+
+    const buildFilters = () => {
+      var baseUrl = `${apiUrl}/bookings?date=${moment(dateValue).format()}&subject=${selectedSubject}`
+
+      if (selectedTutor) {
+        baseUrl = `${baseUrl}&tutor=${selectedTutor.id}`
+      }
+
+      return baseUrl
+
+    }
 
 
     const getBookings = () => {
       setLoading(true);
       setShowInfo(false);
-      axios.get(`${apiUrl}/bookings?date=${moment(dateValue).format()}&subject=${selectedSubject}`).then(response => {
+      const getSessionsUrl = buildFilters()
+      axios.get(getSessionsUrl).then(response => {
         setLoading(false);
         setBookings(response.data.bookings);
       }).catch(err => {
@@ -83,6 +86,10 @@ function BookSession (props) {
           return i.value
         })
       setSubjects(subjs);
+    }
+
+    const onTutorChange = (value) => {
+      setSelectedTutor(value)
     }
 
     const renderBookedModal = () => {
@@ -145,27 +152,16 @@ function BookSession (props) {
                 Choose Date: 
               </div>
 
-              <button className="button is-small button-sm" onClick={() => setShowPicker(!showPicker)}>
+              <DatePicker selected={dateValue} onChange={date => setDateValue(date)} />
+
+              {/* <button className="button is-small button-sm" onClick={() => setShowPicker(!showPicker)}>
                 <strong style={{marginLeft: '4px'}}>
                   <Moment format="ddd, MMM, D z" local>
                     {dateValue}
                   </Moment>
                 </strong>
-              </button>
+              </button> */}
             </div>
-            {
-              !!showPicker && (
-                <div className="modal is-active">
-                  <div className="modal-background"></div>
-                    <div className="modal-card">
-                        <Calendar 
-                          onChange={setDateValue}
-                          value={dateValue}
-                        />
-                    </div>
-                </div>
-              )
-            }
             <div className="entry-item">
               Choose Subject: 
               <Select 
@@ -187,16 +183,18 @@ function BookSession (props) {
                 defaultOptions
                 loadOptions={loadTutorOptions}
                 onInputChange={handleInputChange}
+                onChange={onTutorChange}
+                defaultValue={''}
               />
             </div>
 
-            <button style={{marginLeft: '16px'}} className="button is-small is-link button-sm" onClick={ () => getBookings()}>Submit</button>
+            <button style={{marginLeft: '16px'}} className="button is-small is-link button-sm" onClick={ () => getBookings()}>Search</button>
 
             <div>
               <h4>Sessions</h4>
               {
                 showInfo && (
-                  <p>Select a Date and Subject, then click Submit to see potential sessions to book here</p>
+                  <p>Select a Date and Subject, then click Search to see potential sessions to book here</p>
                 )
               }
               {

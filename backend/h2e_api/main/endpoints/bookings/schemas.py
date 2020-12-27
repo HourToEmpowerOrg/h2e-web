@@ -6,6 +6,7 @@ from h2e_api.main.models.enums import SessionStatus
 class ListBookingsRequestSchema(Schema):
     date = fields.DateTime()
     subject = fields.String()
+    tutor = fields.UUID()
 
 
 class BookingSchema(Schema):

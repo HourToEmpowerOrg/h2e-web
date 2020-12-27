@@ -16,6 +16,7 @@
     "react-bulma-components": "^3.4.0",
     "react-calendar": "^3.1.0",
     "react-cookie": "^4.0.3",
+    "react-datepicker": "^3.3.0",
     "react-dom": "^16.9.0",
     "react-ga": "^3.1.2",
     "react-moment": "^0.9.7",
@@ -48,5 +49,6 @@
   },
   "devDependencies": {
     "@testing-library/react": "^11.1.0"
-  }
+  },
+  "proxy": "http://127.0.0.1:5000"
 }

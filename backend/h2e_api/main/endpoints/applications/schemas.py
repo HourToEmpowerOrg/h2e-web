@@ -4,6 +4,7 @@ from marshmallow import fields
 
 class SubjectSchema(Schema):
     id = fields.String()
+    display = fields.String()
 
 
 class TutorApplicationSchema(Schema):
@@ -12,6 +13,7 @@ class TutorApplicationSchema(Schema):
     phone = fields.String(required=True)
     zip = fields.String(required=True)
     subjects = fields.Nested(SubjectSchema, many=True)
+    created = fields.DateTime(attribute='created_at')
 
 
 class SchoolApplicationSchema(Schema):
@@ -23,3 +25,8 @@ class SchoolApplicationSchema(Schema):
     state = fields.String(required=True)
 
     contact_name = fields.String(required=True)
+
+
+class ApplicationListSchema(Schema):
+    items = fields.Nested(TutorApplicationSchema, many=True)
+    count = fields.Integer()

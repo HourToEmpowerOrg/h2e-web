@@ -5,8 +5,8 @@ from flask_restful import Api
 from flask_restful import Resource
 from flask_restful_swagger import swagger
 
-from h2e_api.main.endpoints.applications.utils import submit_application
-from h2e_api.main.endpoints.applications.schemas import TutorApplicationSchema, SchoolApplicationSchema
+from h2e_api.main.endpoints.applications.utils import submit_application, get_all_tutor_applications
+from h2e_api.main.endpoints.applications.schemas import TutorApplicationSchema, SchoolApplicationSchema, ApplicationListSchema
 from h2e_api.main.endpoints.applications.constants import ApplicationType
 
 
@@ -14,7 +14,7 @@ applications_bp = Blueprint('applications', __name__)
 applications_api = swagger.docs(Api(applications_bp))
 
 
-class SubmitTutorApplication(Resource):
+class TutorApplication(Resource):
     @swagger.operation(
         notes='Submit a ',
         responseClass='ApplicationResponse',
@@ -74,6 +74,14 @@ class SubmitTutorApplication(Resource):
 
         return output
 
+    def get(self):
+        applications = get_all_tutor_applications()
+        return ApplicationListSchema().dump(
+            {
+                'count': len(applications),
+                'items': applications,
+            })
+
 
 class SubmitSchoolApplication(Resource):
     def post(self):
@@ -87,5 +95,5 @@ class SubmitSchoolApplication(Resource):
         return output
 
 
-applications_api.add_resource(SubmitTutorApplication, '/applications/tutor')
+applications_api.add_resource(TutorApplication, '/applications/tutor')
 applications_api.add_resource(SubmitSchoolApplication, '/applications/school')

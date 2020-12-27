@@ -35,8 +35,11 @@ function LoginForm(props) {
                     history.push("/student/dashboard");
                   })
                 }
-                else{
+                else if (response.data.role == 'TUTOR'){
                   history.push("/dashboard");
+                } 
+                else if (response.data.role == 'ADMIN') {
+                  history.push("/h2e_07546_admin");
                 }
                 
               }

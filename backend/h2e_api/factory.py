@@ -70,6 +70,7 @@ def create_app(env_name=None):
     env_name = env_name.lower()
     print(f'Configuration: {env_name}')
     app.config.from_object(config[env_name])
+    print(f'connected to: {app.config["SQLALCHEMY_DATABASE_URI"]}')
 
     initilize_services(app)
     register_blueprints(app)

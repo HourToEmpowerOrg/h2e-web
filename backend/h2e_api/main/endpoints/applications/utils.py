@@ -50,3 +50,11 @@ def submit_application(application_type: ApplicationType, submission_data):
 
     else:
         raise Exception(f'Can not handle application of type {application_type} yet...')
+
+
+def get_all_tutor_applications():
+    all_applications = TutorApplication.query\
+        .order_by(TutorApplication.created_at.desc()) \
+        .limit(150) \
+        .all()
+    return all_applications

@@ -3,7 +3,7 @@ from marshmallow import fields
 
 
 class TutorSchema(Schema):
-    display_name = fields.String()
+    label = fields.String(attribute='display_name')
     id = fields.String()
 
 

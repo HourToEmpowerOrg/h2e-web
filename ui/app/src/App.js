@@ -35,6 +35,10 @@ import SessionDetailsPage from './views/SessionDetails';
 import StudentDashboard from './views/StudentDashboard';
 import BookSession from './views/student/BookSession';
 
+// Admin Views:
+import AdminDashboard from './views/admin/AdminDashboard';
+import LayoutAdmin from './layouts/LayoutAdmin';
+
 import axios from 'axios';
 
 import ReactGA from 'react-ga';
@@ -86,6 +90,8 @@ class App extends React.Component {
             <ProtectedRoute exact path="/student/dashboard" component={StudentDashboard} layout={LayoutStudent}/>
             {/* <ProtectedRoute exact path="/student/preferences" component={StudentPreferences} layout={LayoutStudent} /> */}
             <ProtectedRoute exact path="/student/book-session" component={BookSession} layout={LayoutStudent} />
+
+            <ProtectedRoute exact path="/h2e_07546_admin" component={AdminDashboard} layout={LayoutAdmin} />
 
 
             <AppRoute path="*" component={NotFound} layout={LayoutDefault}></AppRoute>
