@@ -13,14 +13,14 @@ workflows:
   build-deploy:
     jobs:
       - build_ui
-      - build
+      - build_backend
 
 ##################
 # Job Definitions
 ##################
 jobs:
   build_ui:
-    working_directory: ~/ui/app
+    working_directory: ./ui/app
     docker:
         - image: circleci/node:10.16.3
     steps:
@@ -40,7 +40,7 @@ jobs:
       - run:
           name: test
           command: npm test
-  build:
+  build_backend:
     docker:
       - image: circleci/python:3.6.2-stretch-browsers
         environment:
