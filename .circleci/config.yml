@@ -13,9 +13,9 @@ workflows:
   build-deploy:
     jobs:
       - build_ui
-      - build_backend
-        requires:
-          - build_ui
+      - build_backend:
+          requires:
+            - build_ui
 
 ##################
 # Job Definitions
