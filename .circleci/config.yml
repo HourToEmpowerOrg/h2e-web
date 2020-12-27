@@ -14,30 +14,36 @@ workflows:
     jobs:
       - build_ui
       - build_backend
+        requires:
+          - build_ui
 
 ##################
 # Job Definitions
 ##################
 jobs:
   build_ui:
-    working_directory: ./ui/app
     docker:
         - image: circleci/node:10.16.3
     steps:
       - checkout
       - run:
+          working_directory: ./ui/app
           name: update-npm
           command: 'sudo npm install -g npm@5'
       - restore_cache:
+          working_directory: ./ui/app
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
+          working_directory: ./ui/app
           name: install-npm
           command: npm install
       - save_cache:
+          working_directory: ./ui/app
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
       - run:
+          working_directory: ./ui/app
           name: test
           command: npm test
   build_backend:
