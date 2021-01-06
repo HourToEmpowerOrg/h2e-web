@@ -34,9 +34,9 @@ $button--border: (
 	button-dark: 			transparent,
 	button-dark-hover: 		null,
 	button-primary: 		transparent,
-	button-primary-hover: 	null,
+	button-primary-hover: 	lighten(get-color(primary, 1), 3%),
 	button-secondary: 		transparent,
-	button-secondary-hover: null,
+	button-secondary-hover: ighten(get-color(secondary, 1), 3%),
 	button-disabled: 		transparent
 );
 

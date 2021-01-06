@@ -39,7 +39,8 @@ const BrandLogo = () => {
 class AdminHeader extends React.Component {
 
   state = {
-    isActive: false
+    isActive: false,
+    userName: (localStorage.getItem('h2eUserInfo') ? JSON.parse(localStorage.getItem('h2eUserInfo')).display : '')
   };
 
   nav = React.createRef();
@@ -101,6 +102,8 @@ class AdminHeader extends React.Component {
       className
     );
 
+    const userName = this.state.userName;
+
     return (
       <nav className="navbar is-fixed-top is-success" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
@@ -117,8 +120,11 @@ class AdminHeader extends React.Component {
         <div id="navbarBasicExample" className="navbar-menu">  
 
           <div className="navbar-end">
+            <span className="navbar-item">
+              {userName}
+            </span>
             <div className="navbar-item">
-              <Link className="is-light" to="/login" onClick={() => this.logout()}>
+              <Link style={{color: '#fff'}} to="/login" onClick={() => this.logout()}>
                   Log Out
               </Link>
             </div>

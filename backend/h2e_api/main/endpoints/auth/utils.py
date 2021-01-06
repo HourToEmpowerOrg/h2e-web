@@ -97,7 +97,6 @@ def check_user_login_information(auth_json, auth, request):
     call_start_time = datetime.now(pytz.utc)
     auth_json['username'] = auth_json.get('username', '').lower()
     user, message = validate_login(auth_json=auth_json)
-    print(f'made message: {message}')
     return _make_h2e_response(user, message, auth, request, call_start_time, AUTH_TYPE_PASSWORD)
 
 

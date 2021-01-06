@@ -53,9 +53,9 @@ const ProtectedRoute = ({
   return (
     <Route
       {...rest}
-      render={props => !!getSession() ? (
-        <Layout>
-          <Component {...props} />
+      render={props => !!session ? (
+        <Layout {...rest} userSession={session} >
+          <Component {...props}/>
         </Layout>
       ) : (
         <Redirect

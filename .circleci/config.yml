@@ -46,6 +46,10 @@ jobs:
           working_directory: ./ui/app
           name: test
           command: npm test
+      - run:
+          working_directory: ./ui/app
+          name: Build UI
+          command: npm run build
   build_backend:
     docker:
       - image: circleci/python:3.6.2-stretch-browsers
@@ -54,9 +58,9 @@ jobs:
           TEST_DATABASE_URL: postgresql://ubuntu@localhost/circle_test?sslmode=disable
       - image: circleci/postgres:9.6.5-alpine-ram
         environment:
-          POSTGRES_USER: ubuntu
-          POSTGRES_DB: circle_test
-          POSTGRES_PASSWORD: ''
+          USERNAME: ubuntu
+          DB_NAME: circle_test
+          PASSWORD: ''
     steps:
       - checkout
       - restore_cache:

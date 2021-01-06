@@ -16,6 +16,7 @@ function TutorSignupTable(props) {
   let history = useHistory();
 
   const [tutors, setTutors] = useState([]);
+  const [newTutors, setNewTutors] = useState([]);
   const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -25,6 +26,10 @@ function TutorSignupTable(props) {
           );
           
           setTutors(result.data.items);
+
+          const newFiltered = result.data.items.filter(t => ((new Date()).getTime() - (new Date(t.created)).getTime() ) / (1000 * 3600 * 24) < 7)
+          setNewTutors(newFiltered);
+
           setLoading(false);
         }
         fetchData();
@@ -89,7 +94,9 @@ function TutorSignupTable(props) {
       {...props}
     >  
         <div>
-            <h4 className="dashboard-header">Tutor Signups</h4>
+            <h4 style={{marginBottom: 0}} className="dashboard-header">Tutor Signups</h4>
+            <p style={{margin: 0}}>New this Week: {newTutors.length}</p>
+            <p style={{marginTop: 0, marginBottom: 8}}>Total: {tutors.length}</p>
             {(tutors.length >0 && renderTutorTable())}
         </div>
     </section>

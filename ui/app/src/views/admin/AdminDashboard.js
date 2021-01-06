@@ -3,6 +3,7 @@ import MailingListInfo from '../../components/admin/MailingListInfo';
 import TutorSignupTable from '../../components/admin/TutorSignupTable';
 
 class AdminDashboard extends React.Component {
+
   render() {
     return (
       <React.Fragment>

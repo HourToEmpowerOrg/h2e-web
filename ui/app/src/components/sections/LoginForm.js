@@ -27,6 +27,19 @@ function LoginForm(props) {
             .then(function (response) {
               if (response.status == 200) {
 
+                // Store user info in local storage for reading non-sensitive info
+                // DO NOT use this for storing session info
+                if (response.data) { 
+                  localStorage.setItem('h2eUserInfo',
+                  JSON.stringify( {
+                      'display': response.data.display_name, 
+                      'timezone': response.data.timezone, 
+                      'username': response.data.username,
+                      'role': response.data.role
+                    })
+                  );
+                }
+
                 if(response.data.role == 'STUDENT') {
                   axios.get(`${apiUrl}/config`).then(response => {
                     setCookie('config', response.data);
