@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Logo from './partials/LogoInvert';
 import FooterNav from './partials/FooterNav';
 import FooterSocial from './partials/FooterSocial';
 
@@ -59,6 +58,9 @@ class Footer extends React.Component {
               <div className="footer-copyright">&copy; 2020 Hour to Empower, all rights reserved</div>
             </div>
           </div>
+          <p>
+            App version 1.0
+          </p>
         </div>
       </footer>
     )

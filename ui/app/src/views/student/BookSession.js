@@ -11,10 +11,10 @@ import Select from 'react-select'
 import AsyncSelect from 'react-select/async';
 import DatePicker from 'react-datepicker';
 import {apiUrl} from '../../Api';
+import Button  from '../../components/elements/Button';
 
 //TODO: This should be loaded from our api
 import {subjectOptions} from '../../SubjectConstants';
-import TutorHeader from '../../components/layout/TutorHeader';
 
 const filterTutors = (tutorList, inputValue) => {
   if(!tutorList) return [];
@@ -35,23 +35,26 @@ var moment = require('moment');
 
 function BookSession (props) {
     const [dateValue, setDateValue] = useState(new Date());
-    const [showPicker, setShowPicker] = useState(false);
 
     const [bookings, setBookings] = useState([])
     const [loading, setLoading] = useState(true);
     const [showInfo, setShowInfo] = useState(true);
-    const [selectedSubject, setSelectedSubject] = useState('math');
 
     const [booked, setBooked] = useState(false);
+    // eslint-disable-next-line
     const [inputValue, setInputValue] = useState();
     const [subjects, setSubjects] = useState([]);
     const [selectedTutor, setSelectedTutor] = useState();
 
     const buildFilters = () => {
-      var baseUrl = `${apiUrl}/bookings?date=${moment(dateValue).format()}&subject=${selectedSubject}`
+      var baseUrl = `${apiUrl}/bookings?date=${moment(dateValue).format()}&subject=${subjects}`
 
       if (selectedTutor) {
         baseUrl = `${baseUrl}&tutor=${selectedTutor.id}`
+      }
+
+      if (subjects){
+        //TODO: Pass subjects ?
       }
 
       return baseUrl
@@ -112,11 +115,8 @@ function BookSession (props) {
 
     const {
       className,
-      children,
       topOuterDivider,
       bottomOuterDivider,
-      topDivider,
-      bottomDivider,
       hasBgColor,
       invertColor,
     } = props;
@@ -211,13 +211,13 @@ function BookSession (props) {
                       <p style={{marginTop: '2px', marginBottom: '2px'}}>{booking.tutor_name}</p>
                       <span className="form-hint">This tutor has a rating of <strong>5.0</strong></span>
                       <p style={{marginTop: '2px', marginBottom: '2px'}}> <span className="subject-tag">Math</span></p>
-                      <a onClick={()=> requestBooking(booking)}>Book this session</a>
+                      <Button onClick={()=> requestBooking(booking)}>Book this session</Button>
                   </div>
                   )
                 })
               }
               {
-                !loading && bookings.length == 0 && (
+                !loading && bookings.length === 0 && (
                   <p>It does not look like there are any available sessions for that day. Please try another.</p>
                 )
               }

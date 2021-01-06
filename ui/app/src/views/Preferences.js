@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import ScheduleSection from '../components/sections/ScheduleSection';
 import PrefferencesSection from '../components/sections/PreferencesSection';
 import SeessionHistorySection from '../components/sections/SessionHistorySection';
 
@@ -9,6 +8,7 @@ class Preferences extends React.Component {
 
     const outerClasses = classNames(
       'section',
+      'container'
     );
 
     return (
@@ -21,6 +21,8 @@ class Preferences extends React.Component {
             <p>
               Hey there! We're still working on getting this page set up, in the mean time if you need to change your scheduling preferences please send an email to <strong>help@hourtoempower.org</strong>
             </p>
+            <PrefferencesSection></PrefferencesSection>
+            <SeessionHistorySection></SeessionHistorySection>
           </section>
             
       </React.Fragment>

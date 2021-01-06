@@ -1,9 +1,8 @@
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import 'react-bulma-components/dist/react-bulma-components.min.css';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bulma-components';
 import axios from 'axios';
 
 const propTypes = {
@@ -22,17 +21,6 @@ const defaultProps = {
   hideSignin: false,
   bottomOuterDivider: false,
   bottomDivider: false
-}
-
-const brandClasses = classNames('header-brand')
-
-
-const BrandLogo = () => {
-  return (
-      <div className={brandClasses}>
-        <Link to="/dashboard" style={{ textDecoration: 'none' }}>Hour to Empower</Link>
-      </div>
-  )
 }
 
 
@@ -85,23 +73,6 @@ class AdminHeader extends React.Component {
   }
 
   render() {
-    const {
-      className,
-      active,
-      navPosition,
-      hideNav,
-      hideSignin,
-      bottomOuterDivider,
-      bottomDivider,
-      ...props
-    } = this.props;
-
-    const classes = classNames(
-      'site-header',
-      bottomOuterDivider && 'has-bottom-divider',
-      className
-    );
-
     const userName = this.state.userName;
 
     return (

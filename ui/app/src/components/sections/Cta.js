@@ -37,7 +37,7 @@ class Cta extends React.Component {
     const self = this;
     axios.post(`${apiUrl}/mailing/join`, signupData)
             .then(function (response) {
-              if (response.status == 200) {
+              if (response.status === 200) {
                 toast('You\'ve been added to our mailing list!');
               }
               self.setState({submitted: true})

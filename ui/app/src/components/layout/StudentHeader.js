@@ -1,9 +1,8 @@
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import 'react-bulma-components/dist/react-bulma-components.min.css';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bulma-components';
 import axios from 'axios';
 
 const propTypes = {
@@ -22,18 +21,6 @@ const defaultProps = {
   hideSignin: false,
   bottomOuterDivider: false,
   bottomDivider: false
-}
-
-const brandClasses = classNames('header-brand')
-
-
-const BrandLogo = () => {
-  return (
-
-      <div className={brandClasses}>
-        <Link to="/dashboard" style={{ textDecoration: 'none' }}>Hour to Empower</Link>
-      </div>
-  )
 }
 
 
@@ -86,33 +73,20 @@ class StudentHeader extends React.Component {
 
   render() {
     const {
-      className,
-      active,
-      navPosition,
-      hideNav,
-      hideSignin,
-      bottomOuterDivider,
-      bottomDivider,
       config,
-      ...props
     } = this.props;
 
-    const classes = classNames(
-      'site-header',
-      bottomOuterDivider && 'has-bottom-divider',
-      className
-    );
 
     return (
       <nav 
         className="navbar is-fixed-top is-dark" 
         role="navigation" 
         aria-label="main navigation"
-        style={{backgroundColor: !!config && config.secondary || '#3273dc'}}>
+        style={{backgroundColor: !!config && config.secondary ? config.secondary : '#3273dc'}}>
         <div className="navbar-brand">
-          <a className="navbar-item">
+          <a className="navbar-item" href='/'>
             {!!config && !!config.logo_url ? (
-              <img src={config.logo_url} className="header-logo"/>
+              <img src={config.logo_url} alt="School Header" className="header-logo"/>
             ) : "Hour to Empower"}
           </a>
           <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">

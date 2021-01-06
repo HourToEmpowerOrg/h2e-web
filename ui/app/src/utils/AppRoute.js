@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { SectionProps } from './SectionProps';
 
 const AppRoute = ({
   component: Component,

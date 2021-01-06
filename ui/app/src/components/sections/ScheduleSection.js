@@ -1,22 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import { SectionProps } from '../../utils/SectionProps';
 import axios from "axios";
 import Moment from 'react-moment';
 import 'moment-timezone'
 import {apiUrl} from '../../Api';
-
-const propTypes = {
-  children: PropTypes.node,
-  ...SectionProps.types
-}
-
-const defaultProps = {
-  children: null,
-  ...SectionProps.defaults
-}
 
 function SessionItem({item, onRespond, itemPath}) {
 
@@ -31,7 +19,7 @@ function SessionItem({item, onRespond, itemPath}) {
 
     const itemLink = itemPath ? `/${itemPath}/session/${item.id}` : `/session/${item.id}`
 
-    if(item.session_status == 'ACCEPTED') {
+    if(item.session_status === 'ACCEPTED') {
       return (
         <Link to={itemLink} style={{textDecoration: 'none'}}>
           <div className="session-item" key={item.id}>
@@ -45,14 +33,14 @@ function SessionItem({item, onRespond, itemPath}) {
               </Moment>
               </span>
               <br/>
-              <a>
+              <a href={item.session_info.join_url}>
                 {item.session_info.join_url && item.session_info.join_url.indexOf('teams') > 0 ? ('Scheduled Microsoft Teams Meeting') : ('Scheduled Zoom Meeting')}
               </a>
           </div>
           </Link>
       )
     }
-    else if (item.session_status == 'PENDING') {
+    else if (item.session_status === 'PENDING') {
       return (
         <div className="session-item" key={item.id}>
               <div className="session-item-title">{item.title}</div>
@@ -111,16 +99,11 @@ function ScheduleSection(props){
   
     const {
       className,
-      children,
       topOuterDivider,
       bottomOuterDivider,
-      topDivider,
-      bottomDivider,
       hasBgColor,
       invertColor,
       userType,
-      showPending,
-      ...rest
     } = props;
 
     const outerClasses = classNames(
@@ -131,16 +114,7 @@ function ScheduleSection(props){
       invertColor && 'invert-color',
       className
     );
-
-    const innerClasses = classNames(
-      'section-inner',
-      topDivider && 'has-top-divider',
-      bottomDivider && 'has-bottom-divider'
-    );
-    
-    const subtitle = classNames(
-      'section-subtitle'
-    )
+  
 
     const renderPendingRequests = () => {
         return (

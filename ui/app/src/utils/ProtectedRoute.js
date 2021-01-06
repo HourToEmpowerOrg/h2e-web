@@ -2,9 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie'
 
-import axios from "axios";
-
-
+// eslint-disable-next-line
 const getUserFromToken = token => {
   if (token) {
     try {
@@ -33,7 +31,7 @@ const getSession = () => {
   return session
 }
 
-
+// eslint-disable-next-line
 const logOut = () => {
   Cookies.remove('hourtoempower')
 }
