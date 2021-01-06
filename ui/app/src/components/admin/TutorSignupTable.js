@@ -1,19 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
-import { useCookies } from 'react-cookie';
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
-import SectionHeader from '../sections/partials/SectionHeader';
-import Input from '../elements/Input';
-import Button from '../elements/Button';
-import Checkbox from '../elements/Checkbox';
 import axios from "axios";
 import {apiUrl} from '../../Api';
 import moment from 'moment';
 
 function TutorSignupTable(props) {
-
-  let history = useHistory();
 
   const [tutors, setTutors] = useState([]);
   const [newTutors, setNewTutors] = useState([]);
@@ -22,7 +12,7 @@ function TutorSignupTable(props) {
     useEffect(() => {
         async function fetchData() {
           const result = await axios(
-            '/api/v1/applications/tutor',
+            `${apiUrl}/applications/tutor`,
           );
           
           setTutors(result.data.items);
@@ -34,18 +24,6 @@ function TutorSignupTable(props) {
         }
         fetchData();
       }, [loading]); // re-perform fetchData on loading change
-
-  const {
-    className,
-    topOuterDivider,
-    bottomOuterDivider,      
-    hasBgColor,
-    invertColor,
-  } = props;
-
-  const sectionHeader = {
-    title: 'Tutor Signups',
-  };
 
   const renderTutorTable = () => {
       return (

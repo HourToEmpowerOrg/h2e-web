@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import Moment from 'react-moment';
 import 'moment-timezone'
@@ -6,11 +6,8 @@ import 'moment-timezone'
 function MeetingInfoSection(props){  
     const {
       className,
-      children,
       topOuterDivider,
       bottomOuterDivider,
-      topDivider,
-      bottomDivider,
       hasBgColor,
       invertColor,
       session
@@ -23,12 +20,6 @@ function MeetingInfoSection(props){
       hasBgColor && 'has-bg-color',
       invertColor && 'invert-color',
       className
-    );
-
-    const innerClasses = classNames(
-      'section-inner',
-      topDivider && 'has-top-divider',
-      bottomDivider && 'has-bottom-divider'
     );
 
     if (!session.session_info) {

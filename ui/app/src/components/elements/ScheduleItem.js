@@ -1,6 +1,4 @@
-import ScheduleSection from "../sections/ScheduleSection"
-import React, { useState, useEffect } from 'react';
-import Button from '../elements/Button';
+import React from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone'
 
@@ -22,6 +20,8 @@ function dayFrom(dayNum) {
             return 'Friday'
         case 6:
             return 'Saturday'
+        default:
+            return 'Day'
     }
 }
 

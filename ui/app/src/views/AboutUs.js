@@ -1,21 +1,13 @@
+/* eslint-disable */
 import React from 'react';
-// import section header
-import SectionHeader from '../components/sections/partials/SectionHeader';
 // import sections
 import Testimonial from '../components/sections/Testimonial';
-import Clients from '../components/sections/Clients';
+// import Clients from '../components/sections/Clients';
 import Team from '../components/sections/Team';
-import FeaturesSplit from '../components/sections/FeaturesSplit';
+// import FeaturesSplit from '../components/sections/FeaturesSplit';
 import GenericSection from '../components/sections/GenericSection';
 import Cta from '../components/sections/Cta';
 // import some required elements
-import Image from '../components/elements/Image';
-import Input from '../components/elements/Input';
-import ButtonGroup from '../components/elements/ButtonGroup';
-import Button from '../components/elements/Button';
-import Modal from '../components/elements/Modal';
-import Accordion from '../components/elements/Accordion';
-import AccordionItem from '../components/elements/AccordionItem';
 import ReactGA from 'react-ga';
 
 class AboutUs extends React.Component {

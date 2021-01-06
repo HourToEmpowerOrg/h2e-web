@@ -33,11 +33,8 @@ function PrefferencesSection(props) {
 
   const {
     className,
-    children,
     topOuterDivider,
     bottomOuterDivider,
-    topDivider,
-    bottomDivider,
     hasBgColor,
     invertColor,
   } = props;
@@ -49,12 +46,6 @@ function PrefferencesSection(props) {
     hasBgColor && 'has-bg-color',
     invertColor && 'invert-color',
     className
-  );
-
-  const innerClasses = classNames(
-    'section-inner',
-    topDivider && 'has-top-divider',
-    bottomDivider && 'has-bottom-divider'
   );
 
   return (

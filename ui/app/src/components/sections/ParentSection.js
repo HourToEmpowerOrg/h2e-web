@@ -1,11 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
-import { Link } from 'react-router-dom';
-import SectionHeader from './partials/SectionHeader';
-import Input from '../elements/Input';
-import Button from '../elements/Button';
-import Checkbox from '../elements/Checkbox';
 
 const propTypes = {
   ...SectionProps.types
@@ -45,6 +40,7 @@ class ParentSection extends React.Component {
       bottomDivider && 'has-bottom-divider'
     );
 
+    // eslint-disable-next-line
     const sectionHeader = {
       title: 'Creating a community where students can get free tutoring sessions from real-life professionals.',
     };

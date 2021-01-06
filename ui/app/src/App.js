@@ -5,14 +5,12 @@ import ScrollReveal from './utils/ScrollReveal';
 
 // Layouts
 import LayoutDefault from './layouts/LayoutDefault';
-import LayoutAlternative from './layouts/LayoutAlternative';
 import LayoutSignin from './layouts/LayoutSignin';
 import LayoutTutor from './layouts/LayoutTutor';
 import LayoutStudent from './layouts/LayoutStudent';
 
 // Views 
 import Home from './views/Home';
-import Secondary from './views/Secondary';
 import Login from './views/Login';
 import AboutUs from './views/AboutUs'
 import Parents from './views/Parents'
@@ -38,8 +36,6 @@ import BookSession from './views/student/BookSession';
 // Admin Views:
 import AdminDashboard from './views/admin/AdminDashboard';
 import LayoutAdmin from './layouts/LayoutAdmin';
-
-import axios from 'axios';
 
 import ReactGA from 'react-ga';
 ReactGA.initialize('UA-178422805-1');

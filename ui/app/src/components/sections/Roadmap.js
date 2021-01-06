@@ -53,7 +53,7 @@ class Roadmap extends React.Component {
         {...props}
         className={outerClasses}
       >
-        <div className="container" id="how-it-works-section" className="section">
+        <div className="container section" id="how-it-works-section">
           <div className={innerClasses}>
             <SectionHeader data={sectionHeader} className="center-content" />
             <Timeline>
