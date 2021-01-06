@@ -22,4 +22,4 @@ class TutorApplication(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=func.now())
 
     def __repr__(self):
-        return '<TutorApplication {}>'.format(self.username)
+        return '<TutorApplication {}>'.format(self.email)

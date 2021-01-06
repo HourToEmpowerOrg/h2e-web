@@ -34,7 +34,6 @@ function SeessionHistorySection(props) {
 
   const {
     className,
-    children,
     topOuterDivider,
     bottomOuterDivider,
     topDivider,
@@ -71,7 +70,7 @@ function SeessionHistorySection(props) {
               {'Session History & Lesson Recordings'}
           </h4>
           {
-            sessions.length == 0 && (
+            sessions.length === 0 && (
               <p>You have not completed any tutoring sessions yet</p>
             ) 
           }

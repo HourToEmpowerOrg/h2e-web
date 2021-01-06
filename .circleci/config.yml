@@ -5,32 +5,78 @@ orbs:
   eb: circleci/aws-elastic-beanstalk@1.0.0
   node: circleci/node@4.1.0
 
-jobs:
-  build_test_ui:
-    executor:
-      name: node/default
-      tag: '13'
-    steps:
-      - checkout
-      - node/install-packages:
-          pkg-manager: yarn
-      - run:
-          command: yarn run test
-          name: Run YARN tests
-
+############
+# Workflows
+############
 workflows:
-  build_and_test:
+  version: 2
+  build-deploy:
     jobs:
       - build_ui
-      - eb/deploy:
-          context: aws-creds
-          environment-name: h2e-web-prod
-          filters:
-            branches:
-              only:
-                - setup-circleci
-          label: version-<<pipeline.number>>
+      - build_backend:
           requires:
             - build_ui
 
-
+##################
+# Job Definitions
+##################
+jobs:
+  build_ui:
+    docker:
+        - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - run:
+          working_directory: ./ui/app
+          name: update-npm
+          command: 'sudo npm install -g npm@5'
+      - restore_cache:
+          working_directory: ./ui/app
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          working_directory: ./ui/app
+          name: install-npm
+          command: npm install
+      - save_cache:
+          working_directory: ./ui/app
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          working_directory: ./ui/app
+          name: test
+          command: npm test
+      - run:
+          working_directory: ./ui/app
+          name: Build UI
+          command: npm run build
+  build_backend:
+    docker:
+      - image: circleci/python:3.6.2-stretch-browsers
+        environment:
+          FLASK_CONFIG: testing
+          TEST_DATABASE_URL: postgresql://ubuntu@localhost/circle_test?sslmode=disable
+      - image: circleci/postgres:9.6.5-alpine-ram
+        environment:
+          USERNAME: ubuntu
+          DB_NAME: circle_test
+          PASSWORD: ''
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps2-{{ checksum "backend/requirements.txt" }}
+      - run:
+          working_directory: ./backend
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+      - save_cache:
+          key: deps2-{{ checksum "backend/requirements.txt" }}
+          paths:
+            - 'venv'
+      - run:
+          working_directory: ./backend
+          command: |
+            . venv/bin/activate
+            pytest

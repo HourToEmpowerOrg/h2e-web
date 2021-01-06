@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import Moment from 'react-moment';
-import 'moment-timezone'
 import SessionOverviewSection from '../components/sections/sessions/SessionOverviewSection';
 import MeetingInfoSection from '../components/sections/sessions/MeetingInfoSection';
 import SessionNotes from '../components/sections/sessions/SessionNotes';
@@ -20,7 +18,7 @@ function SessionDetailsPage(props) {
           setSession(result.data.session);
         }
         fetchData(props.match.params.id);
-      }, []); // Or [] if effect doesn't need props or state
+      }, [props.match.params.id]); // Or [] if effect doesn't need props or state
 
     return (
         <React.Fragment>

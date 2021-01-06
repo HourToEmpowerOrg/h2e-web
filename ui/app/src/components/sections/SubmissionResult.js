@@ -1,11 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
-import { Link } from 'react-router-dom';
 import SectionHeader from './partials/SectionHeader';
-import Input from '../elements/Input';
-import Button from '../elements/Button';
-import Checkbox from '../elements/Checkbox';
 
 const propTypes = {
   ...SectionProps.types

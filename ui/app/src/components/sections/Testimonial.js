@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import { SectionTilesProps } from '../../utils/SectionProps';
 import SectionHeader from './partials/SectionHeader';
-import Image from '../elements/Image';
 
 const propTypes = {
   ...SectionTilesProps.types
@@ -29,7 +28,7 @@ class Testimonial extends React.Component {
     } = this.props;
 
     const outerClasses = classNames(
-      'testimonial section',
+      'section',
       topOuterDivider && 'has-top-divider',
       bottomOuterDivider && 'has-bottom-divider',
       hasBgColor && 'has-bg-color',

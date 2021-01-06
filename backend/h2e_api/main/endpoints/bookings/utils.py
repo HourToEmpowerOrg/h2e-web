@@ -29,7 +29,12 @@ def get_all_bookings_by_filter(filters):
 
     potential_schedule = potential_schedule\
         .join(User, User.id == ScheduleItem.user_id)\
-        .filter(ScheduleItem.day == day)\
+        .filter(ScheduleItem.day == day)
+
+    if filters.get('tutor'):
+        potential_schedule = potential_schedule.filter(User.id == filters.get('tutor'))
+
+    potential_schedule = potential_schedule\
         .order_by(ScheduleItem.day, ScheduleItem.start_time)\
         .with_entities(ScheduleItem, User)\
         .all()

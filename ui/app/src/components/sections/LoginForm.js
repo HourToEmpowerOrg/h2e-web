@@ -16,6 +16,7 @@ function LoginForm(props) {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  // eslint-disable-next-line
   const [cookies, setCookie, removeCookie] = useCookies(['h2e']);
 
 
@@ -25,9 +26,22 @@ function LoginForm(props) {
 
     axios.post(`${apiUrl}/login`, loginData)
             .then(function (response) {
-              if (response.status == 200) {
+              if (response.status === 200) {
 
-                if(response.data.role == 'STUDENT') {
+                // Store user info in local storage for reading non-sensitive info
+                // DO NOT use this for storing session info
+                if (response.data) { 
+                  localStorage.setItem('h2eUserInfo',
+                  JSON.stringify( {
+                      'display': response.data.display_name, 
+                      'timezone': response.data.timezone, 
+                      'username': response.data.username,
+                      'role': response.data.role
+                    })
+                  );
+                }
+
+                if(response.data.role === 'STUDENT') {
                   axios.get(`${apiUrl}/config`).then(response => {
                     setCookie('config', response.data);
                     history.push("/student/dashboard");
@@ -35,8 +49,11 @@ function LoginForm(props) {
                     history.push("/student/dashboard");
                   })
                 }
-                else{
+                else if (response.data.role === 'TUTOR'){
                   history.push("/dashboard");
+                } 
+                else if (response.data.role === 'ADMIN') {
+                  history.push("/h2e_07546_admin");
                 }
                 
               }

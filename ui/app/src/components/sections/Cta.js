@@ -37,10 +37,10 @@ class Cta extends React.Component {
     const self = this;
     axios.post(`${apiUrl}/mailing/join`, signupData)
             .then(function (response) {
-              if (response.status == 200) {
-                self.setState({submitted: true})
+              if (response.status === 200) {
                 toast('You\'ve been added to our mailing list!');
               }
+              self.setState({submitted: true})
             })
             .catch(function (error) {
                 console.log(error);
@@ -104,7 +104,7 @@ class Cta extends React.Component {
                     onChange = {e => this.setState({'email': e.target.value})}>
                   </Input>
                 </div>
-                <Button disabled={!fieldsValid} onClick={this.submitJoinMailingList}>Hear From Us</Button>
+                <Button style={{margin: 5}}disabled={!fieldsValid} onClick={this.submitJoinMailingList}>Hear From Us</Button>
               </div>
             )
           }

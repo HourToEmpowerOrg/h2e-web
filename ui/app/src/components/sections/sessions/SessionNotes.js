@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import axios from "axios";
-import Moment from 'react-moment';
 import 'moment-timezone'
 import {apiUrl} from '../../../Api';
 
@@ -39,7 +38,8 @@ function SessionNotes(props){
 
     // Handle the input text state
     const [noteText, setNoteText] = useState('');
-    const [isUpdating, setIsUpdating] = useState(false);
+    // eslint-disable-next-line 
+    const [isUpdating, setIsUpdating] = useState(false); //Not sure what we want isupdating for
 
     const debouncedTextUpdate = useDebounce(noteText, 500);
     // Effect for API call 
@@ -52,17 +52,14 @@ function SessionNotes(props){
                 });
             } 
         },
-        [debouncedTextUpdate] // Only call effect if debounced text update changes
+        [debouncedTextUpdate, props.session.id],  // Only call effect if debounced text update changes
     );
 
 
     const {
       className,
-      children,
       topOuterDivider,
       bottomOuterDivider,
-      topDivider,
-      bottomDivider,
       hasBgColor,
       invertColor,
       session
@@ -77,17 +74,11 @@ function SessionNotes(props){
       className
     );
 
-    const innerClasses = classNames(
-      'section-inner',
-      topDivider && 'has-top-divider',
-      bottomDivider && 'has-bottom-divider'
-    );
-
     if (!session.session_info) {
         return <div>'loading...'</div>
     }
 
-    if(session.note && noteText == '') {
+    if(session.note && noteText === '') {
         setNoteText(session.note)
     }
 

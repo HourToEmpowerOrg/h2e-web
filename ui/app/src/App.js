@@ -5,14 +5,12 @@ import ScrollReveal from './utils/ScrollReveal';
 
 // Layouts
 import LayoutDefault from './layouts/LayoutDefault';
-import LayoutAlternative from './layouts/LayoutAlternative';
 import LayoutSignin from './layouts/LayoutSignin';
 import LayoutTutor from './layouts/LayoutTutor';
 import LayoutStudent from './layouts/LayoutStudent';
 
 // Views 
 import Home from './views/Home';
-import Secondary from './views/Secondary';
 import Login from './views/Login';
 import AboutUs from './views/AboutUs'
 import Parents from './views/Parents'
@@ -35,7 +33,9 @@ import SessionDetailsPage from './views/SessionDetails';
 import StudentDashboard from './views/StudentDashboard';
 import BookSession from './views/student/BookSession';
 
-import axios from 'axios';
+// Admin Views:
+import AdminDashboard from './views/admin/AdminDashboard';
+import LayoutAdmin from './layouts/LayoutAdmin';
 
 import ReactGA from 'react-ga';
 ReactGA.initialize('UA-178422805-1');
@@ -86,6 +86,8 @@ class App extends React.Component {
             <ProtectedRoute exact path="/student/dashboard" component={StudentDashboard} layout={LayoutStudent}/>
             {/* <ProtectedRoute exact path="/student/preferences" component={StudentPreferences} layout={LayoutStudent} /> */}
             <ProtectedRoute exact path="/student/book-session" component={BookSession} layout={LayoutStudent} />
+
+            <ProtectedRoute exact path="/h2e_07546_admin" component={AdminDashboard} layout={LayoutAdmin} />
 
 
             <AppRoute path="*" component={NotFound} layout={LayoutDefault}></AppRoute>

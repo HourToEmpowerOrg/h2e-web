@@ -10,3 +10,7 @@ def create_mailing_follow_record(data):
     db.session.add(new_record)
     db.session.commit()
     return new_record
+
+
+def get_mailing_list_count():
+    return MailingListMember.query.count()

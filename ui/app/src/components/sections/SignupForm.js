@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
-import { Link } from 'react-router-dom';
 import SectionHeader from './partials/SectionHeader';
 import SubmissionResult from './SubmissionResult';
 import Input from '../elements/Input';
@@ -45,7 +44,7 @@ class SignupForm extends React.Component {
     const self = this;
     axios.post(`${apiUrl}/applications/tutor`, signupData)
             .then(function (response) {
-              if (response.status == 200){
+              if (response.status === 200){
                 self.setState({submitted: true, submitType: 'tutor'})
               }
             })
@@ -64,7 +63,7 @@ class SignupForm extends React.Component {
     const self = this;
     axios.post(`${apiUrl}/applications/school`, signupData)
             .then(function (response) {
-              if (response.status == 200){
+              if (response.status === 200){
                 self.setState({submitted: true, submitType: 'school'})
               }
             })
@@ -302,15 +301,9 @@ class SignupForm extends React.Component {
   renderSignupForm() {
 
     const {
-      className,
-      topOuterDivider,
-      bottomOuterDivider,      
       topDivider,
       bottomDivider,
-      hasBgColor,
-      invertColor,
       userType,
-      ...props
     } = this.props;
 
     const innerClasses = classNames(

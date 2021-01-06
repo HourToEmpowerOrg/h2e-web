@@ -1,4 +1,3 @@
-import axios from 'axios';  
 import React from 'react';
 
 import StudentHeader from '../components/layout/StudentHeader';
@@ -6,6 +5,7 @@ import { useCookies } from 'react-cookie';
 
 function LayoutTutor ({ children}) {
 
+  //eslint-disable-next-line
   const [cookies, setCookie, removeCookie] = useCookies(['h2e']);
 
   const config = cookies.config;

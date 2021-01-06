@@ -80,7 +80,6 @@ def _make_h2e_response(user, message, auth, request, call_start_time, auth_type,
 
 def validate_login(auth_json):
     user = User.query.filter_by(email=auth_json['email']).first()
-
     if not user:
         return None, 'ERROR_INVALID_USERNAME'
 
@@ -98,7 +97,6 @@ def check_user_login_information(auth_json, auth, request):
     call_start_time = datetime.now(pytz.utc)
     auth_json['username'] = auth_json.get('username', '').lower()
     user, message = validate_login(auth_json=auth_json)
-
     return _make_h2e_response(user, message, auth, request, call_start_time, AUTH_TYPE_PASSWORD)
 
 
