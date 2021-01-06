@@ -15,6 +15,7 @@ import Login from './views/Login';
 import AboutUs from './views/AboutUs'
 import Parents from './views/Parents'
 import TermsOfUse from './views/TermsOfUse'
+import Feedback from './views/Feedback';
 
 //Sign up pages
 import Signup from './views/Signup';
@@ -87,8 +88,12 @@ class App extends React.Component {
             {/* <ProtectedRoute exact path="/student/preferences" component={StudentPreferences} layout={LayoutStudent} /> */}
             <ProtectedRoute exact path="/student/book-session" component={BookSession} layout={LayoutStudent} />
 
+            {/* Admin Routes */}
             <ProtectedRoute exact path="/h2e_07546_admin" component={AdminDashboard} layout={LayoutAdmin} />
 
+            {/* Shared Routes */}
+            <ProtectedRoute exact path="/student/feedback" component={Feedback} layout={LayoutStudent}/>
+            <ProtectedRoute exact path="/feedback" component={Feedback} layout={LayoutTutor}/>
 
             <AppRoute path="*" component={NotFound} layout={LayoutDefault}></AppRoute>
           </Switch>

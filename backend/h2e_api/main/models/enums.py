@@ -66,3 +66,15 @@ class SessionStatus(HourToEmpowerEnum):
 class MeetingPlatform:
     TEAMS = 'TEAMS'
     ZOOM = 'ZOOM'
+
+
+class FeedbackType(HourToEmpowerEnum):
+    HELP = auto()
+    ISSUE = auto()
+    FEEDBACK = auto()
+
+
+class FeedbackStatus(HourToEmpowerEnum):
+    PENDING = auto()
+    IN_PROCESS = auto()
+    RESOLVED = auto()

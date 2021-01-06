@@ -7,7 +7,7 @@ import Input from '../elements/Input';
 import Button from '../elements/Button';
 import axios from "axios";
 import {apiUrl} from '../../Api';
-import {subjectOptions, subjectStyles} from '../../SubjectConstants';
+import {subjectOptions, selectStyles} from '../../Constants';
 
 import Select from 'react-select'
 
@@ -200,7 +200,7 @@ class SignupForm extends React.Component {
                       <Select 
                         isMulti
                         name="subjects"
-                        styles={subjectStyles}
+                        styles={selectStyles}
                         options={subjectOptions}
                         className="basic-multi-select"
                         classNamePrefix="select"

@@ -13,8 +13,8 @@ import DatePicker from 'react-datepicker';
 import {apiUrl} from '../../Api';
 import Button  from '../../components/elements/Button';
 
-//TODO: This should be loaded from our api
-import {subjectOptions} from '../../SubjectConstants';
+// Eventually This should be loaded from our api
+import {subjectOptions} from '../../Constants';
 
 const filterTutors = (tutorList, inputValue) => {
   if(!tutorList) return [];

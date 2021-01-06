@@ -113,13 +113,9 @@ class StudentHeader extends React.Component {
               </a>
 
               <div className="navbar-dropdown">
-                <a className="navbar-item">
-                  Get Help
-                </a>
-                <hr className="navbar-divider"/>
-                <a className="navbar-item">
-                  Report an issue
-                </a>
+                <Link to="/student/feedback" className="navbar-item">
+                  Help / Feedback
+                </Link>
               </div>
             </div>
           </div>

@@ -71,7 +71,7 @@ function SeessionHistorySection(props) {
           </h4>
           {
             sessions.length === 0 && (
-              <p>You have not completed any tutoring sessions yet</p>
+              <div className="ml-12"><p>You have not completed any tutoring sessions yet</p></div>
             ) 
           }
           {

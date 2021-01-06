@@ -5,7 +5,7 @@ export const subjectOptions = [
     { value: 'college_applications', label: 'College Applications' },
   ]
   
-export const subjectStyles = {
+export const selectStyles = {
     option: (provided, state) => ({
       ...provided,
       padding: 10,
@@ -23,3 +23,9 @@ export const subjectStyles = {
       color: 'rgb(163, 174, 186)'
     })
   }
+
+  export const feedbackOptions = [
+    { value: 'HELP', label: 'Get help' },
+    { value: 'FEEDBACK', label: 'General feedback' },
+    { value: 'ISSUE', label: 'Report an issue' },
+  ]

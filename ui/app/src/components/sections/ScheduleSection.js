@@ -150,10 +150,9 @@ function ScheduleSection(props){
             </h4>
             <div className="ml-12">
               <div className="form-hint">
-                { !!sessions.length ? ("Click a session to view its details") : ("You do not have any upcoming sessions")
-
-                }
+                { !!sessions.length && ("Click a session to view its details") }
               </div>
+              {sessions.length === 0 && (<div><p>You do not have any upcoming sessions. <Link to="/student/book-session">Book a session now</Link></p></div>)}
             </div>
             <div>
                 {sessions.map(item => (
