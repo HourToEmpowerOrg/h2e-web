@@ -3,7 +3,8 @@ from h2e_api.main.services.msft_teams import TeamsService
 
 from h2e_api.main.dispatch.events import (
     TUTOR_SIGNUP,
-    STUDENT_SIGNUP
+    STUDENT_SIGNUP,
+    APP_FEEDBACK
 )
 
 admin_emails = ['w.bertrand@hey.com']
@@ -34,6 +35,11 @@ class Dispatcher:
         cls._send_teams_message(application)
 
     @classmethod
+    def _handle_app_feeedback(cls, data):
+        ts = TeamsService()
+        ts.send_new_feedback_message(data)
+
+    @classmethod
     def handle_event(cls, event, data):
         """
             Handle events
@@ -41,6 +47,8 @@ class Dispatcher:
         """
         if event == TUTOR_SIGNUP:
             cls._handle_tutor_signup(data)
+        elif event == APP_FEEDBACK:
+            cls._handle_app_feeedback(data)
         elif event == STUDENT_SIGNUP:
             print('Have not set up student handler')
         else:

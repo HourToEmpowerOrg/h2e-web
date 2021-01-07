@@ -35,3 +35,13 @@ class TeamsService:
             teams_message.addSection(info_section)
 
             teams_message.send()
+
+    def send_new_feedback_message(self, data):
+        """
+        :param data: Feedback object
+        """
+        teams_message = pymsteams.connectorcard(url)
+        title = f'New message: {data.feedback_type}'
+        teams_message.title(title)
+        teams_message.text(data.message)
+        teams_message.send()

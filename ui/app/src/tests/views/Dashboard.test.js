@@ -1,23 +1,28 @@
-
 import React from 'react';
-import {cleanup, fireEvent, render} from '@testing-library/react';
-import Dashboard from '../../views/Dashboard'
-
+import { shallow, mount } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
 import StudentDashboard from '../../views/StudentDashboard'
 
-afterEach(cleanup);
 
-it('Renders Tutor Dashboard', () => {
-  const {queryAllByText} = render(
-    <Dashboard/>
-  );
-  expect(queryAllByText(/upcoming sessions/i)).toBeTruthy();
+
+const Container = StudentDashboard;
+
+let wrapper;
+
+beforeEach(() => {
+  wrapper = shallow(<Container />);
 });
 
-
-it('Renders Student Dashboard', () => {
-    const {queryAllByText} = render(
-      <StudentDashboard/>
+describe('StudentDashboard', () => {
+  it('renders correctly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+  it('should render both page headers <h4>', () => {
+    const wrapper = mount(
+      <MemoryRouter>
+        <StudentDashboard/>
+      </MemoryRouter>
     );
-    expect(queryAllByText(/upcoming sessions/i)).toBeTruthy();
+    expect(wrapper.find('h4').length).toBe(2);
+  });
 });
