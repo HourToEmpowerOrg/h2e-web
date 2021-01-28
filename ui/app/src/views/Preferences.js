@@ -17,13 +17,11 @@ class Preferences extends React.Component {
             className={outerClasses}
             style={{paddingBottom: '12px'}}
           >
-            <h4>Your Preferences</h4>
-            <p>
-              Hey there! We're still working on getting this page set up, in the mean time if you need to change your scheduling preferences please send an email to <strong>help@hourtoempower.org</strong>
-            </p>
-            <PrefferencesSection></PrefferencesSection>
-            <SeessionHistorySection></SeessionHistorySection>
+            <h3>Your Preferences</h3>
           </section>
+
+          <PrefferencesSection></PrefferencesSection>
+          <SeessionHistorySection></SeessionHistorySection>
             
       </React.Fragment>
     );

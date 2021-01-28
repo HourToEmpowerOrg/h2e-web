@@ -38,6 +38,9 @@ import BookSession from './views/student/BookSession';
 import AdminDashboard from './views/admin/AdminDashboard';
 import LayoutAdmin from './layouts/LayoutAdmin';
 
+// Public Viewes
+import PublicBookSession from './views/tutor/PublicBookSession';
+
 import ReactGA from 'react-ga';
 ReactGA.initialize('UA-178422805-1');
 
@@ -94,7 +97,7 @@ class App extends React.Component {
             {/* Shared Routes */}
             <ProtectedRoute exact path="/student/feedback" component={Feedback} layout={LayoutStudent}/>
             <ProtectedRoute exact path="/feedback" component={Feedback} layout={LayoutTutor}/>
-
+            <AppRoute exact path="/tutor/public-signup/:id" component={PublicBookSession} layout={LayoutSignin} />
             <AppRoute path="*" component={NotFound} layout={LayoutDefault}></AppRoute>
           </Switch>
         )} />

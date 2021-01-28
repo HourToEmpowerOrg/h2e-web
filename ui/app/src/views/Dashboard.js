@@ -1,6 +1,6 @@
 import React from 'react';
 import ScheduleSection from '../components/sections/ScheduleSection';
-import PrefferencesSection from '../components/sections/PreferencesSection';
+// import PrefferencesSection from '../components/sections/PreferencesSection';
 import SeessionHistorySection from '../components/sections/SessionHistorySection';
 
 class Dashboard extends React.Component {
@@ -8,7 +8,7 @@ class Dashboard extends React.Component {
     return (
       <React.Fragment>
             <ScheduleSection showPending={true}></ScheduleSection>
-            <PrefferencesSection></PrefferencesSection>
+            {/* <PrefferencesSection></PrefferencesSection> */}
             <SeessionHistorySection></SeessionHistorySection>
       </React.Fragment>
     );

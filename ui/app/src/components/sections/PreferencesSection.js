@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
 import ScheduleItem from '../elements/ScheduleItem.js'
 import axios from "axios";
+import Button from '../elements/Button';
 
 const propTypes = {
   children: PropTypes.node,
@@ -15,9 +16,17 @@ const defaultProps = {
   ...SectionProps.defaults
 }
 
+const bookingLink = 'hourtoempower.org/booking/test_tutor'
+
+function  copyPublicLink() {
+
+}
+
 function PrefferencesSection(props) {
 
   const [scheduleItems, setScheduleItems] = useState([]);
+  const [isPublicLinkEnabled, setPublickLinkEnabled] = useState(true);
+  const [publicLink, setPublicLink] = useState()
 
   useEffect(() => {
     async function fetchData() {
@@ -56,7 +65,7 @@ function PrefferencesSection(props) {
       <div className="container" style={{marginBottom: '8px'}}>
         <div>
           <h4 className="dashboard-header">
-              Scheduling Preferences
+              Scheduling
           </h4>
           {
             scheduleItems.map((item) => {
@@ -65,6 +74,35 @@ function PrefferencesSection(props) {
               )
             })
           }
+
+          <Button className="btn is-small">Add a Schedule Block</Button>
+          
+          <h4 className="dashboard-header">
+              Public Booking Page
+          </h4>
+          <div>
+            {
+              isPublicLinkEnabled && (
+                <div>
+                  <h6><a href={bookingLink}>{bookingLink}</a>
+                    
+                    <a onClick={() => copyPublicLink()}>copy</a>
+                  </h6>
+                  <p className="subtext">Share this link to allow your students to book sessions on your calendar.</p>
+                </div>
+                
+              )
+            }
+          <input id="switchRoundedInfo" 
+            type="checkbox" 
+            name="switchRoundedInfo" 
+            className="switch is-rounded is-info" 
+            checked={isPublicLinkEnabled}
+            onChange={() => setPublickLinkEnabled(!isPublicLinkEnabled)}
+            style={{margin: 10, width: 20, transform: "scale(1.5)"}}
+          />
+            <label htmlFor="switchExample">Enable your public booking page</label>
+          </div>
         </div>
       </div>
     </section>
