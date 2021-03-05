@@ -191,6 +191,30 @@ class Team extends React.Component {
                   </div>
                   <div className="team-item-content">
                     <h5 className="team-item-name mt-0 mb-4">
+                      Joey Cleveland
+                    </h5>
+                    <div className="team-item-role text-xs fw-600 mb-8">
+                      Outreach Director
+                    </div>
+                    <div className="team-item-link text-xs fw-600 mb-8">
+                      <a href="https://www.linkedin.com/in/joseph-cleveland/">LinkedIn Profile</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap">
+                <div className="tiles-item-inner">
+                  <div className="team-item-header">
+                    <div className="team-item-image mb-24">
+                      {/* <Image
+                        src={require('./../../assets/images/team-member-chacko.jpg')}
+                        alt="Team member 01"
+                        width={180}
+                        height={180} /> */}
+                    </div>
+                  </div>
+                  <div className="team-item-content">
+                    <h5 className="team-item-name mt-0 mb-4">
                       Lukas Temple
                     </h5>
                     <div className="team-item-role text-xs fw-600 mb-8">
@@ -220,27 +244,6 @@ class Team extends React.Component {
                     <p className="m-0 text-sm">
                       Princeton 2016
                     </p>
-                  </div>
-                </div>
-              </div>
-              <div className="tiles-item reveal-from-bottom" data-reveal-container=".tiles-wrap">
-                <div className="tiles-item-inner">
-                  <div className="team-item-header">
-                    <div className="team-item-image mb-24">
-                      {/* <Image
-                        src={require('./../../assets/images/team-member-chacko.jpg')}
-                        alt="Team member 01"
-                        width={180}
-                        height={180} /> */}
-                    </div>
-                  </div>
-                  <div className="team-item-content">
-                    <h5 className="team-item-name mt-0 mb-4">
-                      Joey Cleveland
-                    </h5>
-                    <div className="team-item-role text-xs fw-600 mb-8">
-                      Member
-                    </div>
                   </div>
                 </div>
               </div>
