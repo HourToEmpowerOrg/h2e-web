@@ -16,6 +16,7 @@ function LoginForm(props) {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState();
   // eslint-disable-next-line
   const [cookies, setCookie, removeCookie] = useCookies(['h2e']);
 
@@ -55,11 +56,13 @@ function LoginForm(props) {
                 else if (response.data.role === 'ADMIN') {
                   history.push("/h2e_07546_admin");
                 }
-                
+              } else if (response.status === 401) {
+                setError('Incorrect Username or Password');
               }
             })
             .catch(function (error) {
                 console.log(error);
+                setError('Incorrect Username or Password');
             });
   }
 
@@ -122,6 +125,11 @@ function LoginForm(props) {
                         onChange = {e => setPassword(e.target.value)}
                         required />
                     </div>
+                    {
+                      error && (
+                        <p className="text-color-error">{error}</p>
+                      )
+                    }
                     <div className="mt-24 mb-32">
                       <Button color="primary" disabled={!password || !email} wide onClick={submitLogin}>Sign in</Button>
                     </div>

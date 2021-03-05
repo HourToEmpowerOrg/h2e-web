@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import { Link } from 'react-router-dom';
 
@@ -7,34 +7,21 @@ import Moment from 'react-moment';
 import 'moment-timezone'
 import axios from 'axios';
 
-import Select from 'react-select'
-import AsyncSelect from 'react-select/async';
 import DatePicker from 'react-datepicker';
 import {apiUrl} from '../../Api';
 import Button  from '../../components/elements/Button';
 
 // Eventually This should be loaded from our api
 import {subjectOptions} from '../../Constants';
-import { LoadingIndicator } from 'react-select/src/components/indicators';
 
-const filterTutors = (tutorList, inputValue) => {
-  if(!tutorList) return [];
-  return tutorList.filter(i =>
-    i.label.toLowerCase().includes(inputValue.toLowerCase())
-  );
-};
+const Loading = () => {
 
-const loadTutorOptions = (inputValue, callback) => {
-
-  axios.get(`${apiUrl}/tutors`).then(response => {
-    callback(filterTutors(response.data.items, inputValue))
-  })
-  
-};
+}
 
 var moment = require('moment');
 
 function PublicBookSession (props) {
+    
     const [dateValue, setDateValue] = useState(new Date());
     const [pageData, setPageData] = useState({});
     const [bookings, setBookings] = useState([])
@@ -69,7 +56,6 @@ function PublicBookSession (props) {
       const result = await axios(
         `/api/v1/tutors/pages/${id}`,
       );
-      // ...
       setPageData(result.data);
     }
     fetchPageData(props.match.params.id);
@@ -144,7 +130,7 @@ function PublicBookSession (props) {
     };
 
     if (!pageData.tutor || loading) {
-        return <LoadingIndicator></LoadingIndicator>
+        return <Loading></Loading>
     }
 
     return (
@@ -173,18 +159,6 @@ function PublicBookSession (props) {
                   </Moment>
                 </strong>
               </button> */}
-            </div>
-            <div className="entry-item">
-              Choose Subject: 
-              <Select 
-                isMulti
-                name="subjects"
-                options={subjectOptions}
-                className="basic-multi-select"
-                classNamePrefix="select"
-                onChange={onSubjectChange}
-                placeholder="Please select subject(s)"
-              />
             </div>
 
             <button style={{marginLeft: '16px'}} className="button is-small is-link button-sm" onClick={ () => getBookings()}>Search</button>
