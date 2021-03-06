@@ -90,6 +90,12 @@ class AdminHeader extends React.Component {
 
         <div id="navbarBasicExample" className="navbar-menu">  
 
+        <div className="navbar-start">
+          <Link to="/h2e_07546_admin" className="navbar-item">
+              Dashboard
+          </Link>
+        </div>
+
           <div className="navbar-end">
             <span className="navbar-item">
               {userName}

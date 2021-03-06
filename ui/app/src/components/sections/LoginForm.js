@@ -37,7 +37,7 @@ function LoginForm(props) {
                       'display': response.data.display_name, 
                       'timezone': response.data.timezone, 
                       'username': response.data.username,
-                      'role': response.data.role
+                      'role': response.data.role,
                     })
                   );
                 }
@@ -50,8 +50,13 @@ function LoginForm(props) {
                     history.push("/student/dashboard");
                   })
                 }
-                else if (response.data.role === 'TUTOR'){
-                  history.push("/dashboard");
+                else if (response.data.role === 'TUTOR') {
+                  if (response.data.has_temp_pass) {
+                    history.push("/user/password-update");  
+                  }
+                  else { 
+                    history.push("/dashboard");
+                  }
                 } 
                 else if (response.data.role === 'ADMIN') {
                   history.push("/h2e_07546_admin");

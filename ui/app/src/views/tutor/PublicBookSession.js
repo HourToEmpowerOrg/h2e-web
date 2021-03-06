@@ -15,7 +15,9 @@ import Button  from '../../components/elements/Button';
 import {subjectOptions} from '../../Constants';
 
 const Loading = () => {
-
+  return (
+    <div></div>
+  )
 }
 
 var moment = require('moment');

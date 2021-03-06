@@ -5,13 +5,12 @@ import json
 import os
 from flask import g
 from flask import make_response
-
 import pytz
 
 from h2e_api.main.models import (
     User,
  )
-from h2e_api.main.models.enums import UserType, UserStatus
+from h2e_api.main.models.enums import UserStatus
 from h2e_api.main.endpoints.auth.auth_lib import AuthLib
 
 from h2e_api.factory import db
@@ -20,6 +19,7 @@ from h2e_api.main.endpoints.auth.constants import (
     AUTH_TYPE_PASSWORD,
     SUCCESS_MESSAGE
 )
+from h2e_api.main.services import user_service
 
 
 def make_login_payload(user):
@@ -27,6 +27,7 @@ def make_login_payload(user):
         'user_id': str(user.id),
         'username': user.username,
         'role': user.user_type,
+        'has_temp_pass': user.has_temp_pass,
         'email': user.email,
         'display_name': user.display_name,
         'timezone': user.timezone
@@ -100,15 +101,45 @@ def check_user_login_information(auth_json, auth, request):
     return _make_h2e_response(user, message, auth, request, call_start_time, AUTH_TYPE_PASSWORD)
 
 
+def update_user_pass(user_id, new_password):
+    user = User.query.filter_by(id=user_id).one_or_none()
+    user.set_password(new_password)
+    user.has_temp_pass = False
+    db.session.add(user)
+    db.session.commit()
+    user_service.send_pass_update_email(user)
+    return user
+
+
 def create_new_user(email, password, user_type, **kwargs):
-    user = User(email=email,
-                name=kwargs.get('name'),
-                username=kwargs.get('username', email),
-                user_type=user_type,
-                user_status=UserStatus.ACTIVE)
+
+    behalf = kwargs.get('behalf')
+
+    if behalf == 'ADMIN':
+        temp_pass = True
+    else:
+        temp_pass = False
+
+    user = User(
+        email=email,
+        name=kwargs.get('name'),
+        username=kwargs.get('username', email),
+        user_type=user_type,
+        user_status=UserStatus.ACTIVE,
+        has_temp_pass=temp_pass,
+        display_name=kwargs.get('display_name')
+    )
     user.set_password(password)
     db.session.add(user)
     db.session.commit()
-    return user.id
+
+    # Check to see if/what kind of email we should send an email to the user
+    if behalf == 'ADMIN':
+        print('Sending new email for user created by admin')
+        user_service.send_new_user_created_by_admin_email(user)
+    else:
+        user_service.send_new_user_email(user)
+
+    return user
 
 

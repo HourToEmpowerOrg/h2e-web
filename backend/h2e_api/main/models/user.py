@@ -16,6 +16,8 @@ class User(db.Model):
     password_hash = db.Column(db.String(128))
     display_name = db.Column(db.String(32), nullable=False, default="Student")
 
+    has_temp_pass = db.Column(db.Boolean, default=False)
+
     last_login = db.Column(db.DateTime, nullable=True)
 
     user_type = db.Column(db.Enum(UserType, name='user_type'))

@@ -16,6 +16,7 @@ import AboutUs from './views/AboutUs'
 import Parents from './views/Parents'
 import TermsOfUse from './views/TermsOfUse'
 import Feedback from './views/Feedback';
+import UserUpdatePassword from './views/UserUpdatePassword';
 
 //Sign up pages
 import Signup from './views/Signup';
@@ -36,6 +37,7 @@ import BookSession from './views/student/BookSession';
 
 // Admin Views:
 import AdminDashboard from './views/admin/AdminDashboard';
+import CreateUser from './views/admin/CreateUser';
 import LayoutAdmin from './layouts/LayoutAdmin';
 
 // Public Viewes
@@ -77,6 +79,7 @@ class App extends React.Component {
             <AppRoute exact path="/termsofuse" component={TermsOfUse} layout={LayoutDefault} />
 
             <ProtectedRoute exact path="/dashboard" component={Dashboard} layout={LayoutTutor} />
+            <ProtectedRoute exact path = "/user/password-update" component={UserUpdatePassword} layout={LayoutTutor}></ProtectedRoute>
             <ProtectedRoute exact path="/preferences" component={Preferences} layout={LayoutTutor} />
             
             {/* TODO: How to change layout based on user type? */}
@@ -93,6 +96,7 @@ class App extends React.Component {
 
             {/* Admin Routes */}
             <ProtectedRoute exact path="/h2e_07546_admin" component={AdminDashboard} layout={LayoutAdmin} />
+            <ProtectedRoute exact path="/h2e_07546_admin/create_user" component={CreateUser} layout={LayoutAdmin} />
 
             {/* Shared Routes */}
             <ProtectedRoute exact path="/student/feedback" component={Feedback} layout={LayoutStudent}/>
