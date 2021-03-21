@@ -36,8 +36,8 @@ function PublicBookSession (props) {
     const [subjects, setSubjects] = useState([]);
 
     const buildFilters = () => {
-      var baseUrl = `${apiUrl}/bookings?date=${moment(dateValue).format()}&subject=${subjects}`
-      baseUrl = `${baseUrl}&tutor=${pageData.tutor.id}`
+      var baseUrl = `${apiUrl}/bookings?date=${moment(dateValue).format()}`
+      baseUrl = `${baseUrl}&tutor=${pageData.tutor_id}`
 
       if (subjects){
         //TODO: Pass subjects ?
@@ -59,6 +59,7 @@ function PublicBookSession (props) {
         `/api/v1/tutors/pages/${id}`,
       );
       setPageData(result.data);
+      setLoading(false);
     }
     fetchPageData(props.match.params.id);
   }, [props.match.params.id]);
@@ -117,35 +118,27 @@ function PublicBookSession (props) {
       invertColor,
     } = props;
 
-    const outerClasses = classNames(
-      'section',
-      topOuterDivider && 'has-top-divider',
-      bottomOuterDivider && 'has-bottom-divider',
-      hasBgColor && 'has-bg-color',
-      invertColor && 'invert-color',
-      className
-    );
 
     const handleInputChange = (newValue) => {
       const inputValue = newValue.replace(/\W/g, '');
       setInputValue(inputValue);
     };
 
-    if (!pageData.tutor || loading) {
+    if (!pageData.tutor_id || loading) {
         return <Loading></Loading>
     }
 
+    console.log("rendering? ")
+
     return (
       <section
-        {...props}
-        className={outerClasses}
         style={{paddingBottom: '12px'}}
       >
         <div className="container">
 
             {booked && renderBookedModal()}
             
-            <h2 className="page-header"> Book a Session with {pageData.tutor.name} </h2>
+            <h2 className="page-header"> Book a Session with {pageData.name} </h2>
 
             <div className="entry-item">
               <div>

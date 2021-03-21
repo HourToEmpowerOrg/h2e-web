@@ -8,7 +8,7 @@ from sqlalchemy import func
 class TutorPage(db.Model):
     __tablename__ = 'tutor_page'
     id = db.Column(UUID(as_uuid=True), primary_key=True, server_default=sqlalchemy.text("uuid_generate_v4()"), )
-    page_id = db.Column(db.String(8), unique=True, index=True)
+    page_id = db.Column(db.String(32), unique=True, index=True)
     title = db.Column(db.String(32))
     subjects = db.Column(db.ARRAY(db.String))
     status = db.Column(db.String(6), default='ACTIVE')

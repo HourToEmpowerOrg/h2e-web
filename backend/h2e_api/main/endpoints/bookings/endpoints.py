@@ -58,7 +58,7 @@ class PotentialBookings(Resource):
             }
         ]
     )
-    @check_endpoint_accessible('STUDENT')
+    # @check_endpoint_accessible('STUDENT')
     def get(self):
         """
         User Id required in the query parameters
@@ -79,8 +79,15 @@ class RequestBooking(Resource):
     """
     @check_endpoint_accessible('STUDENT')
     def post(self):
+        if not g.user:
+            auth_id = request.json.email  # TODO can't book sessions as public user yet
+        else:
+            auth_id = g.user.id
+
+        if not auth_id:
+            raise Exception("No auth provided")
         validated_input = BookingSchema().load(request.json)
-        booking = create_booking_request(g.user.id, validated_input)
+        booking = create_booking_request(auth_id, validated_input)
         return BookingSchema().dump(booking)
 
 

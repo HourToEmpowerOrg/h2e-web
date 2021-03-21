@@ -16,16 +16,16 @@ const defaultProps = {
   ...SectionProps.defaults
 }
 
-const bookingLink = 'hourtoempower.org/booking/test_tutor'
+// const bookingLink = 'hourtoempower.org/booking/test_tutor'
 
 function  copyPublicLink() {
-
+  // add to clipboard
 }
 
 function PrefferencesSection(props) {
 
   const [scheduleItems, setScheduleItems] = useState([]);
-  const [isPublicLinkEnabled, setPublickLinkEnabled] = useState(true);
+  const [isPublicLinkEnabled, setPublickLinkEnabled] = useState(false);
   const [publicLink, setPublicLink] = useState()
 
   useEffect(() => {
@@ -36,9 +36,19 @@ function PrefferencesSection(props) {
       );
       // ...
       setScheduleItems(result.data.items);
+      const userName = (localStorage.getItem('h2eUserInfo') ? JSON.parse(localStorage.getItem('h2eUserInfo')).username : '')
+      setPublicLink(`hourtoempower.org/booking/${userName}`);
     }
     fetchData();
   }, []); // Or [] if effect doesn't need props or state
+
+  useEffect(() => {
+    async function submitData() {
+      // You can await here
+      const result = await axios.post('/api/v1/tutors/me/public-page', {});
+    }
+    submitData();
+  }, [isPublicLinkEnabled]);
 
   const {
     className,
@@ -84,9 +94,10 @@ function PrefferencesSection(props) {
             {
               isPublicLinkEnabled && (
                 <div>
-                  <h6><a href={bookingLink}>{bookingLink}</a>
+                  <h6>
                     
-                    <a onClick={() => copyPublicLink()}>copy</a>
+                    <a href={publicLink}>{publicLink}</a>
+                    {/* <a className="button is-ghost" onClick={() => copyPublicLink()}>copy</a> */}
                   </h6>
                   <p className="subtext">Share this link to allow your students to book sessions on your calendar.</p>
                 </div>
