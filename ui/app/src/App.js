@@ -101,7 +101,7 @@ class App extends React.Component {
             {/* Shared Routes */}
             <ProtectedRoute exact path="/student/feedback" component={Feedback} layout={LayoutStudent}/>
             <ProtectedRoute exact path="/feedback" component={Feedback} layout={LayoutTutor}/>
-            <AppRoute exact path="/booking/:id" component={PublicBookSession} layout={LayoutSignin} />
+            <AppRoute exact path="/booking" component={PublicBookSession} layout={LayoutSignin} />
             <AppRoute path="*" component={NotFound} layout={LayoutDefault}></AppRoute>
           </Switch>
         )} />

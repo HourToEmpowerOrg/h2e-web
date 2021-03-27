@@ -5,6 +5,7 @@ import { SectionProps } from '../../utils/SectionProps';
 import ScheduleItem from '../elements/ScheduleItem.js'
 import axios from "axios";
 import Button from '../elements/Button';
+import Loading  from '../elements/Loading';
 
 const propTypes = {
   children: PropTypes.node,
@@ -27,6 +28,8 @@ function PrefferencesSection(props) {
   const [scheduleItems, setScheduleItems] = useState([]);
   const [isPublicLinkEnabled, setPublickLinkEnabled] = useState(false);
   const [publicLink, setPublicLink] = useState()
+  const [loading, setLoading] = useState(true);
+  const [showScheduleBlock, setShowScheduleBlock] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -38,6 +41,7 @@ function PrefferencesSection(props) {
       setScheduleItems(result.data.items);
       const userName = (localStorage.getItem('h2eUserInfo') ? JSON.parse(localStorage.getItem('h2eUserInfo')).username : '')
       setPublicLink(`hourtoempower.org/booking/${userName}`);
+      setLoading(false);
     }
     fetchData();
   }, []); // Or [] if effect doesn't need props or state
@@ -67,6 +71,63 @@ function PrefferencesSection(props) {
     className
   );
 
+  const showAddScheduleBlock = () => {
+    setShowScheduleBlock(true);
+  }
+
+
+  const renderScheduleModal = () => {
+    return (
+      <div className="modal is-active">
+        <div className="modal-background"></div>
+          <div className="modal-card">
+          <header class="modal-card-head" style={{marginBottom: 0, paddingBottom: 0}}>
+              <p class="modal-card-title">Add a schedule block</p>
+              <button class="delete" aria-label="close" style={{marginBottom: 16, paddingBottom: 0}} onClick={() => setShowScheduleBlock(false)}></button>
+          </header>
+
+            <section className="modal-card-body">
+              <p>
+                Select a Day of the week for this schedule block
+              </p>
+
+              <div className="select schedule-item-select">
+                <select>
+                  <option>Monday</option>
+                  <option>Tuesday</option>
+                  <option>Wednesday</option>
+                </select>
+              </div>
+              
+              <p>Select a start time</p>
+              <div className="select schedule-item-select">
+                <select>
+                  <option>1:00 pm</option>
+                  <option>2:00 pm</option>
+                  <option>3:00 pm</option>
+                  <option>4:00 pm</option>
+                </select>
+              </div>
+
+              <p>Select an end time</p>
+              <div className="select schedule-item-select">
+                <select>
+                  <option>1:00 pm</option>
+                  <option>2:00 pm</option>
+                  <option>3:00 pm</option>
+                  <option>4:00 pm</option>
+                </select>
+              </div>
+
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success">Submit</button>
+            </footer>
+          </div>
+      </div>
+    )
+  }
+
   return (
     <section
       className={outerClasses}
@@ -77,6 +138,9 @@ function PrefferencesSection(props) {
           <h4 className="dashboard-header">
               Scheduling
           </h4>
+
+          { showScheduleBlock && renderScheduleModal()}
+          {loading && <Loading></Loading>}
           {
             scheduleItems.map((item) => {
               return (
@@ -85,7 +149,7 @@ function PrefferencesSection(props) {
             })
           }
 
-          <Button className="btn is-small">Add a Schedule Block</Button>
+          <Button className="btn is-small" onClick={showAddScheduleBlock}>Add a Schedule Block</Button>
           
           <h4 className="dashboard-header">
               Public Booking Page

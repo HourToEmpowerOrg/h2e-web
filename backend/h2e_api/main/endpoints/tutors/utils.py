@@ -49,5 +49,5 @@ def create_tutor_page_for_user(user_id):
     db.session.commit()
     return {
         'name': tutor.display_name,
-        'tutor_id': tp.User.id
+        'tutor_id': tp.user
     }

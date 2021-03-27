@@ -5,6 +5,7 @@ import axios from "axios";
 import Moment from 'react-moment';
 import 'moment-timezone'
 import {apiUrl} from '../../Api';
+import Loading from '../elements/Loading';
 
 function SessionItem({item, onRespond, itemPath}) {
 
@@ -74,7 +75,7 @@ function ScheduleSection(props){
 
     const [sessions, setSessions] = useState([])
     const [pending, setPending] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         async function fetchData() {
@@ -148,6 +149,7 @@ function ScheduleSection(props){
             <h4 className="dashboard-header">
                 Upcoming Sessions
             </h4>
+            {loading && <Loading></Loading>}
             <div className="ml-12">
               <div className="form-hint">
                 { !!sessions.length && ("Click a session to view its details") }

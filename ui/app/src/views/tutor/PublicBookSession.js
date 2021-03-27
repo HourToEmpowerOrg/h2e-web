@@ -13,23 +13,18 @@ import Button  from '../../components/elements/Button';
 
 // Eventually This should be loaded from our api
 import {subjectOptions} from '../../Constants';
-
-const Loading = () => {
-  return (
-    <div></div>
-  )
-}
+import Loading from '../../components/elements/Loading';
 
 var moment = require('moment');
 
-function PublicBookSession (props) {
+function  PublicBookSession (props) {
     
     const [dateValue, setDateValue] = useState(new Date());
     const [pageData, setPageData] = useState({});
     const [bookings, setBookings] = useState([])
     const [loading, setLoading] = useState(true);
     const [showInfo, setShowInfo] = useState(true);
-
+    const [nextSession, setNextSession] = useState();
     const [booked, setBooked] = useState(false);
     // eslint-disable-next-line
     const [inputValue, setInputValue] = useState();
@@ -61,6 +56,7 @@ function PublicBookSession (props) {
       setPageData(result.data);
       setLoading(false);
     }
+    console.log("fetching data for tutor: " + props.match.params.id);
     fetchPageData(props.match.params.id);
   }, [props.match.params.id]);
 
@@ -128,7 +124,7 @@ function PublicBookSession (props) {
         return <Loading></Loading>
     }
 
-    console.log("rendering? ")
+    console.log("rendering public booking page...");
 
     return (
       <section
@@ -138,7 +134,11 @@ function PublicBookSession (props) {
 
             {booked && renderBookedModal()}
             
-            <h2 className="page-header"> Book a Session with {pageData.name} </h2>
+            <h3 className="page-header" style={{marginTop: '64px'}}> Book a Session with {pageData.name} </h3>
+
+            { nextSession  && (
+              <p>Next available session is at: {nextSession}</p>
+            )}
 
             <div className="entry-item">
               <div>
@@ -146,14 +146,6 @@ function PublicBookSession (props) {
               </div>
 
               <DatePicker selected={dateValue} onChange={date => setDateValue(date)} />
-
-              {/* <button className="button is-small button-sm" onClick={() => setShowPicker(!showPicker)}>
-                <strong style={{marginLeft: '4px'}}>
-                  <Moment format="ddd, MMM, D z" local>
-                    {dateValue}
-                  </Moment>
-                </strong>
-              </button> */}
             </div>
 
             <button style={{marginLeft: '16px'}} className="button is-small is-link button-sm" onClick={ () => getBookings()}>Search</button>

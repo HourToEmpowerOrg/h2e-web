@@ -30,8 +30,6 @@ class Tutors(Resource):
 class TutorPublicPage(Resource):
     def get(self, page_id):
         page_data = get_tutor_page_data(page_id)
-        print("returning page data: ")
-        print(page_data)
         return page_data, 200
 
 
